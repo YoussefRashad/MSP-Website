@@ -4,7 +4,7 @@ import './style.css';
 import Logo from '../../assets/images/logo.png';
 import SearchImg from '../../assets/images/iconfinder_search_172546.png';
 
-function Header (props) {
+function Header () {
     let active = useLocation().pathname.replace('/', '');
     
     return (

@@ -1,0 +1,10 @@
+ngx-chips
+ngx-toaster
+@swimlane
+sass-loader -- >>
+css-loader >>
+angular-calendar
+quill
+highlight.js
+ladda
+perfect-scrollbar
