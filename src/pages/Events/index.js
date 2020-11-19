@@ -3,7 +3,7 @@ import EventsComponent from '../../components/Events'
 
 const Events = () => {
     return (
-        <div class="d-flex flex-column msContant">
+        <div className="d-flex flex-column msContant">
             <EventsComponent />
         </div>
     )

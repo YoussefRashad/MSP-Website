@@ -4,7 +4,7 @@ import TeamComponent from '../../components/Team'
 
 const About = () => {
     return (
-        <div class="d-flex flex-column msContant">
+        <div className="d-flex flex-column msContant">
             <EventsComponent />
             <TeamComponent />
         </div>

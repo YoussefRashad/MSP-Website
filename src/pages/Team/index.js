@@ -3,7 +3,7 @@ import TeamComponent from '../../components/Team'
 
 const Team = () => {
     return (
-        <div class="d-flex flex-column msContant">
+        <div className="d-flex flex-column msContant">
             <TeamComponent />
         </div>
     )

@@ -3,7 +3,7 @@ import TopicComponent from '../../components/Topic'
 
 const Topic = () => {
     return (
-        <div class="d-flex flex-column msContant">
+        <div className="d-flex flex-column msContant">
             <TopicComponent />
         </div>
     )
