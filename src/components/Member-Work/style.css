@@ -1,0 +1,17 @@
+.membersCard {
+    margin-top: 20px;
+}
+
+.memberLink {
+    width: 50px;
+    margin-right: 20px;
+}
+
+.memberLinkImg {
+    border-radius: 50%;
+}
+
+.repoCardPara {
+    margin-bottom: 0px;
+    font-size: 1rem;
+}

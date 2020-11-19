@@ -1,0 +1,73 @@
+.msContant {
+    margin-top: 0px;
+    padding-top: 0px
+}
+
+.msContent2 {
+    padding: 200px 100px;
+}
+
+.msHeaderHome {
+    background-image: url('../../assets/images/msBG.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.msHeaderText {
+    color: #01a4f1;
+    width: fit-content;
+    margin-bottom: 0px;
+}
+
+.msHeaderText1 {
+    font-size: 40px;
+}
+
+.msHeaderText2 {
+    font-size: 60px;
+}
+
+.msHeaderText3 {
+    font-size: 80px;
+}
+
+.msButton {}
+
+.msHeaderButton {
+    font-size: xx-large;
+}
+
+.msAnchorHover {
+    font-size: 50px;
+    text-decoration: none;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.msAnchorHover:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    border-bottom: 2px solid white;
+    transition: 0.4s;
+}
+
+.msAnchorHover:hover:after {
+    width: 100%;
+}
+
+@media only screen and (max-width: 960px) {
+
+    .msContant {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .msContent2 {
+        padding: 100px 10px;
+    }
+
+}

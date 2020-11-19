@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.msMain {
+  padding-right: 100px;
+  padding-left: 100px;
+
+  padding-bottom: 30px;
+}
+
+
+@media only screen and (max-width: 960px) {
+
+  .msMain {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .msContant {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.msContant {
+  margin-top: 0px;
+  padding-top: 0px
+}

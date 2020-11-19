@@ -1,0 +1,10 @@
+@media only screen and (max-width: 1024px) {
+    .msContant {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+textarea {
+    height: 170px;
+}
