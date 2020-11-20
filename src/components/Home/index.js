@@ -1,5 +1,8 @@
 import React from 'react';
 
+import ArticleImg from '../../assets/images/products/headphone-1.jpg'
+import EventImg from '../../assets/images/products/iphone-1.jpg'
+
 function HomeComponent() {
   return (
     <div className="msMain">
@@ -12,7 +15,7 @@ function HomeComponent() {
         <div>
           <div className="card o-hidden mb-4 d-flex">
             <div className="list-thumb d-flex">
-              <img src="" alt="" />
+              <img src={ArticleImg} alt="" />
             </div>
             <div className="flex-grow-1">
               <div className="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center">
@@ -32,6 +35,7 @@ function HomeComponent() {
         </div>
       </div>
 
+
       <div className="breadcrumb">
         <h1 style={{fontSize: 'xx-large'}}>Events</h1>
       </div>
@@ -42,7 +46,7 @@ function HomeComponent() {
         <div style={{cursor: "pointer"}}>
           <div className="card o-hidden mb-4 d-flex">
             <div className="list-thumb d-flex">
-              <img src="/" alt="" />
+              <img src={EventImg} alt="" />
             </div>
             <div className="flex-grow-1">
               <div className="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center">

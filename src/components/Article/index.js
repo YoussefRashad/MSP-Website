@@ -1,4 +1,5 @@
 import React from 'react'
+import Img from '../../assets/images/products/speaker-1.jpg'
 
 function Article() {
     return (
@@ -6,15 +7,15 @@ function Article() {
 
             <div className="card user-profile o-hidden mb-4">
                 <div>
-                    <img src="/" style={{width: "100%"}} alt="" />
+                    <img src={Img} style={{width: "100%"}} alt="" />
                 </div>
                 <div className="user-info">
-                    <p className="m-0 text-24" style={{ paddingTop: "30px" }}> </p>
-                    <p className="text-muted m-0" style={{ paddingTop: "30px" }}> </p>
+                    <p className="m-0 text-24" style={{ paddingTop: "30px" }}></p>
+                    <p className="text-muted m-0" style={{ paddingTop: "30px" }}></p>
                 </div>
                 <div className="card-body">
                     <div>
-                        <h2 style={{ fontSize: "40px", fontFamily: "Cairo, sans-serif", direction: "rtl" }} className="text-right">
+                        <h2 style={{ fontSize: "40px", fontFamily: "Cairo, sans-serif"}} className="text-center">
                             article.header</h2>
                         <div className="msPar" >
 

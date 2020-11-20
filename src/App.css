@@ -27,7 +27,42 @@
   }
 }
 
+
+/* Start Article and Event */
 .msContant {
   margin-top: 0px;
   padding-top: 0px
+}
+
+#msCover {
+  width: 100%;
+}
+
+.msPar {
+  font-size: large;
+  font-family: 'Cairo', sans-serif;
+  padding: 20px 100px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .msPar {
+    font-size: large;
+    font-family: 'Cairo', sans-serif;
+    padding: 20px 0px;
+  }
+}
+
+/* End Article and Event */
+
+/* Start Form Event and Recruitement */
+
+@media only screen and (max-width: 1024px) {
+  .msContant {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+textarea {
+  height: 170px;
 }

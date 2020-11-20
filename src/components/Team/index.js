@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.scss'
 
 const TeamComponent = () => {
   return (
@@ -17,7 +18,7 @@ const TeamComponent = () => {
             <div className="card bg-dark text-white o-hidden mb-4 msCard">
               <img className="card-img msImage" src="/" alt="CardImage" />
               
-              <div className="card-img-overlay msText">
+              <div className="card-img-overlay msTextTeam">
                 <div className="text-center pt-4">
                   <h5 className="card-title mb-2 text-white">item.name</h5>
                   <div className="separator border-top mb-2" />

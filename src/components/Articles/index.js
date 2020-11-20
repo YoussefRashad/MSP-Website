@@ -1,4 +1,5 @@
 import React from 'react';
+import Img from '../../assets/images/products/speaker-1.jpg'
 
 function Articles () {
   return (
@@ -14,7 +15,7 @@ function Articles () {
         <div className="list-item" style={{cursor: "pointer"}}>
           <div className="card o-hidden mb-4 d-flex">
             <div className="list-thumb d-flex">
-              <img src="/" alt="" />
+              <img src={Img} alt="" />
             </div>
             <div className="flex-grow-1">
               <div className="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center">

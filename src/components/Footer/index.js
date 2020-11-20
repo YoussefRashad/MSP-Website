@@ -24,7 +24,6 @@ function Footer() {
             <a
                 className="btn btn-primary text-white btn-rounded mb-3 mb-sm-0 mr-0 mr-sm-3"
                 href="mailto: MSP-2020@outlook.com"
-                target="_blank"
                 rel="noopener noreferrer"
             >
                 Contact US
@@ -32,14 +31,13 @@ function Footer() {
             <Link
                 className="btn btn-danger btn-rounded mb-3 mb-sm-0"
                 to="/feedback"
-                target="_blank"
                 rel="noopener noreferrer"
             >
                 Feedback
             </Link>
 
             <span className="flex-grow-1"></span>
-            <div className="d-flex align-items-center">
+            <Link to="/" className="d-flex align-items-center">
                 <img
                     className="logo"
                     src={Logo}
@@ -50,7 +48,7 @@ function Footer() {
                     <p className="m-0">&copy; 2020 MSP</p>
                     <p className="m-0">All rights reserved</p>
                 </div>
-            </div>
+            </Link>
         </div>
     </div>
     );

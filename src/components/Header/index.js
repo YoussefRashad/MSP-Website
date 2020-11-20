@@ -5,7 +5,7 @@ import Logo from '../../assets/images/logo.png';
 import SearchImg from '../../assets/images/iconfinder_search_172546.png';
 
 function Header () {
-    let active = useLocation().pathname.replace('/', '');
+    let active = useLocation().pathname;
     
     return (
       <div className="header">
@@ -24,36 +24,36 @@ function Header () {
 
         <div className="header-right">
           <Link
-            className={`linkHome text-decoration-none ${active === 'articles' ? 'active' : ''
-            }`}
+            className={`${active === '/articles' ? 'active' : ''
+            } linkHome text-decoration-none`}
             to="/articles"
           >
             Articles
           </Link>
           <Link
-            className={`linkHome text-decoration-none ${active === 'forms' ? 'active' : ''
-            }`}
+            className={`${active === '/forms' ? 'active' : ''
+            } linkHome text-decoration-none`}
             to="/forms"
           >
             Forms
           </Link>
           <Link
-            className={`linkHome text-decoration-none ${active === 'video' ? 'active' : ''
-            }`}
-            to="/video"
+            className={`${active === '/videos' ? 'active' : ''
+            } linkHome text-decoration-none`}
+            to="/videos"
           >
             Videos
           </Link>
           <Link
-            className={`linkHome text-decoration-none ${active === 'topic' ? 'active' : ''
-            }`}
+            className={`${active === '/topic' ? 'active' : ''
+            } linkHome text-decoration-none`}
             to="/topic"
           >
             Topics
           </Link>
           <Link
-            className={`linkHome text-decoration-none ${active === 'about' ? 'active' : ''
-            }`}
+            className={`${active === '/about' ? 'active' : ''
+            } linkHome text-decoration-none`}
             to="/about"
           >
             About

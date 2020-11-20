@@ -1,12 +1,12 @@
 import React from 'react'
-import FeedBackComponent from '../../components/Feedback'
+import FeedbackComponent from '../../components/Feedback'
 
-const FeedBack = () => {
+const Feedback = () => {
     return (
         <div class="d-flex flex-column msContant">
-            <FeedBackComponent />
+            <FeedbackComponent />
         </div>
     )
 }
 
-export default FeedBack
+export default Feedback

@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-const FeedBackComponent = () => {
+const FeedbackComponent = () => {
     return (
     <div className="row" id="msdiv">
       <div className="col-md-10" id="msMainOuter">
@@ -61,7 +61,7 @@ const FeedBackComponent = () => {
     );
 };
 
-export default FeedBackComponent
+export default FeedbackComponent
 /*
 <ng-template #modalSmall let-modal>
     <div className="modal-header">

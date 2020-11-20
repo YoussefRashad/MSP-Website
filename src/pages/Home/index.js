@@ -20,7 +20,7 @@ function Home() {
                         <h1 className="msHeaderText msHeaderText3">Passion.</h1>
                     </div>
                     <div className="msButton">
-                        <button className="msHeaderButton btn btn-lg btn-outline-primary m-1">Who Are WE? </button>
+                        <button className="msHeaderButton btn btn-lg btn-outline-primary m-1">Who are we ? </button>
                     </div>
                 </div>
             </MsHeaderHome>
@@ -30,7 +30,7 @@ function Home() {
             <div style={{backgroundColor: "#1c546f", marginBottom: "30px"}}>
                 <div className="msMain" style={{paddingBottom: "0px"}}>
                     <h1 className="text-center" style={{margin: "100px 0px"}}>
-                        <Link to="/member-work" style={{color: "white"}} className="msAnchorHover text-decoration-none">Take a Look on our Members Work</Link>
+                        <Link to="/member-work" style={{color: "white"}} className="msAnchorHover ">Take a Look on our Members Work</Link>
                     </h1>
                 </div>
             </div>
