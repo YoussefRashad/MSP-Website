@@ -6,10 +6,14 @@ import Hero from '../../assets/images/msBG.png'
 
 // Components
 import HomeComponent from '../../components/Home'
-import Sponsors from '../../components/Sponsors'
+import Sponsors from '../../components/Sponsers'
 import WebTeam from '../../components/WebTeam'
 
+
+
 function Home() {
+
+
     return (
         <div className="d-flex flex-column msContant">
             <MsHeaderHome img={Hero}>
@@ -34,10 +38,15 @@ function Home() {
                     </h1>
                 </div>
             </div>
-
-
+            
             <Sponsors />
             <WebTeam /> 
+
+
+            
+
+
+            
             
         </div>
     )

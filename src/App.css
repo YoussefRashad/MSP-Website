@@ -28,6 +28,91 @@
 }
 
 
+/* Start the Header */
+.header {
+  overflow: hidden;
+  padding: 10px 100px 5px 100px;
+}
+
+
+.header a {
+  float: left;
+  color: #1c546f;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.header a.logo {
+  font-size: 25px;
+}
+
+
+.header a.link:hover {
+  background-color: rgb(241, 241, 241);
+  color: black;
+}
+
+.header a.linkHome:hover {
+  background-color: rgb(241, 241, 241);
+  color: #1c546f !important;
+}
+
+.header a.active {
+  background-color: #01a3f0;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
+
+.msHome:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 950px) {
+  .header {
+    overflow: hidden;
+    padding: 20px 10px;
+  }
+
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .header-right {
+    float: none;
+  }
+
+  #searchIconWeb {
+    display: none !important;
+  }
+
+  #searchIconMoblie {
+    display: contents !important;
+  }
+
+}
+
+#searchIconWeb {
+  display: contents;
+  cursor: pointer;
+}
+
+#searchIconMoblie {
+  display: none;
+  cursor: pointer;
+}
+
+/* End The Header */
+
 /* Start Article and Event */
 .msContant {
   margin-top: 0px;
@@ -56,13 +141,235 @@
 
 /* Start Form Event and Recruitement */
 
-@media only screen and (max-width: 1024px) {
-  .msContant {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-}
-
 textarea {
   height: 170px;
 }
+
+/* End Form Event and Recruitement */
+
+/* Start Feedback */
+#msMainOuter {
+  margin-left: auto;
+  margin-right: auto;
+  width: 140%;
+}
+
+#msbutton {
+  float: right;
+}
+/* End Feedback */
+
+
+
+/* Start Team */
+
+.msCard:hover .msImage {
+  animation: mymove 5s;
+}
+
+@keyframes mymove {
+
+  0% {
+    -webkit-filter: blur(0px);
+  }
+
+  50% {
+    -webkit-filter: blur(5px);
+  }
+
+  100% {
+    -webkit-filter: blur(10px);
+  }
+}
+
+.msCard:hover .msText {
+  display: block;
+}
+
+.msTextTeam {
+  display: none;
+}
+
+/* End Team */
+
+
+/* Start Videos */
+
+.iteam {
+  color: #1c546f;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 12px 24px;
+  transition: 0.15s all ease-in;
+
+
+  vertical-align: middle;
+  font-weight: 400
+}
+
+.iteam:hover {
+  background: #eee
+}
+
+.iteamP {
+  margin: 0
+}
+
+.list {
+  box-shadow: 0 4px 20px 1px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.08);
+  z-index: 101;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 50px;
+}
+
+ul {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.parent {
+  color: #01a3f0;
+  background: #eee
+}
+
+.tutorialname {
+  font-size: 18px;
+  margin-bottom: 4px;
+  font-weight: 600;
+  color: #1c546f;
+  padding: 13px 24px 13px 24px;
+  font-size: xx-large;
+}
+
+.view {
+  padding-left: 30px;
+}
+
+.sign {
+  display: none;
+}
+
+@media only screen and (max-width: 990px) {
+  .sign {
+    float: right;
+    cursor: pointer;
+    display: block;
+  }
+
+  .mobList {
+    display: block !important;
+  }
+
+  .webList {
+    display: none !important;
+  }
+
+}
+
+.mobList {
+  display: none;
+}
+
+.webList {
+  display: block;
+}
+
+/* End Videos */
+
+/* Start Website Team */
+.best_burgers_area {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+@media (max-width: 767px) {
+
+  .best_burgers_area {
+    padding-top: 50px;
+    padding-bottom: 40px;
+  }
+}
+
+.best_burgers_area .single_delicious {
+  margin-bottom: 35px;
+}
+
+@media (max-width: 767px) {
+
+  .best_burgers_area .single_delicious {
+    display: block !important;
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .best_burgers_area .single_delicious {
+    display: block !important;
+  }
+}
+
+.best_burgers_area .single_delicious .thumb {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.best_burgers_area .single_delicious .thumb img {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.best_burgers_area .single_delicious .info {
+  padding-left: 20px;
+}
+
+@media (max-width: 767px) {
+
+  .best_burgers_area .single_delicious .info {
+    padding-left: 0;
+    margin-bottom: 15px;
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .best_burgers_area .single_delicious .info {
+    padding-left: 0;
+    margin-top: 30px;
+  }
+}
+
+.best_burgers_area .single_delicious .info h3 {
+  font-size: 30px;
+  color: #1A0D01;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+}
+
+.best_burgers_area .single_delicious .info p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  color: #6E6E6E;
+  font-family: "Montserrat", sans-serif;
+}
+
+.best_burgers_area .single_delicious .info span {
+  display: block;
+  font-weight: 700;
+  font-size: 24px;
+  color: #F0542C;
+  font-family: "Montserrat", sans-serif;
+}
+/* End Website Team */

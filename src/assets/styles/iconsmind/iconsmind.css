@@ -12,7 +12,7 @@
 i {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'iconsmind' !important;
-  speak: none;
+  speak-as: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -381,6 +381,11 @@ i {
 .i-Linkedin:before {
   content: "\eab0";
 }
+
+.i-Github-2:before {
+  content: "\1d5a6";
+}
+
 .i-Picasa:before {
   content: "\eab7";
 }
