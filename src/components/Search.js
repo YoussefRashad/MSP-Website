@@ -11,7 +11,7 @@ const Search = () => {
       <div className="search-header">
         <img src={Logo} alt="" className="logo" />
         <button className="btn btn-icon bg-transparent float-right mt-2" onClick={()=>history.goBack()}>
-          <i className="i-Close-Window text-22 text-muted"></i>
+          <i className="i-Close-Window text-40 text-muted"></i>
         </button>
       </div>
 

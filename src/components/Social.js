@@ -38,7 +38,7 @@ function Social() {
             href="https://www.linkedin.com/company/msptechclubhelwan/"
             target="_blank" rel="noopener noreferrer"
           >
-            <i className="i-Linkedin text-32 text-primary"></i>
+            <i className="i-Linkedin-2 text-32 text-primary"></i>
             <p className="text-16 mt-1">Linked In</p>
           </a>
         </div>

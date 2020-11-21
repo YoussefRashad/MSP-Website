@@ -19,9 +19,16 @@ import Social from './components/Social'
 import Footer from './components/Footer'
 import Search from './components/Search';
 
+/*
+  <div class="module-loader" >
+    <div class="spinner spinner-bubble spinner-bubble-primary mr-3"></div>
+  </div>
+*/
+
 function App() {
   return (
     <BrowserRouter>
+    
       <Header />
 
       <Switch>

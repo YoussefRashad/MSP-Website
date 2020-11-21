@@ -11,16 +11,12 @@ const FormEvent = () => {
 export default FormEvent
 /*
 
-<div class="module-loader" *ngIf="moduleLoading">
-    <div class="spinner spinner-bubble spinner-bubble-primary mr-3"></div>
-</div>
-
-<ngb-alert *ngIf="!avaliable && !moduleLoading" _ngcontent-yxw-c6="" class="alert-card mb-4 alert alert-info alert-dismissible"
+<ngb-alert  _ngcontent-yxw-c6="" class="alert-card mb-4 alert alert-info alert-dismissible"
     role="alert" ng-reflect-type="info">
     <strong _ngcontent-yxw-c6="" class="text-capitalize">Sorry!</strong> This form is closet, hope you best next time
 </ngb-alert>
 
-<div class="row" *ngIf="avaliable && !moduleLoading">
+<div class="row" >
     <div class="col-md-12 msContant">
         <div class="card mb-4">
             <div class="card-body">
