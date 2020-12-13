@@ -3,6 +3,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 .msMain {
   padding-right: 100px;
@@ -51,10 +52,9 @@
   font-size: 25px;
 }
 
-
-.header a.link:hover {
-  background-color: rgb(241, 241, 241);
-  color: black;
+.header .linkHome.active:hover {
+  background-color: #01a3f0;
+  color: white !important;
 }
 
 .header a.linkHome:hover {
@@ -112,6 +112,85 @@
 }
 
 /* End The Header */
+
+
+/* Start of the Hero*/
+.msContant {
+  margin-top: 0px;
+  padding-top: 0px
+}
+
+.msContent2 {
+  padding: 200px 100px;
+}
+
+.msHeaderHome {
+  background-image: url('./assets/images/msBG.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.msHeaderText {
+  color: #01a4f1;
+  width: fit-content;
+  margin-bottom: 0px;
+}
+
+.msHeaderText1 {
+  font-size: 40px;
+}
+
+.msHeaderText2 {
+  font-size: 60px;
+}
+
+.msHeaderText3 {
+  font-size: 80px;
+}
+
+.msButton {}
+
+.msHeaderButton {
+  font-size: xx-large;
+}
+
+.msAnchorHover {
+  font-size: 50px;
+  text-decoration: none;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.msAnchorHover:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  border-bottom: 2px solid white;
+  transition: 0.4s;
+}
+
+.msAnchorHover:hover:after {
+  width: 100%;
+}
+
+@media only screen and (max-width: 960px) {
+
+  .msContant {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .msContent2 {
+    padding: 100px 10px;
+  }
+
+}
+
+/* End pf the Hero */
+
 
 /* Start Article and Event */
 .msContant {
@@ -373,3 +452,15 @@ ul {
   font-family: "Montserrat", sans-serif;
 }
 /* End Website Team */
+
+/* Start alert */
+
+.alert{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  font-size: 20px;
+}
+/* End alert */

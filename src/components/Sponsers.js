@@ -1,21 +1,28 @@
 import React from 'react'
-import Img from '../assets/images/products/headphone-1.jpg'
+
+import { SponsorContext } from '../context/Sponsors'
+
+import Breadcrumb from './Breadcrumb'
 
 function Sponsors() {
-
+    const { sponsors, loading } = React.useContext(SponsorContext)
     return (
         <div className="msMain">
-            <div className="breadcrumb">
-                <h1 style={{ fontSize: "xx-large" }}>Our Sponsors</h1>
-            </div>
-            <div className="separator-breadcrumb border-top"></div>
+            <Breadcrumb title="Our Sponsors" />
 
-            <div className="row">
-                <div className="col"><img src={Img} alt="" /></div>
-                <div className="col"><img src={Img} alt="" /></div>
-                <div className="col"><img src={Img} alt="" /></div>
-                <div className="col"><img src={Img} alt="" /></div>
-            </div>
+            {
+                loading ? <h2>loading ...</h2> 
+                :
+                sponsors.length === 0 ? <h2>no sponsors to display</h2>
+                :
+                <div className="row">
+                    {
+                        sponsors.map((item, index) => {
+                            return <div className="col" key={index}><img src={item.img} alt={item.name} /></div>
+                        })
+                    }
+                </div>
+            }
 
             Slideshow
 

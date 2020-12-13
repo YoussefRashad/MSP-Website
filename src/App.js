@@ -4,14 +4,17 @@ import './App.css';
 
 // pages
 import Home from './pages/Home'
-import Article from './pages/Article'
+import SingleArticle from './pages/SingleArticle'
 import Articles from './pages/Articles'
+import SingleEvent from './pages/SingleEvent'
+import Events from './pages/Events'
 import Forms from './pages/Forms'
 import Video from './pages/Video'
-import Topic from './pages/Topic'
-import About from './pages/About'
+import About from './pages/Team'
 import Feedback from './pages/Feedback'
 import Error from './pages/Error'
+import Workshops from './pages/Workshops';
+import SingleWorkshops from './pages/SingleWorkshops';
 
 // Components
 import Header from './components/Header'
@@ -30,15 +33,17 @@ function App() {
     <BrowserRouter>
     
       <Header />
-
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/articles" component={Articles} />
-        <Route exact path="/articles/:id" component={Article} />
+        <Route exact path="/articles/:id" component={SingleArticle} />
+        <Route exact path="/events" component={Events} />
+        <Route exact path="/events/:id" component={SingleEvent} />
+        <Route exact path="/workshops" component={Workshops} />
+        <Route exact path="/workshops/:id" component={SingleWorkshops} />
         <Route exact path="/forms" component={Forms} />
         <Route exact path="/videos" component={Video} />
-        <Route exact path="/topic" component={Topic} />
-        <Route exact path="/about" component={About} />
+        <Route exact path="/team" component={About} />
         <Route exact path="/feedback" component={Feedback} />
         <Route exact path="/search" component={Search} />
         <Route path="*" component={Error} />

@@ -7,10 +7,11 @@ import Face3 from '../assets/images/faces/2.jpg'
 import Face4 from '../assets/images/faces/3.jpg'
 import Face5 from '../assets/images/faces/13.jpg'
 import Face6 from '../assets/images/faces/9.jpg'
+import Breadcrumb from './Breadcrumb';
 
-function Teams({ image, title, subTitle, position, style }) {
+function Teams({ image, title, subTitle, position, style, index }) {
   return (
-    <div className={style}>
+    <div className={style} key={index}>
       <div className="single_delicious d-flex align-items-center">
         <div className="thumb">
           <img src={image} alt="" />
@@ -28,7 +29,7 @@ function Teams({ image, title, subTitle, position, style }) {
 
 function WebTeam() {
   const style = ['col-xl-6 col-md-6 col-lg-6', 'col-md-6 col-lg-6', 'col-lg-6 col-md-6']
-  const dataLuciaMenu = [
+  const webTeamData = [
     {
       image: Face1,
       title: 'Youssef Rashad',
@@ -75,16 +76,12 @@ function WebTeam() {
 
   return (
     <div className="msMain">
-      <div className="breadcrumb">
-        <h1 style={{fontSize: 'xx-large'}}>Website Team</h1>
-      </div>
-
-      <div className="separator-breadcrumb border-top"></div>
-
+      <Breadcrumb title="Website Team" />
+      
       <div className="best_burgers_area">
         <div className="container">
           <div className="row">
-            {dataLuciaMenu.map((item) => Teams({ ...item }))}
+            {webTeamData.map((item, index) => Teams({ ...item, index }))}
           </div>
         </div>
       </div>

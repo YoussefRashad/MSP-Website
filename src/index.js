@@ -6,10 +6,25 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// context API
+import ArticleProvider from "./context/Articles";
+import EventProvider from "./context/Events";
+import SponsorProvider from "./context/Sponsors";
+import TeamProvider from "./context/Teams";
+import WorkshopProvider from "./context/Workshops";
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ArticleProvider>
+    <EventProvider>
+      <SponsorProvider>
+        <TeamProvider>
+          <WorkshopProvider>
+            <App />
+          </WorkshopProvider>
+        </TeamProvider>
+      </SponsorProvider>
+    </EventProvider>
+  </ArticleProvider>,
   document.getElementById('root')
 );
 

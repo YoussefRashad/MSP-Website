@@ -1,0 +1,26 @@
+ngx-chips, ngx-toaster, @swimlane, sass-loader -- >>, css-loader >>, angular-calendar, quill, highlight.js, ladda, perfect-scrollbar
+====================
+
+* Home
+    // - Link to Members Work Page >> Github + Projects 
+
+// * Forms : Tabset (Recruitment, Event, Feedback)
+// * Videos
+// * Search
+// * SignIn
+// * SignUp
+
+Pagination control
+
+BE & DB
+--------
+* Articles
+* Events
+* Sponsors
+* Team Members
+* Workshops
+// * Search
+// * Topics
+// * Forms : Tabset (Recruitment, Event, Feedback)
+// * SignIn, SignUp, LogOut
+// * Videos

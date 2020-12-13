@@ -30,33 +30,47 @@ function Header () {
           >
             Articles
           </Link>
-          <Link
+          {/* <Link
             className={`${active === '/forms' ? 'active' : ''
             } linkHome text-decoration-none`}
             to="/forms"
           >
             Forms
-          </Link>
-          <Link
+          </Link> */}
+          {/* <Link
             className={`${active === '/videos' ? 'active' : ''
             } linkHome text-decoration-none`}
             to="/videos"
           >
             Videos
-          </Link>
-          <Link
+          </Link> */}
+          {/* <Link
             className={`${active === '/topic' ? 'active' : ''
-            } linkHome text-decoration-none`}
+              } linkHome text-decoration-none`}
             to="/topic"
           >
             Topics
+          </Link> */}
+          <Link
+            className={`${active === '/workshops' ? 'active' : ''
+              } linkHome text-decoration-none`}
+            to="/workshops"
+          >
+            Workshops
           </Link>
           <Link
-            className={`${active === '/about' ? 'active' : ''
-            } linkHome text-decoration-none`}
-            to="/about"
+            className={`${active === '/events' ? 'active' : ''
+              } linkHome text-decoration-none`}
+            to="/events"
           >
-            About
+            Events
+          </Link>
+          <Link
+            className={`${active === '/team' ? 'active' : ''
+              } linkHome text-decoration-none`}
+            to="/team"
+          >
+            Team
           </Link>
           <button id="searchIconWeb" className="link" onClick={()=>history.push('/search')}>
             <img
