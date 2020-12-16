@@ -1,17 +1,24 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { ArticleContext } from '../context/Articles'
 
+import Pagination from '../components/Pagination';
 import Breadcrumb from '../components/Breadcrumb';
+import { scrollAutoFromBackToTop } from '../components/ScrollButton';
 
 function Articles() {
 
-    const { articles, loading } = useContext(ArticleContext)
-    console.log(articles);
+    useEffect(() => {
+        scrollAutoFromBackToTop()
+        return () => {}
+    }, [])
+    
+    const { articles, featureArticles, loading } = useContext(ArticleContext)
+
     const showData = articles.map((item, index) => {
         return (
-            <div className="col-4" key={index}>
+            <div className="col-md-4 col-12" key={index}>
                 <Link to={`/articles/${item.idArticle}`} className="list-item" style={{ cursor: "pointer" }}>
                     <div className="card o-hidden mb-4 d-flex">
                         <div className="list-thumb d-flex">
@@ -19,7 +26,7 @@ function Articles() {
                         </div>
                         <div className="flex-grow-1">
                             <div className="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center">
-                                <div className="w-40 w-sm-100">
+                                <div className="w-80 w-sm-100">
                                     <div className="item-title" style={{ fontSize: 'large' }}>
                                         {item.title}
                                     </div>
@@ -36,7 +43,7 @@ function Articles() {
             </div>
         );
     })
-
+    
     return (
         <div className="d-flex flex-column msContant">
             <div className="msMain">
@@ -47,12 +54,17 @@ function Articles() {
                     :
                     articles.length === 0 ? <h2>no articles to display</h2>
                     :
-                    <div className="row">
-                        {showData}
-                        <div className="col-md-12 mt-3">
-                            pagination-controls
+                        <div>
+                            <div className="row">
+                                    <Pagination />
+                            </div>
+                            <div className="row">
+                                {showData}
+                            </div>
+                            <div className="row">
+                                    <Pagination />
+                            </div>
                         </div>
-                    </div>
                 }
             </div>
         </div>

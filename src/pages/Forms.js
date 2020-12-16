@@ -1,8 +1,15 @@
 import React from 'react'
 import FormRecruitment from '../components/FormRecruitment'
 import FormEvent from '../components/FormEvent'
+import { scrollAutoFromBackToTop } from '../components/ScrollButton'
 
 function Forms() {
+
+    React.useEffect(() => {
+        scrollAutoFromBackToTop()
+        return () => { }
+    }, [])
+    
     return (
         <div className="d-flex flex-column msContant">
             <div className="msMain">

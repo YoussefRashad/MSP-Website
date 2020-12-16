@@ -2,13 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 // Components
-import Sponsors from '../components/Sponsers'
-import WebTeam from '../components/WebTeam'
+import Sponsers from '../components/Sponsers'
+import WebTeam from '../components/WebTeam/WebTeam'
 import { Hero } from '../components/Banner/Hero'
 import Articles from './Articles';
 import Events from './Events'
+import { scrollAutoFromBackToTop } from '../components/ScrollButton'
 
 function Home() {
+    React.useEffect(() => {
+        scrollAutoFromBackToTop()
+        return () => { }
+    }, [])
+    
     return (
         <div className="d-flex flex-column msContant">
             
@@ -24,7 +30,7 @@ function Home() {
                 </div>
             </div>
             
-            <Sponsors />
+            <Sponsers />
             <WebTeam /> 
             
         </div>

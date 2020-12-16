@@ -1,6 +1,13 @@
 import React from 'react'
+import { scrollAutoFromBackToTop } from '../components/ScrollButton'
 
 const Video = () => {
+
+    React.useEffect(() => {
+        scrollAutoFromBackToTop()
+        return () => { }
+    }, [])
+    
     return (
         <div className="d-flex flex-column msContant">
             <div className="msMain">

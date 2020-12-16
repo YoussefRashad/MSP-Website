@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom'
 import Logo from "../assets/images/logo.png"
 import Img from '../assets/images/photo-wide-1.jpg'
+import Pagination from './Pagination'
 
 const Search = () => {
   const history = useHistory()
@@ -59,9 +60,12 @@ const Search = () => {
         </div>
       </div>
 
-      <div className="col-md-12 mt-3">pagination-controls</div>
+      <div className="col-md-12 mt-3">
+        <Pagination />
+      </div>
     </div>
   );
 };
 
 export default Search;
+

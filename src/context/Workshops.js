@@ -19,6 +19,7 @@ function WorkshopProvider({ children }) {
 
 
     const [workshops, setWorkshops] = useState([])
+    const [featureWorkshops, setFeatureWorkshops] = useState([])
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         setLoading(true);
@@ -33,10 +34,17 @@ function WorkshopProvider({ children }) {
                             description,
                             _id,
                             createdAt,
+                            feature
                         } = team;
                         const created = new Date(createdAt).toUTCString()
                         const defaultImg = Img1;
-                        return { title, idWorkshop: _id, description, created, img: defaultImg }
+
+                        const returnedObj = { title, idWorkshop: _id, description, created, img: defaultImg, feature }
+
+                        if (feature) {
+                            setFeatureWorkshops([...featureWorkshops, returnedObj])
+                        }
+                        return returnedObj;
                     })
                     setWorkshops([...newWorkshops])
                 } else {
@@ -50,12 +58,14 @@ function WorkshopProvider({ children }) {
         getWorkshops()
         return () => {}
     }, [])
+
     const getWorkshop = (id)=> workshops.find(workshop => workshop.idWorkshop === id)
     return (
         <WorkshopContext.Provider
             value={{
                 workshops,
                 loading,
+                featureWorkshops,
                 getWorkshop
             }}
         >

@@ -242,8 +242,10 @@ textarea {
 
 /* Start Team */
 
-.msCard:hover .msImage {
-  animation: mymove 5s;
+.msCard:hover .msImage { 
+  /* animation: mymove 5s; */
+  filter: blur(4px);
+  transition: all 5s;
 }
 
 @keyframes mymove {
@@ -261,12 +263,15 @@ textarea {
   }
 }
 
-.msCard:hover .msText {
-  display: block;
+.msTextTeam {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 1s;
 }
 
-.msTextTeam {
-  display: none;
+.msCard:hover .msTextTeam {
+  visibility: visible;
+  opacity: 1;
 }
 
 /* End Team */
@@ -360,7 +365,7 @@ ul {
 /* End Videos */
 
 /* Start Website Team */
-.best_burgers_area {
+.websiteTeamArea {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -369,19 +374,19 @@ ul {
 
 @media (max-width: 767px) {
 
-  .best_burgers_area {
+  .websiteTeamArea {
     padding-top: 50px;
     padding-bottom: 40px;
   }
 }
 
-.best_burgers_area .single_delicious {
+.websiteTeamArea .singleFace {
   margin-bottom: 35px;
 }
 
 @media (max-width: 767px) {
 
-  .best_burgers_area .single_delicious {
+  .websiteTeamArea .singleFace {
     display: block !important;
     text-align: center;
   }
@@ -389,30 +394,30 @@ ul {
 
 @media (min-width: 768px) and (max-width: 991px) {
 
-  .best_burgers_area .single_delicious {
+  .websiteTeamArea .singleFace {
     display: block !important;
   }
 }
 
-.best_burgers_area .single_delicious .thumb {
+.websiteTeamArea .singleFace .thumb {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
 
-.best_burgers_area .single_delicious .thumb img {
+.websiteTeamArea .singleFace .thumb img {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
 
-.best_burgers_area .single_delicious .info {
+.websiteTeamArea .singleFace .info {
   padding-left: 20px;
 }
 
 @media (max-width: 767px) {
 
-  .best_burgers_area .single_delicious .info {
+  .websiteTeamArea .singleFace .info {
     padding-left: 0;
     margin-bottom: 15px;
     margin-top: 20px;
@@ -421,20 +426,20 @@ ul {
 
 @media (min-width: 768px) and (max-width: 991px) {
 
-  .best_burgers_area .single_delicious .info {
+  .websiteTeamArea .singleFace .info {
     padding-left: 0;
     margin-top: 30px;
   }
 }
 
-.best_burgers_area .single_delicious .info h3 {
+.websiteTeamArea .singleFace .info h3 {
   font-size: 30px;
   color: #1A0D01;
   font-weight: 700;
   font-family: "Montserrat", sans-serif;
 }
 
-.best_burgers_area .single_delicious .info p {
+.websiteTeamArea .singleFace .info p {
   font-size: 16px;
   font-weight: 400;
   line-height: 28px;
@@ -444,7 +449,7 @@ ul {
   font-family: "Montserrat", sans-serif;
 }
 
-.best_burgers_area .single_delicious .info span {
+.websiteTeamArea .singleFace .info span {
   display: block;
   font-weight: 700;
   font-size: 24px;
@@ -464,3 +469,53 @@ ul {
   font-size: 20px;
 }
 /* End alert */
+
+/* Start Pagination */
+
+.pagination {
+  display: block;
+  margin: 0 auto;
+}
+
+/* End Pagination */
+
+/* Start Carousel */
+
+.carousel {
+  display: block;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 960px) {
+.carousel {
+  width: 800px;
+}
+}
+
+/* End Carousel */
+
+/* 
+====== 
+Scroll Button
+======
+*/
+.scroll-btn {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  background: #222;
+  /* #f50057 #01a4f1 #222 */
+  color: #fff;
+  z-index: -100;
+  opacity: 0;
+  transition: all 0.3s linear;
+  font-size: 2rem;
+  line-height: 0;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+}
+
+.show-scroll-btn {
+  z-index: 100;
+  opacity: 1;
+}

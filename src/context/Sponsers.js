@@ -8,53 +8,53 @@ import Img1 from '../assets/images/products/headphone-1.jpg'
 // import Img3 from '../assets/images/products/headphone-4.jpg'
 // import Img4 from '../assets/images/products/iphone-1.jpg'
 
-export const SponsorContext = React.createContext()
+export const SponserContext = React.createContext()
 
-function SponsorProvider({ children }) {
+function SponserProvider({ children }) {
 
-    const [sponsors, SetSponsors] = useState([])
+    const [sponsers, SetSponsers] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setLoading(true)
-        const getSponsors = async ()=>{
+        const getSponsers = async ()=>{
             try{
-                const response = await Axios(`${URL}/sponsors`)
-                const { data: sponsors } = response
-                if (sponsors) {
-                    const newSponsors = sponsors.map((sponsor) => {
+                const response = await Axios(`${URL}/sponsers`)
+                const { data: sponsers } = response
+                if (sponsers) {
+                    const newSponsers = sponsers.map((sponser) => {
                         const {
                             link,
                             name,
                             _id,
                             createdAt
-                        } = sponsor;
+                        } = sponser;
                         const created = new Date(createdAt).toUTCString()
                         const defaultImg = Img1;
-                        return { name, idSponsor: _id, link, created, img: defaultImg }
+                        return { name, idSponser: _id, link, created, img: defaultImg }
                     })
-                    SetSponsors([...newSponsors])
+                    SetSponsers([...newSponsers])
                 } else {
-                    SetSponsors([])
+                    SetSponsers([])
                 }
             }catch(error){
                 console.log("not connected >> ", error);
             }
             setLoading(false)
         }
-        getSponsors()
+        getSponsers()
         return () => {}
     }, [])
     return (
-        <SponsorContext.Provider 
+        <SponserContext.Provider 
             value={{
-                sponsors,
+                sponsers,
                 loading
             }}
         >
             { children }
-        </SponsorContext.Provider>
+        </SponserContext.Provider>
     )
 }
 
-export default SponsorProvider
+export default SponserProvider

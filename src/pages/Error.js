@@ -1,7 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { scrollAutoFromBackToTop } from '../components/ScrollButton'
 
 const NotFound = () => {
+
+    React.useEffect(() => {
+        scrollAutoFromBackToTop()
+        return () => { }
+    }, [])
+
     return (
         <div className="not-found-wrap text-center">
             <h1 className="text-60">

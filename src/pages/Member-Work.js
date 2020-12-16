@@ -1,11 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { scrollAutoFromBackToTop } from '../components/ScrollButton';
 
 const MemberWork = () => {
+    React.useEffect(() => {
+        scrollAutoFromBackToTop()
+        return () => { }
+    }, [])
+    
     return (
         <div className="d-flex flex-column msContant">
-            <div class="msMain">
+            <div className="msMain">
                 <div
-                    class="row"
+                    className="row"
                     style={{
                         margin: '0px',
                         marginBottom: '13px',
@@ -14,41 +20,41 @@ const MemberWork = () => {
                     <h1>Our Github</h1>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-7" style="padding-right: 40px">
-                        <div class="repoCard">
+                <div className="row">
+                    <div className="col-lg-7" style={{ paddingRight: '40px' }}>
+                        <div className="repoCard">
                             {/* <!-- item.name <br />
-                    item.html_url <br />
-                    item.description <br />
-                    item.created_at <br />
-                    forked from item.parent.full_name   // name <br />
-                    item.parent.owner.html_url   // link of the owner <br />
-                    item.parent.owner.avatar_url   // pic of the owner <br /> --> */}
+                                item.html_url <br />
+                                item.description <br />
+                                item.created_at <br />
+                                forked from item.parent.full_name   // name <br />
+                                item.parent.owner.html_url   // link of the owner <br />
+                                item.parent.owner.avatar_url   // pic of the owner <br /> --> */}
                             <h2>
                                 <a href="/" target="_blank">
                                     item.name{' '}
                                 </a>
                             </h2>
-                            <p class="repoCardPara">
+                            <p className="repoCardPara">
                                 forked from{' '}
                                 <a href="/" target="_blank">
                                     item.parent.full_name
-              </a>
+                </a>
                             </p>
-                            <p class="repoCardPara">item.description</p>
+                            <p className="repoCardPara">item.description</p>
                             <br />
-                            <p class="repoCardPara text-right">item.created_at | date</p>
+                            <p className="repoCardPara text-right">item.created_at | date</p>
                             <hr />
                         </div>
                     </div>
-                    <div class="col-lg-5" style="padding-left: 30px;">
-                        <div class="row">
-                            <h2 style="margin-bottom: 15px;">MSP on Github</h2>
+                    <div className="col-lg-5" style={{ paddingLeft: "30px"}}>
+                        <div className="row">
+                            <h2 style={{ marginBottom: "15px" }}>MSP on Github</h2>
                         </div>
-                        <div class="row">
-                            <img src="/" alt="" style="width: 70px;" />
+                        <div className="row">
+                            <img src="/" alt="" style={{width: "70px"}} />
                             <div
-                                class="col"
+                                className="col"
                                 style={{
                                     marginTop: 'auto',
                                     marginBottom: 'auto',
@@ -58,14 +64,18 @@ const MemberWork = () => {
                                 <h3>orgs.login</h3>
                             </div>
                         </div>
-                        <div class="row">
+                        <div className="row">
                             <img
                                 src="/"
                                 alt=""
-                                style={{ borderRadius: '50%', width: '70px', visibility: 'hidden' }}
+                                style={{
+                                    borderRadius: '50%',
+                                    width: '70px',
+                                    visibility: 'hidden',
+                                }}
                             />
                             <div
-                                class="col"
+                                className="col"
                                 style={{
                                     marginTop: 'auto',
                                     marginBottom: 'auto',
@@ -80,19 +90,19 @@ const MemberWork = () => {
                                 </p>
                             </div>
                         </div>
-                        <div class="row" style="margin-top: 30px;">
+                        <div className="row" style={{ marginTop: "30px" }}>
                             <h3>People</h3>
                         </div>
-                        <div class="row membersCard">
-                            <a href="/" target="_blank" class="memberLink">
-                                <img src="x.avatar_url" alt="" class="memberLinkImg" />
+                        <div className="row membersCard">
+                            <a href="/" target="_blank" className="memberLink">
+                                <img src="x.avatar_url" alt="" className="memberLinkImg" />
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default MemberWork
+export default MemberWork;

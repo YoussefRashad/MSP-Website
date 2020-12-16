@@ -17,6 +17,7 @@ export const EventContext = React.createContext()
 function EventProvider({ children }) {
 
     const [events, setEvents] = useState([])
+    const [featureEvents, setFeatureEvents] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -32,11 +33,18 @@ function EventProvider({ children }) {
                             description,
                             title,
                             _id,
-                            createdAt
+                            createdAt,
+                            feature
                         } = event;
                         const created = new Date(createdAt).toUTCString()
                         const defaultImg = Img1;
-                        return { title, idEvent: _id, location, description, created, img: defaultImg }
+
+                        const returnedObj = { title, idEvent: _id, location, description, created, img: defaultImg, feature }
+
+                        if (feature) {
+                            setFeatureEvents([...featureEvents, returnedObj])
+                        }
+                        return returnedObj;
                     })
                     setEvents(newEvents)
                 } else {
@@ -57,6 +65,7 @@ function EventProvider({ children }) {
         <EventContext.Provider
             value = {{
                 events,
+                featureEvents,
                 loading,
                 getEvents
             }}

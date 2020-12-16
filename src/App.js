@@ -10,17 +10,19 @@ import SingleEvent from './pages/SingleEvent'
 import Events from './pages/Events'
 import Forms from './pages/Forms'
 import Video from './pages/Video'
-import About from './pages/Team'
+import Team from './pages/Team'
 import Feedback from './pages/Feedback'
 import Error from './pages/Error'
 import Workshops from './pages/Workshops';
 import SingleWorkshops from './pages/SingleWorkshops';
+import MemberWork from './pages/Member-Work';
 
 // Components
 import Header from './components/Header'
 import Social from './components/Social'
 import Footer from './components/Footer'
 import Search from './components/Search';
+import ScrollButton from './components/ScrollButton';
 
 /*
   <div class="module-loader" >
@@ -31,8 +33,9 @@ import Search from './components/Search';
 function App() {
   return (
     <BrowserRouter>
-    
       <Header />
+      <ScrollButton />
+
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/articles" component={Articles} />
@@ -43,7 +46,8 @@ function App() {
         <Route exact path="/workshops/:id" component={SingleWorkshops} />
         <Route exact path="/forms" component={Forms} />
         <Route exact path="/videos" component={Video} />
-        <Route exact path="/team" component={About} />
+        <Route exact path="/team" component={Team} />
+        <Route exact path="/member-work" component={MemberWork} />
         <Route exact path="/feedback" component={Feedback} />
         <Route exact path="/search" component={Search} />
         <Route path="*" component={Error} />

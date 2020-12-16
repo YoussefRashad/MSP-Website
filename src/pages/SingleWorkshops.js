@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import { scrollAutoFromBackToTop } from '../components/ScrollButton'
 
 import { WorkshopContext } from '../context/Workshops'
 
@@ -19,8 +20,12 @@ const SingleWorkshops = () => {
         setLoading(false);
         return () => {}
     })
-    console.log(workshop);
-
+    
+    React.useEffect(() => {
+        scrollAutoFromBackToTop()
+        return () => { }
+    }, [])
+    
     const showData = ()=>{
         return(
             <div className="card user-profile o-hidden mb-4">
@@ -38,14 +43,16 @@ const SingleWorkshops = () => {
                 </div>
                 <div className="card-body">
                     <div>
-                        <h2 style={{ fontSize: '40px', fontFamily: 'Cairo, sans-serif' }}>
+                        <h2 style={{ fontSize: '40px', fontFamily: 'Cairo, sans-serif' }} className="text-center">
                             {workshop.title}
                             </h2>
-                        {/* [innerHTML]="event.body" */}
-                        <div className="msPar"></div>
+                            
+                        <div className="msPar">
+                            {workshop.description}
+                        </div>
                         <hr />
                         <div className="row">
-                            <div className="col-md-4 col-6" style={{ fontSize: 'x-large' }}>
+                            <div style={{ fontSize: 'x-large' }}>
                                 <div className="mb-4">
                                     <p className="text-primary mb-1">
                                         <i className="i-Calendar text-16 mr-1"></i>Date

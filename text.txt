@@ -2,25 +2,13 @@ ngx-chips, ngx-toaster, @swimlane, sass-loader -- >>, css-loader >>, angular-cal
 ====================
 
 * Home
-    // - Link to Members Work Page >> Github + Projects 
+    - Link to Members Work Page >> Github + Projects 
 
-// * Forms : Tabset (Recruitment, Event, Feedback)
+* Forms : Tabset (Recruitment, Event)
+* Search
+
 // * Videos
-// * Search
 // * SignIn
 // * SignUp
 
-Pagination control
-
-BE & DB
---------
-* Articles
-* Events
-* Sponsors
-* Team Members
-* Workshops
-// * Search
-// * Topics
-// * Forms : Tabset (Recruitment, Event, Feedback)
-// * SignIn, SignUp, LogOut
-// * Videos
+(Feature it will be latest - 3 cards and i will show the pagination in his page)

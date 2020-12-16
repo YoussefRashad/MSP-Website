@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Alert from '../components/Alert';
+import { scrollAutoFromBackToTop } from '../components/ScrollButton';
 import sumbitFeedback from '../Node/sumbitFeedback'
 
 const Feedback = () => {
@@ -8,6 +9,11 @@ const Feedback = () => {
   const [title, setTitle] = useState('')
   const [feedback, setFeedback] = useState('')
   const [alert, setAlert] = useState({ show: false })
+
+  React.useEffect(() => {
+    scrollAutoFromBackToTop()
+    return () => { }
+  }, [])
 
   const hideAlert = () => {
     setAlert({ ...alert, show: false })
@@ -48,6 +54,7 @@ const Feedback = () => {
                       required
                       value={email}
                       onChange={(e)=> setEmail(e.target.value) }
+                      autoFocus
                     />
                   </div>
                 </div>

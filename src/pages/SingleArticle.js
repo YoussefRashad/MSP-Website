@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import { scrollAutoFromBackToTop } from '../components/ScrollButton'
 
 import { ArticleContext } from '../context/Articles'
 
@@ -17,6 +18,10 @@ function Article() {
         setArticle(article)
         setLoading(false)
     });
+    React.useEffect(() => {
+        scrollAutoFromBackToTop()
+        return () => { }
+    }, [])
     
     const showInfo = ()=>{
         return(
@@ -34,11 +39,11 @@ function Article() {
                         <h2 style={{ fontSize: "40px", fontFamily: "Cairo, sans-serif" }} className="text-center">
                             {article.title}</h2>
                         <div className="msPar" >
-
+                            {article.description}
                         </div>
                         <hr />
                         <div className="row">
-                            <div className="col-md-4 col-6" style={{ fontSize: "x-large" }}>
+                            <div style={{ fontSize: "x-large" }}>
                                 <div className="mb-4">
                                     <p className="text-primary mb-1"><i className="i-Calendar text-16 mr-1"></i>Date</p>
                                     <span>{article.created}</span>

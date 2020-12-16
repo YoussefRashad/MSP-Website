@@ -4,7 +4,7 @@ import axios from 'axios'
 import URL from '../utils/URL'
 
 import Img1 from '../assets/images/products/speaker-1.jpg'
-import Img2 from '../assets/images/products/headphone-1.jpg'
+// import Img2 from '../assets/images/products/headphone-1.jpg'
 // import Img3 from '../assets/images/products/headphone-2.jpg'
 // import Img4 from '../assets/images/products/headphone-3.jpg'
 // import Img5 from '../assets/images/products/headphone-4.jpg'
@@ -17,7 +17,10 @@ export const ArticleContext = React.createContext()
 export default function ArticleProvider({ children }) {
 
     const [articles, setArticles] = useState([])
+    const [featureArticles, setFeatureArticles] = useState([])
     const [loading, setLoading] = useState(false)
+    const [height, setHeight] = useState(0)
+    let i = 0;
 
     useEffect(() => {
         setLoading(true)
@@ -32,11 +35,22 @@ export default function ArticleProvider({ children }) {
                             description,
                             title,
                             _id,
-                            createdAt
+                            createdAt,
+                            feature
                         } = article;
                         const created = new Date(createdAt).toUTCString()
-                        const defaultImg = Img2;
-                        return { title, idArticle: _id, author, description, created, img: defaultImg}
+                        const defaultImg = Img1;
+
+                        const returnedObj = {
+                            title, idArticle: _id, author, description, created, img: defaultImg,
+                            feature
+                        }
+
+                        if (feature) {
+                            setFeatureArticles([...featureArticles, returnedObj])
+                        }
+                        
+                        return returnedObj;
                     })
                     setArticles([...newArticles])
                     
@@ -50,15 +64,25 @@ export default function ArticleProvider({ children }) {
         }
         getArticles()
         return () => {}
-    },[])
+    },[]);
+    
+
+    useEffect(()=>{
+        window.addEventListener("scroll", ()=>{
+            setHeight(window.pageYOffset);
+        })
+        return ()=>{ window.removeEventListener("scroll", ()=>{})}
+    })
 
     const getArticle = (id)=> articles.find(item => item.idArticle === id);
 
     return (
         <ArticleContext.Provider value={{
             articles,
+            featureArticles,
             loading,
-            getArticle
+            getArticle,
+            height
         }}>
             {children}
         </ArticleContext.Provider>

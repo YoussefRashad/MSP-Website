@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { EventContext } from "../context/Events";
 
 import Img from '../assets/images/products/speaker-1.jpg'
+import { scrollAutoFromBackToTop } from '../components/ScrollButton';
 
 function EventComponent() {
   const [event, setEvent] = useState(undefined)
@@ -17,7 +18,11 @@ function EventComponent() {
     setLoading(false)
     return () => {}
   })
-  console.log(event);
+  
+  React.useEffect(() => {
+    scrollAutoFromBackToTop()
+    return () => { }
+  }, [])
 
   const showData = ()=>{
     return(
@@ -35,20 +40,22 @@ function EventComponent() {
           </p>
         </div>
         <div className="card-body">
-          <div ngbTabContent>
-            <h2 style={{ fontSize: '40px', fontFamily: 'Cairo, sans-serif' }}>
+          <div>
+            <h2 style={{ fontSize: '40px', fontFamily: 'Cairo, sans-serif' }} className="text-center">
               {event.title}
             </h2>
-            {/* [innerHTML]="event.body" */}
-            <div className="msPar"></div>
+
+            <div className="msPar">
+              {event.description}
+            </div>
             <hr />
             <div className="row">
-              <div className="col-md-4 col-6" style={{ fontSize: 'x-large' }}>
+              <div style={{ fontSize: 'x-large' }}>
                 <div className="mb-4">
                   <p className="text-primary mb-1">
                     <i className="i-Calendar text-16 mr-1"></i>Date
                     </p>
-                  <span>{event.date}</span>
+                  <span>{event.created}</span>
                 </div>
               </div>
             </div>
@@ -59,7 +66,7 @@ function EventComponent() {
   }
 
   return (
-    <div class="d-flex flex-column msContant">
+    <div className="d-flex flex-column msContant">
       <div className="msMain">
         {
           loading ? <h2>loading ...</h2>

@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { TeamContext } from '../context/Teams'
 
 import Breadcrumb from '../components/Breadcrumb';
+import { scrollAutoFromBackToTop } from '../components/ScrollButton';
+import Pagination from '../components/Pagination';
 
 const Team = () => {
     const { teams, loading } = useContext(TeamContext)
@@ -33,6 +35,11 @@ const Team = () => {
             </div>
         );
     })
+
+    React.useEffect(() => {
+        scrollAutoFromBackToTop()
+        return () => { }
+    }, [])
     
     return (
         <div className="d-flex flex-column msContant">
@@ -45,9 +52,16 @@ const Team = () => {
                     :
                         teams.length === 0 ? <h2>no teams to display</h2>
                     :
-                        <div className="row">
-                            {/* <!-- BG IMAGE CARDS --> */}
-                            {showData}
+                        <div>
+                            <div className="row">
+                                <Pagination />
+                            </div>
+                            <div className="row">
+                                {showData}
+                            </div>
+                            <div className="row">
+                                <Pagination />
+                            </div>
                         </div>
                 }
 
