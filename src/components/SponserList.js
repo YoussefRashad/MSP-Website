@@ -12,7 +12,7 @@ const CarouselComponent = ({ name, link, created, img, id }) =>{
             <Carousel.Caption>
                 <h3>{name}</h3>
                 <p>{created}</p>
-                <a href={link} target="_blank" >Page</a>
+                <a href={link} target="_blank" rel="noopener noreferrer" >Page</a>
             </Carousel.Caption>
         </Carousel.Item>
     )

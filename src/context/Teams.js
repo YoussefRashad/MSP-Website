@@ -2,12 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import URL from '../utils/URL'
 
-import Img1 from '../assets/images/faces/12.jpg'
-// import Img2 from '../assets/images/faces/13.jpg'
-// import Img3 from '../assets/images/faces/2.jpg'
-// import Img4 from '../assets/images/faces/4.jpg'
-// import Img5 from '../assets/images/faces/10.jpg'
-// import Img6 from '../assets/images/faces/16.jpg'
+import imageLocal from '../utils/dataImages'
+
 import Axios from 'axios'
 
 export const TeamContext = React.createContext()
@@ -24,6 +20,7 @@ function TeamProvider({ children }) {
                 const response = await Axios(`${URL}/team-members`)
                 const { data: teams } = response
                 if (teams) {
+                    let counterImages = 0;
                     const newTeams = teams.map((team) => {
                         const {
                             name,
@@ -34,8 +31,8 @@ function TeamProvider({ children }) {
                             position
                         } = team;
                         const created = new Date(createdAt).toUTCString()
-                        const defaultImg = Img1;
-                        return { name, idTeam: _id, word, season, position, created, img: defaultImg }
+                        return { name, idTeam: _id, word, season, position, 
+                            created, img: imageLocal[counterImages++] }
                     })
                     setTeams([...newTeams])
                 } else {
@@ -48,12 +45,22 @@ function TeamProvider({ children }) {
         }
         getTeams()
         return () => { }
-    }, [])
+    }, []);
+
+    const getMembersByTerm = (searchTerm)=>{
+        return teams.filter(member => (
+            member.name.toLowerCase().includes(searchTerm.toLowerCase())
+            || member.word.toLowerCase().includes(searchTerm.toLowerCase())
+            || member.season.toLowerCase().includes(searchTerm.toLowerCase())
+            || member.position.toLowerCase().includes(searchTerm.toLowerCase())
+        ));
+    }
     return (
         <TeamContext.Provider
             value={{
                 teams,
-                loading
+                loading,
+                getMembersByTerm
             }}
         >
             { children}

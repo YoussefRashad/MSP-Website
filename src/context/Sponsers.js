@@ -3,10 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 import URL from '../utils/URL'
 
-import Img1 from '../assets/images/products/headphone-1.jpg'
-// import Img2 from '../assets/images/products/headphone-3.jpg'
-// import Img3 from '../assets/images/products/headphone-4.jpg'
-// import Img4 from '../assets/images/products/iphone-1.jpg'
+import imageLocal from '../utils/dataImages'
 
 export const SponserContext = React.createContext()
 
@@ -22,6 +19,7 @@ function SponserProvider({ children }) {
                 const response = await Axios(`${URL}/sponsers`)
                 const { data: sponsers } = response
                 if (sponsers) {
+                    let counterImages = 0;
                     const newSponsers = sponsers.map((sponser) => {
                         const {
                             link,
@@ -30,8 +28,8 @@ function SponserProvider({ children }) {
                             createdAt
                         } = sponser;
                         const created = new Date(createdAt).toUTCString()
-                        const defaultImg = Img1;
-                        return { name, idSponser: _id, link, created, img: defaultImg }
+                        return { name, idSponser: _id, link, created, 
+                            img: imageLocal[counterImages++] }
                     })
                     SetSponsers([...newSponsers])
                 } else {
@@ -45,11 +43,18 @@ function SponserProvider({ children }) {
         getSponsers()
         return () => {}
     }, [])
+
+    const getSponsersByTerm = (searchTerm) => {
+        return sponsers.filter(sponser => (
+            sponser.name.toLowerCase().includes(searchTerm.toLowerCase())
+        ));
+    }
     return (
         <SponserContext.Provider 
             value={{
                 sponsers,
-                loading
+                loading,
+                getSponsersByTerm
             }}
         >
             { children }

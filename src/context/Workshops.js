@@ -2,21 +2,14 @@ import React, { useState, useEffect } from 'react'
 
 import URL from '../utils/URL'
 
-import Img1 from '../assets/images/products/speaker-1.jpg'
-// import Img2 from '../assets/images/products/headphone-1.jpg'
-// import Img3 from '../assets/images/products/headphone-2.jpg'
-// import Img4 from '../assets/images/products/headphone-3.jpg'
-// import Img5 from '../assets/images/products/headphone-4.jpg'
-// import Img6 from '../assets/images/products/iphone-1.jpg'
-// import Img7 from '../assets/images/products/speaker-2.jpg'
-// import Img8 from '../assets/images/products/watch-1.jpg'
+import imageLocal from '../utils/dataImages'
+
 import Axios from 'axios'
 
 
 export const WorkshopContext = React.createContext()
 
 function WorkshopProvider({ children }) {
-
 
     const [workshops, setWorkshops] = useState([])
     const [featureWorkshops, setFeatureWorkshops] = useState([])
@@ -28,6 +21,7 @@ function WorkshopProvider({ children }) {
                 const response = await Axios.get(`${URL}/workshops`)
                 const { data: workshops } = response;
                 if (workshops) {
+                    let counterImages = 0;
                     const newWorkshops = workshops.map((team) => {
                         const {
                             title,
@@ -37,9 +31,8 @@ function WorkshopProvider({ children }) {
                             feature
                         } = team;
                         const created = new Date(createdAt).toUTCString()
-                        const defaultImg = Img1;
-
-                        const returnedObj = { title, idWorkshop: _id, description, created, img: defaultImg, feature }
+                        const returnedObj = { title, idWorkshop: _id, description, 
+                            created, img: imageLocal[counterImages++], feature }
 
                         if (feature) {
                             setFeatureWorkshops([...featureWorkshops, returnedObj])
@@ -56,17 +49,24 @@ function WorkshopProvider({ children }) {
             setLoading(false)
         }
         getWorkshops()
-        return () => {}
     }, [])
 
-    const getWorkshop = (id)=> workshops.find(workshop => workshop.idWorkshop === id)
+    const getWorkshopsByTerm = (searchTerm) => {
+        return workshops.filter(workshop => (
+            workshop.title.toLowerCase().includes(searchTerm.toLowerCase())
+            || workshop.description.toLowerCase().includes(searchTerm.toLowerCase())
+        ));
+    }
+    const getWorkshopByID = (ID)=> workshops.find(workshop => workshop.idWorkshop === ID)
+
     return (
         <WorkshopContext.Provider
             value={{
                 workshops,
                 loading,
                 featureWorkshops,
-                getWorkshop
+                getWorkshopsByTerm,
+                getWorkshopByID
             }}
         >
             { children }

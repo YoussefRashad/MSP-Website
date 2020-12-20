@@ -1,14 +1,8 @@
 import React from 'react';
 
 // Website's face
-// import Face1 from '../../assets/images/faces/IMG-20190928-WA0035.jpg'
-import Face2 from '../../assets/images/faces/IMG_4179.JPG'
-// import Face2 from '../../assets/images/faces/10.jpg'
-// import Face2 from '../assets/images/faces/15.jpg'
-// import Face3 from '../assets/images/faces/2.jpg'
-// import Face4 from '../assets/images/faces/3.jpg'
-// import Face5 from '../assets/images/faces/13.jpg'
-// import Face6 from '../assets/images/faces/9.jpg'
+// import Face1 from '../../assets/images/MSP/websiteTeam/IMG-20190928-WA0035.jpg'
+import Face2 from '../../assets/images/MSP/websiteTeam/IMG_4179.JPG'
 
 import Breadcrumb from '../Breadcrumb';
 import Member from './Member';

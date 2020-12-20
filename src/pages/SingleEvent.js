@@ -2,18 +2,18 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom'
 import { EventContext } from "../context/Events";
 
-import Img from '../assets/images/products/speaker-1.jpg'
 import { scrollAutoFromBackToTop } from '../components/ScrollButton';
+import LoadingComponent from '../components/LoadingComponent';
 
 function EventComponent() {
   const [event, setEvent] = useState(undefined)
   const [loading, setLoading] = useState(false)
-  const { getEvents } = useContext(EventContext)
+  const { getEventByID } = useContext(EventContext)
   const {id} =  useParams()
 
   useEffect(() => {
     setLoading(true);
-    const event = getEvents(id)
+    const event = getEventByID(id)
     setEvent(event)
     setLoading(false)
     return () => {}
@@ -69,7 +69,7 @@ function EventComponent() {
     <div className="d-flex flex-column msContant">
       <div className="msMain">
         {
-          loading ? <h2>loading ...</h2>
+          loading ? <LoadingComponent />
           :
             !event ? <h2 className="section-title">no event to display</h2>
           :

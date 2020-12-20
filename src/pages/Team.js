@@ -4,13 +4,15 @@ import { TeamContext } from '../context/Teams'
 import Breadcrumb from '../components/Breadcrumb';
 import { scrollAutoFromBackToTop } from '../components/ScrollButton';
 import Pagination from '../components/Pagination';
+import LoadingComponent from '../components/LoadingComponent';
 
 const Team = () => {
     const { teams, loading } = useContext(TeamContext)
+    const [page, setPage] = React.useState(1);
 
     const showData = teams.map((item, index) => {
         return (
-            <div className="col-md-4" key={index}>
+            <div className="col-md-4 col-12 shadowItemWithoutBox" key={index}>
                 <div className="card bg-dark text-white o-hidden mb-4 msCard">
                     <img className="card-img msImage" src={item.img} alt="CardImage" />
 
@@ -48,19 +50,23 @@ const Team = () => {
                 <Breadcrumb title="Team" />
 
                 {
-                    loading ? <h2>loading ...</h2>
+                    loading ? <LoadingComponent />
                     :
                         teams.length === 0 ? <h2>no teams to display</h2>
                     :
                         <div>
                             <div className="row">
-                                <Pagination />
+                                <Pagination page={page} setPage={setPage} count={
+                                    teams.length/6 > 1 ? Math.floor(teams.length/6) : 0
+                                } />
                             </div>
                             <div className="row">
                                 {showData}
                             </div>
                             <div className="row">
-                                <Pagination />
+                                <Pagination page={page} setPage={setPage} count={
+                                    teams.length/6 > 1 ? Math.floor(teams.length/6) : 0
+                                } />
                             </div>
                         </div>
                 }

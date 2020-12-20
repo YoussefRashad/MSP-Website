@@ -1,49 +1,22 @@
 
-const axios = require('axios')
+import Axios from 'axios'
 
-const getGithubOrgs = async ()=>{
-    const response = await axios.get('https://api.github.com/orgs/Microsoft-Student-Partner-HU')
-    console.log(response);
+export const getGithubOrgs = async ()=>{
+    const response = await Axios.get('https://api.github.com/orgs/Microsoft-Student-Partner-HU')
+    return response.data
 }
 
-// getGithubOrgs()
-
-const getGithubRepos = async ()=>{
-    const response = await axios.get('https://api.github.com/orgs/Microsoft-Student-Partner-HU/repos')
-    console.log(response);
+export const getGithubRepos = async ()=>{
+    const response = await Axios.get('https://api.github.com/orgs/Microsoft-Student-Partner-HU/repos')
+    return response.data
 }
-// getGithubRepos()
 
-const getGithubMember = async ()=>{
-    const response = await axios.get('https://api.github.com/orgs/Microsoft-Student-Partner-HU/members')
-    console.log(response);
-
+export const getGithubMember = async ()=>{
+    const response = await Axios.get('https://api.github.com/orgs/Microsoft-Student-Partner-HU/members')
+    return response.data
 }
-// getGithubMember()
 
-const getGithubRepo = async (name)=>{
-    const response = await axios.get(`https://api.github.com/repos/Microsoft-Student-Partner-HU/${name}`)
-    console.log(response);
+export const getGithubRepo = async (name)=>{
+    const response = await Axios.get(`https://api.github.com/repos/Microsoft-Student-Partner-HU/${name}`)
+    return response.data
 }
-// getGithubRepo('')
-
-/*
-  ***********
-  ngOnInit() {
-    this.api.githubOrgs().pipe().subscribe(data=> {
-      this.orgs = data
-    })
-    this.api.githubRepos().pipe().subscribe(data=> {
-      this.repos = data
-      this.repos.forEach(x => {
-        this.api.githubRepo(x.name).pipe().subscribe(data => {
-          this.customeRepos.push(data)
-          console.log(this.customeRepos)
-        })
-      })
-    })
-    this.api.githubMember().pipe().subscribe(data=> {
-      this.members = data
-    })
-  }
-*/

@@ -1,5 +1,5 @@
 .search-ui {
-    position: fixed;
+    //position: absolute;
     background: $background;
     top: 0;
     left: 0;
@@ -7,7 +7,7 @@
     bottom: 0;
     margin: auto;
     padding: .75rem 1.5rem 1.5rem 4.5rem;
-    z-index: 9999;
+    z-index: 500;
     .search-header {
         .logo {
             height: 64px;

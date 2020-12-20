@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import LoadingComponent from '../components/LoadingComponent'
 import { scrollAutoFromBackToTop } from '../components/ScrollButton'
 
 import { ArticleContext } from '../context/Articles'
 
-// import Img from '../assets/images/products/speaker-1.jpg'
-
 function Article() {
-    const { getArticle } = useContext(ArticleContext)
+    const { getArticleByID } = useContext(ArticleContext)
     const { id } = useParams()
     const [article, setArticle] = useState(null)
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setLoading(true)
-        const article = getArticle(id);
+        const article = getArticleByID(id);
         setArticle(article)
         setLoading(false)
     });
@@ -66,7 +65,7 @@ function Article() {
         <div className="d-flex flex-column msContant">
             <div className="msMain">
                 {
-                        loading ? <h2>loading ...</h2> 
+                        loading ? <LoadingComponent />
                     :
                         !article ? <h2 className="section-title">no article to display</h2>
                     :

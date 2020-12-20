@@ -10,11 +10,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BasicPagination() {
+export default function BasicPagination( { page, setPage, count }) {
   const classes = useStyles();
+
+  const handleChange = (event, value) => {
+    setPage(value);
+    console.log(page);
+  };
+  
   return (
-    <div className={classes.root + " mt-3 mb-4 pagination"}>
-      <Pagination count={10} color="secondary" siblingCount={0} boundaryCount={1} size="large" />
+    <div className="mb-4 pagination">
+      <div className={classes.root}>
+        <Pagination
+          count={(+count)+1}
+          color="secondary"
+          siblingCount={0}
+          boundaryCount={1}
+          size="large"
+          page={page}
+          onChange={handleChange}
+        />
+      </div>
     </div>
   );
 }

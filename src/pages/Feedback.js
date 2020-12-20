@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Alert from '../components/Alert';
 import { scrollAutoFromBackToTop } from '../components/ScrollButton';
 import sumbitFeedback from '../Node/sumbitFeedback'
+import validator from 'validator'
 
 const Feedback = () => {
 
@@ -9,7 +10,7 @@ const Feedback = () => {
   const [title, setTitle] = useState('')
   const [feedback, setFeedback] = useState('')
   const [alert, setAlert] = useState({ show: false })
-
+  
   React.useEffect(() => {
     scrollAutoFromBackToTop()
     return () => { }
@@ -21,12 +22,25 @@ const Feedback = () => {
 
   const handleSubmit = e => {
     e.preventDefault ();
-    sumbitFeedback({ email, title, description: feedback }).then((res)=>{
-      setAlert({ show: true, type: 'success', desc: 'sent your feedback by successfully :)' });
-      setEmail(''); setTitle(''); setFeedback('');
-    }).catch(error =>{
-      setAlert({ show: true, type: 'danger', desc: 'there is an error, please try later ..' });
-    })
+    if (validator.isEmail(email) ){
+      if (title){
+        if (feedback){
+          sumbitFeedback({ email, title, description: feedback }).then((res) => {
+            setAlert({ show: true, type: 'success', desc: 'sent your feedback by successfully :)' });
+            setEmail(''); setTitle(''); setFeedback('');
+          }).catch(error => {
+            setAlert({ show: true, type: 'danger', desc: 'there is an error, please try later ..' });
+          })
+        }else{
+          setAlert({ show: true, type: 'danger', desc: 'Enter a valid feedback' });
+        }
+      }else{
+        setAlert({ show: true, type: 'danger', desc: 'Enter a valid title' });
+      }
+    }else{
+      setAlert({ show: true, type: 'danger', desc: 'Enter a valid email' });
+    }
+    
   };
 
   return (

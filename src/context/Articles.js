@@ -3,14 +3,7 @@ import axios from 'axios'
 
 import URL from '../utils/URL'
 
-import Img1 from '../assets/images/products/speaker-1.jpg'
-// import Img2 from '../assets/images/products/headphone-1.jpg'
-// import Img3 from '../assets/images/products/headphone-2.jpg'
-// import Img4 from '../assets/images/products/headphone-3.jpg'
-// import Img5 from '../assets/images/products/headphone-4.jpg'
-// import Img6 from '../assets/images/products/iphone-1.jpg'
-// import Img7 from '../assets/images/products/speaker-2.jpg'
-// import Img8 from '../assets/images/products/watch-1.jpg'
+import imageLocal from '../utils/dataImages'
 
 export const ArticleContext = React.createContext()
 
@@ -20,7 +13,6 @@ export default function ArticleProvider({ children }) {
     const [featureArticles, setFeatureArticles] = useState([])
     const [loading, setLoading] = useState(false)
     const [height, setHeight] = useState(0)
-    let i = 0;
 
     useEffect(() => {
         setLoading(true)
@@ -28,7 +20,9 @@ export default function ArticleProvider({ children }) {
             try{
                 const response = await axios(`${URL}/articles`)
                 const { data:articles } = response;
-                if(articles){
+                if (articles) {
+                    let arr = []
+                    let counterImages = 0;
                     const newArticles = articles.map(article =>{
                         const {
                             author,
@@ -38,22 +32,20 @@ export default function ArticleProvider({ children }) {
                             createdAt,
                             feature
                         } = article;
+                        
                         const created = new Date(createdAt).toUTCString()
-                        const defaultImg = Img1;
 
                         const returnedObj = {
-                            title, idArticle: _id, author, description, created, img: defaultImg,
-                            feature
-                        }
+                            title, idArticle: _id, author, description, created,
+                            img: imageLocal[counterImages++],
+                            feature}
 
-                        if (feature) {
-                            setFeatureArticles([...featureArticles, returnedObj])
-                        }
-                        
-                        return returnedObj;
+                        returnedObj.feature && arr.push(returnedObj)
+
+                        return returnedObj
                     })
-                    setArticles([...newArticles])
-                    
+                    setArticles(newArticles)
+                    setFeatureArticles(arr)
                 }else{
                     setArticles([])
                 }
@@ -63,9 +55,17 @@ export default function ArticleProvider({ children }) {
             setLoading(false)
         }
         getArticles()
-        return () => {}
     },[]);
     
+    const getArticlesByTerm = (searchTerm)=>{
+        return articles.filter(article => (
+            article.title.toLowerCase().includes(searchTerm.toLowerCase())
+            || article.description.toLowerCase().includes(searchTerm.toLowerCase())
+            || article.author.toLowerCase().includes(searchTerm.toLowerCase())
+        ));
+    }
+
+    const getArticleByID = (ID)=> articles.find(article => article.idArticle === ID)
 
     useEffect(()=>{
         window.addEventListener("scroll", ()=>{
@@ -74,15 +74,14 @@ export default function ArticleProvider({ children }) {
         return ()=>{ window.removeEventListener("scroll", ()=>{})}
     })
 
-    const getArticle = (id)=> articles.find(item => item.idArticle === id);
-
     return (
         <ArticleContext.Provider value={{
             articles,
             featureArticles,
             loading,
-            getArticle,
-            height
+            height,
+            getArticlesByTerm,
+            getArticleByID
         }}>
             {children}
         </ArticleContext.Provider>

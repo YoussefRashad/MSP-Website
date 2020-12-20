@@ -2,14 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import URL from '../utils/URL'
 
-import Img1 from '../assets/images/products/speaker-1.jpg'
-// import Img2 from '../assets/images/products/headphone-1.jpg'
-// import Img3 from '../assets/images/products/headphone-2.jpg'
-// import Img4 from '../assets/images/products/headphone-3.jpg'
-// import Img5 from '../assets/images/products/headphone-4.jpg'
-// import Img6 from '../assets/images/products/iphone-1.jpg'
-// import Img7 from '../assets/images/products/speaker-2.jpg'
-// import Img8 from '../assets/images/products/watch-1.jpg'
+import imageLocal from '../utils/dataImages'
 import Axios from 'axios'
 
 export const EventContext = React.createContext()
@@ -27,6 +20,8 @@ function EventProvider({ children }) {
                 const response = await Axios.get(`${URL}/events`);
                 const { data: events } = response;
                 if (events) {
+                    let arr = []
+                    let counterImages = 0;
                     const newEvents = events.map((event) => {
                         const {
                             location,
@@ -37,16 +32,15 @@ function EventProvider({ children }) {
                             feature
                         } = event;
                         const created = new Date(createdAt).toUTCString()
-                        const defaultImg = Img1;
 
-                        const returnedObj = { title, idEvent: _id, location, description, created, img: defaultImg, feature }
+                        const returnedObj = { title, idEvent: _id, location, description, created, img: imageLocal[counterImages++], feature }
 
-                        if (feature) {
-                            setFeatureEvents([...featureEvents, returnedObj])
-                        }
+                        returnedObj.feature && arr.push(returnedObj)
+
                         return returnedObj;
                     })
                     setEvents(newEvents)
+                    setFeatureEvents(arr)
                 } else {
                     setEvents([])
                 }
@@ -56,18 +50,26 @@ function EventProvider({ children }) {
             setLoading(false)
         }
         getEvents()
-        return () => {}
     }, [])
 
-    const getEvents = (id) => events.find(event => event.idEvent === id)
+    const getEventsByTerm = (searchTerm) => {
+        return events.filter(event => (
+            event.title.toLowerCase().includes(searchTerm.toLowerCase())
+            || event.description.toLowerCase().includes(searchTerm.toLowerCase())
+            || event.location.toLowerCase().includes(searchTerm.toLowerCase())
+        ));
+    }
 
+    const getEventByID = (ID) => events.find(event => event.idEvent === ID)
+    
     return (
         <EventContext.Provider
             value = {{
                 events,
                 featureEvents,
                 loading,
-                getEvents
+                getEventsByTerm,
+                getEventByID
             }}
         >
             {children}

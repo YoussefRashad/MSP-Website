@@ -1,14 +1,15 @@
 ngx-chips, ngx-toaster, @swimlane, sass-loader -- >>, css-loader >>, angular-calendar, quill, highlight.js, ladda, perfect-scrollbar
 ====================
 
-* Home
-    - Link to Members Work Page >> Github + Projects 
-
 * Forms : Tabset (Recruitment, Event)
-* Search
 
 // * Videos
 // * SignIn
 // * SignUp
 
-(Feature it will be latest - 3 cards and i will show the pagination in his page)
+* data that show in cards and search
+* images
+>> DataImage.js effects in context's pages
+
+* Github page
+* Heroku and mongoDB hosting

@@ -1,21 +1,20 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import LoadingComponent from '../components/LoadingComponent'
 import { scrollAutoFromBackToTop } from '../components/ScrollButton'
 
 import { WorkshopContext } from '../context/Workshops'
-
-// import Img from '../assets/images/products/speaker-1.jpg'
 
 const SingleWorkshops = () => {
     const [workshop, setWorkshop] = useState(undefined)
     const [loading, setLoading] =  useState(false)
     const { id } = useParams()
 
-    const { getWorkshop } = useContext(WorkshopContext)
+    const { getWorkshopByID } = useContext(WorkshopContext)
 
     useEffect(() => {
         setLoading(true);
-        const workshop = getWorkshop(id)
+        const workshop = getWorkshopByID(id)
         setWorkshop(workshop)
         setLoading(false);
         return () => {}
@@ -71,7 +70,7 @@ const SingleWorkshops = () => {
         <div className="d-flex flex-column msContant">
             <div className="msMain">
                 {
-                        loading ? <h2>loading ...</h2>
+                        loading ? <LoadingComponent />
                     :
                         !workshop ? <h2 className="section-title">no article to display</h2>
                     :
