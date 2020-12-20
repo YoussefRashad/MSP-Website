@@ -27,7 +27,7 @@ function Article() {
 
             <div className="card user-profile o-hidden mb-4">
                 <div>
-                    <img src={`http://localhost:3000/${article.img}`} style={{ width: "100%" }} alt="" />
+                    <img src={`https://msp-tech-club-helwan.netlify.app/${article.img}`} style={{ width: "100%" }} alt="" />
                 </div>
                 <div className="user-info">
                     <p className="m-0 text-24" style={{ paddingTop: "30px" }}></p>

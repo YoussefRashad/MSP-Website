@@ -6,7 +6,7 @@ const CarouselComponent = ({ name, link, created, img, id }) =>{
         <Carousel.Item key={id} interval={1200}>
             <img
                 className="d-block w-100 h-100"
-                src={`http://localhost:3000/${img}`}
+                src={img}
                 alt={name}
             />
             <Carousel.Caption>

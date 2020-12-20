@@ -28,7 +28,7 @@ function EventComponent() {
     return(
       <div className="card user-profile o-hidden mb-4">
         <div>
-          <img src={`http://localhost:3000/${event.img}`} width="100%" alt="Event Logo" />
+          <img src={`https://msp-tech-club-helwan.netlify.app/${event.img}`} width="100%" alt="Event Logo" />
         </div>
 
         <div className="user-info">
