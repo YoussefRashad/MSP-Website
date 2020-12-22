@@ -1,7 +1,7 @@
 import Axios from 'axios'
 import React, { useState, useEffect } from 'react'
 
-import URL from '../utils/URL'
+import { BE_URL } from '../utils/URL'
 
 import imageLocal from '../utils/dataImages'
 
@@ -16,7 +16,7 @@ function SponserProvider({ children }) {
         setLoading(true)
         const getSponsers = async ()=>{
             try{
-                const response = await Axios(`${URL}/sponsers`)
+                const response = await Axios(`${BE_URL}/sponsers`)
                 const { data: sponsers } = response
                 if (sponsers) {
                     let counterImages = 0;

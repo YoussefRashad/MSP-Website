@@ -8,7 +8,7 @@ import SingleArticle from './pages/SingleArticle'
 import Articles from './pages/Articles'
 import SingleEvent from './pages/SingleEvent'
 import Events from './pages/Events'
-// import Forms from './pages/Forms'
+import Forms from './pages/Forms'
 // import Video from './pages/Video'
 import Team from './pages/Team'
 import Feedback from './pages/Feedback'
@@ -31,7 +31,7 @@ function App() {
   React.useEffect(()=>{
     setTimeout(() => {
       setLoading(false)
-    }, 6000);
+    }, 500);
   },[])
 
   if(loading){
@@ -56,8 +56,8 @@ function App() {
         <Route exact path="/events/:id" component={SingleEvent} />
         <Route exact path="/workshops" component={Workshops} />
         <Route exact path="/workshops/:id" component={SingleWorkshops} />
-        {/* <Route exact path="/forms" component={Forms} />
-        <Route exact path="/videos" component={Video} /> */}
+        <Route exact path="/forms" component={Forms} />
+        {/* <Route exact path="/videos" component={Video} /> */}
         <Route exact path="/team" component={Team} />
         {/* <Route exact path="/member-work" component={MemberWork} /> */}
         <Route exact path="/feedback" component={Feedback} />

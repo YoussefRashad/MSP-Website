@@ -48,13 +48,13 @@ function Header () {
         >
           Events
           </Link>
-        {/* <Link
+        <Link
             className={`${active === '/forms' ? 'active' : ''
             } linkHome text-decoration-none`}
             to="/forms"
           >
             Forms
-          </Link> */}
+          </Link>
         {/* <Link
             className={`${active === '/videos' ? 'active' : ''
             } linkHome text-decoration-none`}

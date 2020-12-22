@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import URL from '../utils/URL'
+import { BE_URL } from '../utils/URL'
 
 import imageLocal from '../utils/dataImages'
 
@@ -17,7 +17,7 @@ function TeamProvider({ children }) {
         setLoading(true)
         const getTeams = async () => {
             try {
-                const response = await Axios(`${URL}/team-members`)
+                const response = await Axios(`${BE_URL}/team-members`)
                 const { data: teams } = response
                 if (teams) {
                     let counterImages = 0;

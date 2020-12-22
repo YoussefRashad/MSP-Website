@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import URL from '../utils/URL'
+import { BE_URL } from '../utils/URL'
 
 import imageLocal from '../utils/dataImages'
 
@@ -18,7 +18,7 @@ function WorkshopProvider({ children }) {
         setLoading(true);
         const getWorkshops = async ()=> {
             try{
-                const response = await Axios.get(`${URL}/workshops`)
+                const response = await Axios.get(`${BE_URL}/workshops`)
                 const { data: workshops } = response;
                 if (workshops) {
                     let counterImages = 0;

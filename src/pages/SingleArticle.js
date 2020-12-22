@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import LoadingComponent from '../components/LoadingComponent'
 import { scrollAutoFromBackToTop } from '../components/ScrollButton'
+import { FE_URL } from '../utils/URL'
 
 import { ArticleContext } from '../context/Articles'
 
@@ -27,7 +28,7 @@ function Article() {
 
             <div className="card user-profile o-hidden mb-4">
                 <div>
-                    <img src={`https://msp-tech-club-helwan.netlify.app/${article.img}`} style={{ width: "100%" }} alt="" />
+                    <img src={`${FE_URL}/${article.img}`} style={{ width: "100%" }} alt="" />
                 </div>
                 <div className="user-info">
                     <p className="m-0 text-24" style={{ paddingTop: "30px" }}></p>

@@ -1,10 +1,10 @@
 
 import Axios from 'axios'
-import URL from '../utils/URL'
+import { BE_URL } from '../utils/URL'
 
 
 const sumbitFeedback = async ({ email, title, description })=>{
-    const response = await Axios.post(`${URL}/feedback`,{
+    const response = await Axios.post(`${BE_URL}/feedback`,{
         email, title, description
     })
 

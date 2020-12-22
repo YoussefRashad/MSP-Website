@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import URL from '../utils/URL'
+import { BE_URL } from '../utils/URL'
 
 import imageLocal from '../utils/dataImages'
 
@@ -18,7 +18,7 @@ export default function ArticleProvider({ children }) {
         setLoading(true)
         const getArticles = async ()=>{
             try{
-                const response = await axios(`${URL}/articles`)
+                const response = await axios(`${BE_URL}/articles`)
                 const { data:articles } = response;
                 if (articles) {
                     let arr = []

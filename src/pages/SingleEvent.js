@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom'
 import { EventContext } from "../context/Events";
-
+import { FE_URL } from '../utils/URL'
 import { scrollAutoFromBackToTop } from '../components/ScrollButton';
 import LoadingComponent from '../components/LoadingComponent';
 
@@ -28,7 +28,7 @@ function EventComponent() {
     return(
       <div className="card user-profile o-hidden mb-4">
         <div>
-          <img src={`https://msp-tech-club-helwan.netlify.app/${event.img}`} width="100%" alt="Event Logo" />
+          <img src={`${FE_URL}/${event.img}`} width="100%" alt="Event Logo" />
         </div>
 
         <div className="user-info">

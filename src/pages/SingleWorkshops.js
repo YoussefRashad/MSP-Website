@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import LoadingComponent from '../components/LoadingComponent'
 import { scrollAutoFromBackToTop } from '../components/ScrollButton'
-
+import { FE_URL } from '../utils/URL'
 import { WorkshopContext } from '../context/Workshops'
 
 const SingleWorkshops = () => {
@@ -29,7 +29,7 @@ const SingleWorkshops = () => {
         return(
             <div className="card user-profile o-hidden mb-4">
                 <div>
-                    <img src={`https://msp-tech-club-helwan.netlify.app/${workshop.img}`} width="100%" alt="Event Logo" />
+                    <img src={`${FE_URL}/${workshop.img}`} width="100%" alt="Event Logo" />
                 </div>
 
                 <div className="user-info">

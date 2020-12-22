@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import URL from '../utils/URL'
+import { BE_URL } from '../utils/URL'
 
 import imageLocal from '../utils/dataImages'
 import Axios from 'axios'
@@ -17,7 +17,7 @@ function EventProvider({ children }) {
         setLoading(true)
         const getEvents = async ()=>{
             try{
-                const response = await Axios.get(`${URL}/events`);
+                const response = await Axios.get(`${BE_URL}/events`);
                 const { data: events } = response;
                 if (events) {
                     let arr = []
