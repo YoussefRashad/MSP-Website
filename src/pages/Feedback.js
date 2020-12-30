@@ -26,7 +26,7 @@ const Feedback = () => {
       if (title){
         if (feedback){
           sumbitFeedback({ email, title, description: feedback }).then((res) => {
-            setAlert({ show: true, type: 'success', desc: 'sent your feedback by successfully :)' });
+            setAlert({ show: true, type: 'success', desc: 'sent your feedback by successfully' });
             setEmail(''); setTitle(''); setFeedback('');
           }).catch(error => {
             setAlert({ show: true, type: 'danger', desc: 'there is an error, please try later ..' });
@@ -45,14 +45,14 @@ const Feedback = () => {
 
   return (
     <div className="d-flex flex-column msContant">
-      {alert.show && <Alert type={alert.type} desc={alert.desc} display={alert.show} hideAlert={hideAlert}/>}
       <div className="row" id="msdiv">
         <div className="col-md-10" id="msMainOuter">
           <h4 style={{fontSize: 'xx-large'}}>Feedback</h4>
           <p style={{fontSize: 'x-large'}}>
             Your opinion helps us to improve ..
           </p>
-          <div className="card mb-5" id="msMainInner">
+          {alert.show && <Alert type={alert.type} desc={alert.desc} hideAlert={hideAlert} />}
+          <div className="card mb-5 mt-3" id="msMainInner">
             <div className="card-body">
               <form onSubmit={handleSubmit}>
                 <div className="form-group row">

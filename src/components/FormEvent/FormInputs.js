@@ -38,7 +38,7 @@ const FormInputs = () => {
                 setCommitte('');
 
                 setLoading(false);
-                setAlert({ show: true, type: 'success', desc: 'sent your form by successfully :)' })
+                setAlert({ show: true, type: 'success', desc: 'sent your form by successfully' })
 
             }, 2000);
 
@@ -58,7 +58,7 @@ const FormInputs = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            {alert.show && <Alert type={alert.type} desc={alert.desc} display={alert.show} hideAlert={hideAlert} />}
+            {alert.show && <Alert type={alert.type} desc={alert.desc} hideAlert={hideAlert} />}
 
             {/* <!-- NAME --> */}
             <div className="row">
