@@ -42,7 +42,7 @@ function Article() {
                             {article.description}
                         </div>
                         <hr />
-                        <div className="row">
+                        <div className="row ml-4">
                             <div style={{ fontSize: "x-large" }}>
                                 <div className="mb-4">
                                     <p className="text-primary mb-1"><i className="i-Calendar text-16 mr-1"></i>Date</p>

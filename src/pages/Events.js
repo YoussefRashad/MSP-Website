@@ -31,7 +31,7 @@ const EventsComponent = () => {
               <div className="flex-grow-1">
                 <div className="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center">
                   <div className="w-80 w-sm-100">
-                    <div className="item-title" style={{ fontSize: 'large' }}>
+                    <div className="item-title text-center" style={{ fontSize: 'large' }}>
                       {events[iter].title}
                     </div>
                   </div>

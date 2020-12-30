@@ -3,7 +3,7 @@ import { MdClose } from 'react-icons/md'
 
 export default function Alert({ type, title, desc, show, hideAlert }) {
     return (
-        <div className={`alert alert-card alert-${type} 
+        <main className={`alert alert-card alert-${type} 
             text-center w-40 m-auto`}>
             <div>
                 <button className="close" onClick={() => hideAlert()}>
@@ -12,6 +12,6 @@ export default function Alert({ type, title, desc, show, hideAlert }) {
                 <h3>{title}</h3>
                 <p>{desc}</p>
             </div>  
-        </div>
+        </main>
     );
 }

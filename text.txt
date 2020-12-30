@@ -1,8 +1,6 @@
 ngx-chips, ngx-toaster, @swimlane, sass-loader -- >>, css-loader >>, angular-calendar, quill, highlight.js, ladda, perfect-scrollbar
 ====================
 
-* Forms : Tabset (Recruitment, Event)
-
 // * Videos
 // * SignIn
 // * SignUp
@@ -12,4 +10,3 @@ ngx-chips, ngx-toaster, @swimlane, sass-loader -- >>, css-loader >>, angular-cal
 >> DataImage.js effects in context's pages
 
 * Github page
-* Heroku and mongoDB hosting

@@ -49,7 +49,7 @@ function EventComponent() {
               {event.description}
             </div>
             <hr />
-            <div className="row">
+            <div className="row ml-4">
               <div style={{ fontSize: 'x-large' }}>
                 <div className="mb-4">
                   <p className="text-primary mb-1">

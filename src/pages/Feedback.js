@@ -111,14 +111,18 @@ const Feedback = () => {
                     />
                   </div>
                 </div>
-
-                <div className="form-group row" id="msbutton">
-                  <div className="col-sm-10">
-                    <button type="submit" className="btn btn-primary">
-                      Send
-                    </button>
+                
+                {/* <!-- BUTTON --> */}
+                <div className="col-md-12 ml-md-5">
+                  <div className="form-group row text-center">
+                    <div className="col-md-12 col-sm-10">
+                      <button type="submit" className="btn btn-lg btn-primary">
+                        Send the feedback
+                      </button>
+                    </div>
                   </div>
                 </div>
+
               </form>
             </div>
           </div>
