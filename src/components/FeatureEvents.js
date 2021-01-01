@@ -33,7 +33,7 @@ const EventsComponent = () => {
                 </div>
                 <p className="m-0 text-muted text-small w-15 w-sm-100">Date</p>
                 <p className="m-0 text-muted text-small w-15 w-sm-100">
-                  {item.created}
+                  {item.created.substr(0, 16)}
                 </p>
                 <p className="m-0 text-muted text-small w-15 w-sm-100 d-none d-lg-block item-badges" />
               </div>
