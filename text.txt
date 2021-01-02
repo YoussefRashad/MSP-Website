@@ -5,11 +5,9 @@ ngx-chips, ngx-toaster, @swimlane, sass-loader -- >>, css-loader >>, angular-cal
 // * SignIn
 // * SignUp
 
-* rating and comments [BE, FE] 
 >> Evaluating in showComments.js when implement the user model
 
 * data that show in cards and search
 * images
->> DataImage.js effects in context's pages
 
 * Github page

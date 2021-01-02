@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import { BE_URL } from '../utils/URL'
-
 import imageLocal from '../utils/dataImages'
 
 export const ArticleContext = React.createContext()
@@ -14,6 +13,7 @@ export default function ArticleProvider({ children }) {
     const [loading, setLoading] = useState(false)
     const [height, setHeight] = useState(0)
 
+    // Get All Articles in first loading
     useEffect(() => {
         setLoading(true)
         const getArticles = async ()=>{
@@ -30,15 +30,25 @@ export default function ArticleProvider({ children }) {
                             title,
                             _id,
                             createdAt,
-                            feature
+                            feature,
+                            comments
                         } = article;
                         
                         const created = new Date(createdAt).toUTCString()
+                        const overallRate = comments.reduce((acc, curr)=>{
+                            if(curr.rate){
+                                return acc += (+curr.rate)
+                            }else{
+                                return acc += 0;
+                            }
+                        },0)
+                        const returendOverallRated = !comments.length ? 0 : overallRate/comments.length;
 
                         const returnedObj = {
-                            title, idArticle: _id, author, description, created,
-                            img: imageLocal[counterImages++],
-                            feature}
+                            title, id: _id, author, description, created,
+                            img: imageLocal[counterImages++], feature, 
+                            comments, overallRate: Math.round(returendOverallRated)
+                        }
 
                         returnedObj.feature && arr.push(returnedObj)
 
@@ -50,12 +60,20 @@ export default function ArticleProvider({ children }) {
                     setArticles([])
                 }
             }catch(error){
-                console.log("not connected >> ", error);
+                console.log("not connected >> ", error.message);
             }
             setLoading(false)
         }
         getArticles()
     },[]);
+
+    // Scroll up
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            setHeight(window.pageYOffset);
+        })
+        return () => { window.removeEventListener("scroll", () => { }) }
+    })
     
     const getArticlesByTerm = (searchTerm)=>{
         return articles.filter(article => (
@@ -65,14 +83,17 @@ export default function ArticleProvider({ children }) {
         ));
     }
 
-    const getArticleByID = (ID)=> articles.find(article => article.idArticle === ID)
+    const getArticleByID = (ID) => articles.find(article => article.id === ID)
 
-    useEffect(()=>{
-        window.addEventListener("scroll", ()=>{
-            setHeight(window.pageYOffset);
+    const sumbitComment = async ({ name, image, title, comment, rate, date, id }) => {
+        console.log({ name, image, title, comment, rate, date, id });
+        const response = await axios.patch(`${BE_URL}/articles/comment-form/${id}`, {
+            'comments': {
+                name, image, title, comment, rate, date
+            }
         })
-        return ()=>{ window.removeEventListener("scroll", ()=>{})}
-    })
+        return response;
+    }
 
     return (
         <ArticleContext.Provider value={{
@@ -81,7 +102,8 @@ export default function ArticleProvider({ children }) {
             loading,
             height,
             getArticlesByTerm,
-            getArticleByID
+            getArticleByID,
+            sumbitComment
         }}>
             {children}
         </ArticleContext.Provider>

@@ -1,9 +1,9 @@
 import React from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 
-const CarouselComponent = ({ name, link, created, img, id }) =>{
+const CarouselComponent = ({ name, link, created, img, key }) =>{
     return (
-        <Carousel.Item key={id} interval={1200}>
+        <Carousel.Item key={key} interval={1200}>
             <img
                 className="d-block w-100 h-100"
                 src={img}
@@ -22,10 +22,14 @@ const SponserList = ({ sponsers })=>{
     return(
         <Carousel>
             {
-                sponsers.map(sponser => CarouselComponent({ ...sponser, id:sponser.idSponser}) )
+                
+                sponsers.map(sponser => CarouselComponent({ ...sponser, key: sponser.id} ))
             }
         </Carousel>
     )
 }
 
+
 export default SponserList
+
+/* sponsers.map((sponser, index) => <CarouselComponent {...sponser} key={sponser.idSponser} />) */ 

@@ -1,6 +1,43 @@
 import React from 'react';
 
 function Social() {
+  const scoailLinks = [
+    {
+      link: 'https://www.facebook.com/HelwanTC',
+      styling: 'i-Facebook-2 text-32 text-primary',
+      title: 'Facbook'
+    },
+    {
+      link: 'https://twitter.com/Msp_TechClub',
+      styling: 'i-Twitter text-32 text-primary',
+      title: 'Twitter'
+    },
+    {
+      link: 'https://www.instagram.com/msptechclub/',
+      styling: 'i-Instagram text-32 text-primary',
+      title: 'Instagram'
+    },
+    {
+      link: 'https://www.youtube.com',
+      styling: 'i-Youtube text-32 text-primary',
+      title: 'Youtube'
+    },
+    {
+      link: 'https://www.linkedin.com/company/msptechclubhelwan/',
+      styling: 'i-Linkedin-2 text-32 text-primary',
+      title: 'Linked In'
+    },
+    {
+      link: 'https://www.github.com/Microsoft-Student-Partner-HU/',
+      styling: 'i-Github-2 text-32 text-primary',
+      title: 'Github'
+    },
+    {
+      link: 'https://www.behance.net/MSPHU',
+      styling: 'i-Behance text-32 text-primary',
+      title: 'Behance'
+    }
+  ]
   return (
     <div className="msMain">
       <hr />
@@ -9,54 +46,18 @@ function Social() {
         The Official accounts of Microsoft Tech Club at Helwan University.
       </p>
       <div className="row">
-        <div className="col-md-2 col-sm-4 col-6 text-center shadowItemWithoutBox">
-          <a href="https://www.facebook.com/HelwanTC" target="_blank" rel="noopener noreferrer">
-            <i className="i-Facebook-2 text-32 text-primary"></i>
-            <p className="text-16 mt-1">Facbook</p>
-          </a>
-        </div>
-        <div className="col-md-2 col-sm-4 col-6 text-center shadowItemWithoutBox">
-          <a href="https://twitter.com/Msp_TechClub" target="_blank" rel="noopener noreferrer">
-            <i className="i-Twitter text-32 text-primary"></i>
-            <p className="text-16 mt-1">Twitter</p>
-          </a>
-        </div>
-        <div className="col-md-2 col-sm-4 col-6 text-center shadowItemWithoutBox">
-          <a href="https://www.instagram.com/msptechclub/" target="_blank" rel="noopener noreferrer">
-            <i className="i-Instagram text-32 text-primary"></i>
-            <p className="text-16 mt-1">Instagram</p>
-          </a>
-        </div>
-        <div className="col-md-2 col-sm-4 col-6 text-center shadowItemWithoutBox">
-          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
-            <i className="i-Youtube text-32 text-primary"></i>
-            <p className="text-16 mt-1">Youtube</p>
-          </a>
-        </div>
-        <div className="col-md-2 col-sm-4 col-6 text-center shadowItemWithoutBox">
-          <a
-            href="https://www.linkedin.com/company/msptechclubhelwan/"
-            target="_blank" rel="noopener noreferrer"
-          >
-            <i className="i-Linkedin-2 text-32 text-primary"></i>
-            <p className="text-16 mt-1">Linked In</p>
-          </a>
-        </div>
-        <div className="col-md-2 col-sm-4 col-6 text-center shadowItemWithoutBox">
-          <a
-            href="https://www.github.com/Microsoft-Student-Partner-HU/"
-            target="_blank" rel="noopener noreferrer"
-          >
-            <i className="i-Github-2 text-32 text-primary"></i>
-            <p className="text-16 mt-1">Github</p>
-          </a>
-        </div>
-        <div className="col-md-2 col-sm-4 col-6 text-center shadowItemWithoutBox">
-          <a href="https://www.behance.net/MSPHU" target="_blank" rel="noopener noreferrer">
-            <i className="i-Behance text-32 text-primary"></i>
-            <p className="text-16 mt-1">Behance</p>
-          </a>
-        </div>
+        {
+          scoailLinks.map((item, index)=>{
+            return(
+              <div className="col-md-2 col-sm-4 col-6 text-center shadowItemWithoutBox" key={index}>
+                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                  <i className={item.styling}></i>
+                  <p className="text-16 mt-1">{item.title}</p>
+                </a>
+              </div>
+            );
+          })
+        }
       </div>
     </div>
   );

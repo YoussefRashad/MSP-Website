@@ -26,7 +26,7 @@ const Feedback = () => {
       if (title){
         if (feedback){
           sumbitFeedback({ email, title, description: feedback }).then((res) => {
-            setAlert({ show: true, type: 'success', desc: 'sent your feedback by successfully' });
+            setAlert({ show: true, type: 'success', desc: 'You Send your feedback successfully' });
             setEmail(''); setTitle(''); setFeedback('');
           }).catch(error => {
             setAlert({ show: true, type: 'danger', desc: 'there is an error, please try later ..' });

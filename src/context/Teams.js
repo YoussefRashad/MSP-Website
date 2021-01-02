@@ -31,7 +31,7 @@ function TeamProvider({ children }) {
                             position
                         } = team;
                         const created = new Date(createdAt).toUTCString()
-                        return { name, idTeam: _id, word, season, position, 
+                        return { name, id: _id, word, season, position, 
                             created, img: imageLocal[counterImages++] }
                     })
                     setTeams([...newTeams])

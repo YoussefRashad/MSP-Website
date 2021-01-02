@@ -14,8 +14,9 @@ const StyledRating = withStyles({
     },
 })(Rating);
 
-export default function CustomizedRatings({ title, readOnly }) {
-    const [value, setValue] = React.useState(2);
+export default function CustomizedRatings({ title, readOnly, value, setValue, 
+    showLabels = true, styling }) {
+    
     const [hover, setHover] = React.useState(-1);
     const labels = {
         0.5: 'Useless',
@@ -32,7 +33,7 @@ export default function CustomizedRatings({ title, readOnly }) {
 
     return (
         <div>
-            <Box component="fieldset" mb={3} borderColor="transparent">
+            <Box component="fieldset" mb={3} borderColor="transparent" style={styling}>
                 <Typography component="legend">{title}</Typography>
                 <StyledRating
                     name="customized-color"
@@ -47,9 +48,12 @@ export default function CustomizedRatings({ title, readOnly }) {
                     onChangeActive={(event, newHover) => {
                         setHover(newHover);
                     }}
-                    readOnly={readOnly ? true : false} 
+                    readOnly={readOnly ? true : false}
                 />
-                {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
+                {   
+                    showLabels === true && value !== null && 
+                    <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
+                }
             </Box>
         </div>
     );

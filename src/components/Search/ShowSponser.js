@@ -19,7 +19,7 @@ function ShowSponser({ name, img, link, created }) {
                                 </div>
                             </div>
                             <p className="m-0 text-muted text-small w-15 w-sm-100 d-lg-block item-badges">
-                                {created}
+                                Date: {created}
                             </p>
                         </div>
                     </div>

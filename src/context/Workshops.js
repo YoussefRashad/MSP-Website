@@ -31,7 +31,7 @@ function WorkshopProvider({ children }) {
                             feature
                         } = team;
                         const created = new Date(createdAt).toUTCString()
-                        const returnedObj = { title, idWorkshop: _id, description, 
+                        const returnedObj = { title, id: _id, description, 
                             created, img: imageLocal[counterImages++], feature }
 
                         if (feature) {
@@ -57,7 +57,7 @@ function WorkshopProvider({ children }) {
             || workshop.description.toLowerCase().includes(searchTerm.toLowerCase())
         ));
     }
-    const getWorkshopByID = (ID)=> workshops.find(workshop => workshop.idWorkshop === ID)
+    const getWorkshopByID = (ID) => workshops.find(workshop => workshop.id === ID)
 
     return (
         <WorkshopContext.Provider

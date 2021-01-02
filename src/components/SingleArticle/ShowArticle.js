@@ -1,8 +1,8 @@
 import React from 'react'
 import { FE_URL } from '../../utils/URL'
-import Rate from './Rate'
+import Rate from '../Rating/Rate'
 
-const ShowArticle = ({ article:{ img, title, description, created, author }}) => {
+const ShowArticle = ({ article:{ img, title, description, created, author, overallRate }}) => {
     return (
         <div className="card user-profile o-hidden mb-4">
             <div>
@@ -32,7 +32,7 @@ const ShowArticle = ({ article:{ img, title, description, created, author }}) =>
                             </div>
                         </div>
                         <div className="col-lg-2 col-md-3 col-12">
-                            <Rate title="Overall Rate" readOnly="true" />
+                            <Rate title="Overall Rate" readOnly="true" value={overallRate} />
                         </div>
                     </div>
                 </div>

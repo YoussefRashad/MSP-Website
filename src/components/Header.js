@@ -6,6 +6,32 @@ import SearchImg from '../assets/images/MSP/essential/iconfinder_search_172546.p
 function Header () {
     let active = useLocation().pathname;
     const history = useHistory()
+
+    const headerItems = [
+      {
+        title: 'articles'
+      },
+      {
+        title: 'workshops'
+      },
+      {
+        title: 'events'
+      },
+      {
+        title: 'forms'
+      },
+      {
+        title: 'team'
+      }
+      // ,
+      // {
+      //   title: 'videos'
+      // },
+      // {
+      //   title: 'topic'
+      // }
+    ]
+    
     
   return (
     <div className="header navbar-expand-lg navbar-light">
@@ -27,55 +53,21 @@ function Header () {
       </button>
       
       <div className="header-right collapse navbar-collapse" id="navbarSupportedContent">
-        <Link
-          className={`${active === '/articles' ? 'active' : ''
-            } linkHome text-decoration-none`}
-          to="/articles"
-        >
-          Articles
-          </Link>
-        <Link
-          className={`${active === '/workshops' ? 'active' : ''
-            } linkHome text-decoration-none`}
-          to="/workshops"
-        >
-          Workshops
-          </Link>
-        <Link
-          className={`${active === '/events' ? 'active' : ''
-            } linkHome text-decoration-none`}
-          to="/events"
-        >
-          Events
-          </Link>
-        <Link
-            className={`${active === '/forms' ? 'active' : ''
-            } linkHome text-decoration-none`}
-            to="/forms"
-          >
-            Forms
-          </Link>
-        {/* <Link
-            className={`${active === '/videos' ? 'active' : ''
-            } linkHome text-decoration-none`}
-            to="/videos"
-          >
-            Videos
-          </Link> */}
-        {/* <Link
-            className={`${active === '/topic' ? 'active' : ''
-              } linkHome text-decoration-none`}
-            to="/topic"
-          >
-            Topics
-          </Link> */}
-        <Link
-          className={`${active === '/team' ? 'active' : ''
-            } linkHome text-decoration-none`}
-          to="/team"
-        >
-          Team
-          </Link>
+        {
+          headerItems.map((item, index)=>{
+            return(
+              <Link
+                className={`${active === `/${item.title}` ? 'active' : ''
+                  } linkHome text-decoration-none`}
+                to={`/${item.title}`}
+                key={index}
+              >
+                {`${item.title.charAt(0).toUpperCase() + item.title.substr(1)}`}
+              </Link>
+            );
+          })
+        }
+        
         <button id="searchIconWeb" className="link" onClick={() => history.push('/search')}>
           <img
             src={SearchImg}

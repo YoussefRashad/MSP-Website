@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import Breadcrumb from '../components/Breadcrumb'
 import LoadingComponent from '../components/LoadingComponent'
 import { scrollAutoFromBackToTop } from '../components/ScrollButton'
 import Comments from '../components/SingleArticle/Comments'
@@ -15,12 +14,15 @@ function Article() {
     const [article, setArticle] = useState(null)
     const [loading, setLoading] = useState(false)
 
+    // get an article
     useEffect(() => {
         setLoading(true)
         const article = getArticleByID(id);
         setArticle(article)
         setLoading(false)
     });
+
+    // scroll up
     React.useEffect(() => {
         scrollAutoFromBackToTop()
         return () => { }
@@ -35,8 +37,11 @@ function Article() {
                         !article ? <h2 className="section-title">no article to display</h2>
                     :
                         <div>
-                            <ShowArticle article={article} />
-                            <Comments />
+                            <ShowArticle article={article}  />
+                            <Comments 
+                                id={article.id} 
+                                comments={article.comments}
+                            />
                         </div>
                 }
             </div>

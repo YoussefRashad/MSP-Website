@@ -28,7 +28,7 @@ function SponserProvider({ children }) {
                             createdAt
                         } = sponser;
                         const created = new Date(createdAt).toUTCString()
-                        return { name, idSponser: _id, link, created, 
+                        return { name, id: _id, link, created, 
                             img: imageLocal[counterImages++] }
                     })
                     SetSponsers([...newSponsers])

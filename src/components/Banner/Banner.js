@@ -1,5 +1,5 @@
 import React from 'react'
-import Alert from '../Alert'
+import BannerAlert from './BannerAlert'
 
 export const Banner = () => {
     const [alert, setAlert] = React.useState({ 
@@ -14,7 +14,7 @@ export const Banner = () => {
     }
     return (
         <div className="msContent2">
-            {alert.show && <Alert {...alert} hideAlert={hideAlert}/>}
+            {alert.show && <BannerAlert {...alert} hideAlert={hideAlert}/>}
             <div className="msText">
                 <h1 className="msHeaderText msHeaderText1">When technology</h1>
                 <h1 className="msHeaderText msHeaderText2">becomes an absolute</h1>

@@ -9,6 +9,7 @@ import LoadingComponent from '../components/LoadingComponent';
 const Team = () => {
     const { teams, loading } = useContext(TeamContext)
     const [page, setPage] = React.useState(1);
+    const noOfItemsInPage = 6;
 
     const showData = teams.map((item, index) => {
         return (
@@ -42,6 +43,16 @@ const Team = () => {
         scrollAutoFromBackToTop()
         return () => { }
     }, [])
+
+    const getPagination = () => {
+        return (
+            <div className="row">
+                <Pagination page={page} setPage={setPage} count={
+                    teams.length / noOfItemsInPage > 1 ? Math.floor(teams.length / noOfItemsInPage) : 0
+                } />
+            </div>
+        );
+    }
     
     return (
         <div className="d-flex flex-column msContant">
@@ -55,19 +66,11 @@ const Team = () => {
                         teams.length === 0 ? <h2>no teams to display</h2>
                     :
                         <div>
-                            <div className="row">
-                                <Pagination page={page} setPage={setPage} count={
-                                    teams.length/6 > 1 ? Math.floor(teams.length/6) : 0
-                                } />
-                            </div>
+                            {getPagination()}
                             <div className="row">
                                 {showData}
                             </div>
-                            <div className="row">
-                                <Pagination page={page} setPage={setPage} count={
-                                    teams.length/6 > 1 ? Math.floor(teams.length/6) : 0
-                                } />
-                            </div>
+                            {getPagination()}
                         </div>
                 }
 

@@ -8,32 +8,54 @@ import { SponserContext } from '../../context/Sponsers'
 import { TeamContext } from '../../context/Teams'
 import { WorkshopContext } from '../../context/Workshops'
 
-import ShowArticle from './ShowArticle';
-import ShowEvent from './ShowEvent';
+import SearchItem from './SearchItem';
 import ShowSponser from './ShowSponser';
 import ShowTeam from './ShowTeam';
-import ShowWorkshop from './ShowWorkshop';
 import LoadingComponent from '../LoadingComponent'
+import Pagination from '../Pagination';
+import { scrollAutoFromBackToTop } from '../ScrollButton';
 
 const Search = () => {
   const history = useHistory();
 
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
+
+  // search results
   const [TeamReselts, setTeamReselts] = React.useState([]);
   const [ArticleReselts, setArticleReselts] = React.useState([]);
   const [EventReselts, setEventReselts] = React.useState([]);
   const [WorkshopReselts, setWorkshopReselts] = React.useState([]);
   const [SponserReselts, setSponserReselts] = React.useState([]);
 
-  const [searchTerm, setSearchTerm] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
-
+  // Data from ContextAPI 
   const { getMembersByTerm } = React.useContext(TeamContext)
   const { getArticlesByTerm } = React.useContext(ArticleContext)
   const { getEventsByTerm } = React.useContext(EventContext)
   const { getWorkshopsByTerm } = React.useContext(WorkshopContext)
   const { getSponsersByTerm } = React.useContext(SponserContext)
 
+  // for pagination
+  const [page, setPage] = React.useState(1);
+  const noOfItemsInPage = 6;
 
+  // to scroll up
+  React.useEffect(() => {
+    scrollAutoFromBackToTop()
+    return () => { }
+  }, [page])
+
+  const getPagination = () => {
+    return (
+      <div className="row">
+        <Pagination page={page} setPage={setPage} count={
+          getSize() / noOfItemsInPage > 1 ? Math.floor(getSize() / noOfItemsInPage) : 0
+        } />
+      </div>
+    );
+  }
+
+  // Searching
   React.useEffect(() => {
     setLoading(true);
     
@@ -68,6 +90,19 @@ const Search = () => {
   }
 
 
+  /// I will work on it
+  const showDataInPaginationOrder = ()=>{
+    let start = (page - 1) * noOfItemsInPage;
+    let returnedData = [];
+    for (let index = start; index < getSize() && index < start + noOfItemsInPage; index++) {
+      returnedData.push(
+        
+      )
+    }
+    return returnedData
+  }
+
+
   return (
     // animate
     <div className="search-ui rtl-ps-none">
@@ -91,35 +126,74 @@ const Search = () => {
         <span className="text-muted" style={{ fontSize: 'xx-large' }}>
           {loading ? <LoadingComponent /> : getSize() > 0 ? 'Search results' : ''}
         </span>
-      </div>
+      </div> 
 
+
+      {getPagination()}
       <div className="search-results list-horizontal">
         {
           // Team >> name, word, season, position, img
-          TeamReselts.map((memberItem, index) => <ShowTeam {...memberItem} key={index} /> )
+          TeamReselts.map((memberItem, index) => <ShowTeam {...memberItem} key={index} />)
         }
 
         {
-          // Article >> title, description, author, img
-          ArticleReselts.map((articleItem, index) => <ShowArticle {...articleItem} key={index} /> )
+          // Article >> title, author, img
+          ArticleReselts.map((articleItem, index) =>
+            <SearchItem
+              title={articleItem.title}
+              author={articleItem.author}
+              img={articleItem.img}
+              created={articleItem.created}
+              id={articleItem.id}
+              overallRate={+articleItem.overallRate}
+              path={'articles'}
+              key={index}
+            />
+          )
         }
 
         {
-          // Event >> title, description, location, img
-          EventReselts.map((eventItem, index) => <ShowEvent {...eventItem} key={index} /> )
+          // Event >> title, location, img
+          EventReselts.map((eventItem, index) =>
+            <SearchItem
+              title={eventItem.title}
+              location={eventItem.location}
+              img={eventItem.img}
+              created={eventItem.created}
+              id={eventItem.id}
+              path={'events'}
+              key={index}
+            />
+          )
         }
 
         {
-          // Workshop >> title, description, img
-          WorkshopReselts.map((workshopItem, index)=><ShowWorkshop {...workshopItem} key={index}/>)
+          // Workshop >> title, img
+          WorkshopReselts.map((workshopItem, index) =>
+            <SearchItem
+              title={workshopItem.title}
+              description={workshopItem.description}
+              img={workshopItem.img}
+              created={workshopItem.created}
+              id={workshopItem.id}
+              path={'workshops'}
+              key={index}
+            />
+          )
         }
 
         {
           // Sponser >> name, img
-          SponserReselts.map((sponserItem, index) => <ShowSponser {...sponserItem} key={index} /> )
+          SponserReselts.map((sponserItem, index) =>
+            <ShowSponser
+              {...sponserItem}
+              path={'sponsers'}
+              key={index}
+            />
+          )
         }
-
       </div>
+      {getPagination()}
 
     </div>
   );

@@ -33,7 +33,7 @@ function EventProvider({ children }) {
                         } = event;
                         const created = new Date(createdAt).toUTCString()
 
-                        const returnedObj = { title, idEvent: _id, location, description, created, img: imageLocal[counterImages++], feature }
+                        const returnedObj = { title, id: _id, location, description, created, img: imageLocal[counterImages++], feature }
 
                         returnedObj.feature && arr.push(returnedObj)
 
@@ -60,7 +60,7 @@ function EventProvider({ children }) {
         ));
     }
 
-    const getEventByID = (ID) => events.find(event => event.idEvent === ID)
+    const getEventByID = (ID) => events.find(event => event.id === ID)
     
     return (
         <EventContext.Provider
