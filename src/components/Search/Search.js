@@ -79,7 +79,7 @@ const Search = () => {
     if(searchTerm){
       setTimeout(() => {
         setLoading(false)
-      }, 800);
+      }, 500);
     }else{
       setLoading(false)
     }
@@ -90,15 +90,83 @@ const Search = () => {
   }
 
 
-  /// I will work on it
+  const getAllResult = (allResults)=>{
+    TeamReselts.map((item, index) =>
+      allResults.push(
+        <ShowTeam
+          {...item}
+          key={index}
+        />
+      )
+    )
+
+    ArticleReselts.map((item, index) =>
+      allResults.push(
+        <SearchItem
+          title={item.title}
+          author={item.author}
+          img={item.img}
+          created={item.created}
+          id={item.id}
+          overallRate={+item.overallRate}
+          path={'articles'}
+          key={index + TeamReselts.length}
+        />
+      )
+    )
+
+    EventReselts.map((item, index) =>
+      allResults.push(
+        <SearchItem
+          title={item.title}
+          location={item.location}
+          img={item.img}
+          created={item.created}
+          id={item.id}
+          path={'events'}
+          key={index + TeamReselts.length + ArticleReselts.length}
+        />
+      )
+    )
+
+    WorkshopReselts.map((item, index) =>
+      allResults.push(
+        <SearchItem
+          title={item.title}
+          description={item.description}
+          img={item.img}
+          created={item.created}
+          id={item.id}
+          path={'workshops'}
+          key={index + TeamReselts.length + ArticleReselts.length + EventReselts.length}
+        />
+      )
+    )
+
+    SponserReselts.map((item, index) =>
+      allResults.push(
+        <ShowSponser
+          {...item}
+          path={'sponsers'}
+          key={index + TeamReselts.length + ArticleReselts.length + EventReselts.length + WorkshopReselts.length}
+        />
+      )
+    )
+  }
+
   const showDataInPaginationOrder = ()=>{
     let start = (page - 1) * noOfItemsInPage;
+    let allResults = [];
     let returnedData = [];
-    for (let index = start; index < getSize() && index < start + noOfItemsInPage; index++) {
+
+    getAllResult(allResults)
+
+    for (let index = start; index < allResults.length && index < start + noOfItemsInPage; index++) {
       returnedData.push(
-        
+        allResults[index]
       )
     }
+    console.log(returnedData);
     return returnedData
   }
 
@@ -129,75 +197,18 @@ const Search = () => {
       </div> 
 
 
-      {getPagination()}
+      {
+        getSize() ? getPagination() : ''
+      }
       <div className="search-results list-horizontal">
-        {
-          // Team >> name, word, season, position, img
-          TeamReselts.map((memberItem, index) => <ShowTeam {...memberItem} key={index} />)
-        }
-
-        {
-          // Article >> title, author, img
-          ArticleReselts.map((articleItem, index) =>
-            <SearchItem
-              title={articleItem.title}
-              author={articleItem.author}
-              img={articleItem.img}
-              created={articleItem.created}
-              id={articleItem.id}
-              overallRate={+articleItem.overallRate}
-              path={'articles'}
-              key={index}
-            />
-          )
-        }
-
-        {
-          // Event >> title, location, img
-          EventReselts.map((eventItem, index) =>
-            <SearchItem
-              title={eventItem.title}
-              location={eventItem.location}
-              img={eventItem.img}
-              created={eventItem.created}
-              id={eventItem.id}
-              path={'events'}
-              key={index}
-            />
-          )
-        }
-
-        {
-          // Workshop >> title, img
-          WorkshopReselts.map((workshopItem, index) =>
-            <SearchItem
-              title={workshopItem.title}
-              description={workshopItem.description}
-              img={workshopItem.img}
-              created={workshopItem.created}
-              id={workshopItem.id}
-              path={'workshops'}
-              key={index}
-            />
-          )
-        }
-
-        {
-          // Sponser >> name, img
-          SponserReselts.map((sponserItem, index) =>
-            <ShowSponser
-              {...sponserItem}
-              path={'sponsers'}
-              key={index}
-            />
-          )
-        }
+        {showDataInPaginationOrder()}
       </div>
-      {getPagination()}
+      {
+        getSize() ? getPagination() : ''
+      }
 
     </div>
   );
 };
 
 export default Search;
-
