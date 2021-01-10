@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ArticleContext } from '../context/Articles'
+import { UserContext } from '../context/User'
 import { FaAngleDoubleUp } from 'react-icons/fa'
 
 export const scrollAutoFromBackToTop = () => {
@@ -13,7 +13,7 @@ export const scrollAutoFromBackToTop = () => {
 }
 
 const ScrollButton = () => {
-    const { height } = useContext(ArticleContext)
+    const { height } = useContext(UserContext)
 
     const scrollBackToTop = ()=>{
         window.scrollTo({

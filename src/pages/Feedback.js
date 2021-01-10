@@ -4,21 +4,19 @@ import { scrollAutoFromBackToTop } from '../components/ScrollButton';
 import sumbitFeedback from '../Node/sumbitFeedback'
 import validator from 'validator'
 
+import { UserContext } from '../context/User'
+
 const Feedback = () => {
+  const { alert, showAlert, hideAlert } = React.useContext(UserContext)
 
   const [email, setEmail] = useState('')
   const [title, setTitle] = useState('')
   const [feedback, setFeedback] = useState('')
-  const [alert, setAlert] = useState({ show: false })
   
   React.useEffect(() => {
     scrollAutoFromBackToTop()
     return () => { }
   }, [])
-
-  const hideAlert = () => {
-    setAlert({ ...alert, show: false })
-  }
 
   const handleSubmit = e => {
     e.preventDefault ();
@@ -26,19 +24,19 @@ const Feedback = () => {
       if (title){
         if (feedback){
           sumbitFeedback({ email, title, description: feedback }).then((res) => {
-            setAlert({ show: true, type: 'success', desc: 'You Send your feedback successfully' });
+            showAlert({ show: true, type: 'success', msg: 'You Send your feedback successfully' });
             setEmail(''); setTitle(''); setFeedback('');
           }).catch(error => {
-            setAlert({ show: true, type: 'danger', desc: 'there is an error, please try later ..' });
+            showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' });
           })
         }else{
-          setAlert({ show: true, type: 'danger', desc: 'Enter a valid feedback' });
+          showAlert({ show: true, type: 'danger', msg: 'Enter a valid feedback' });
         }
       }else{
-        setAlert({ show: true, type: 'danger', desc: 'Enter a valid title' });
+        showAlert({ show: true, type: 'danger', msg: 'Enter a valid title' });
       }
     }else{
-      setAlert({ show: true, type: 'danger', desc: 'Enter a valid email' });
+      showAlert({ show: true, type: 'danger', msg: 'Enter a valid email' });
     }
     
   };
@@ -51,7 +49,6 @@ const Feedback = () => {
           <p style={{fontSize: 'x-large'}}>
             Your opinion helps us to improve ..
           </p>
-          {alert.show && <Alert type={alert.type} desc={alert.desc} hideAlert={hideAlert} />}
           <div className="card mb-5 mt-3" id="msMainInner">
             <div className="card-body">
               <form onSubmit={handleSubmit}>

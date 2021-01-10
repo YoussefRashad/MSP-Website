@@ -4,7 +4,10 @@ import LoadingComponent from '../LoadingComponent';
 import Alert from '../Alert';
 import sumbitFormRecruitment from '../../Node/sumbitFormRecruitment'
 
+import { UserContext } from '../../context/User'
+
 const FormInputs = () => {
+    const { alert, showAlert, hideAlert } = React.useContext(UserContext)
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -13,12 +16,6 @@ const FormInputs = () => {
     const [committe, setCommitte] = useState('')
 
     const [loading, setLoading] = useState(false);
-    const [alert, setAlert] = useState({ show: false })
-    
-
-    const hideAlert = () => {
-        setAlert({ ...alert, show: false })
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,14 +35,14 @@ const FormInputs = () => {
                 setCommitte('');
 
                 setLoading(false);
-                setAlert({ show: true, type: 'success', desc: 'sent your form by successfully'})
+                showAlert({ show: true, type: 'success', msg: 'sent your form by successfully'})
                 
             }, 2000);
 
         }).catch((error)=>{
             setTimeout(() => {
                 setLoading(false);
-                setAlert({ show: true, type: 'danger', desc: 'there is an error, please try later ..'})
+                showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..'})
             }, 2000);
         })
 
@@ -58,7 +55,6 @@ const FormInputs = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            {alert.show && <Alert type={alert.type} desc={alert.desc} hideAlert={hideAlert} />}
             
             {/* <!-- NAME --> */}
             <div className="row">

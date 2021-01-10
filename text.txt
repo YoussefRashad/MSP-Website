@@ -1,9 +1,9 @@
 ngx-chips, ngx-toaster, @swimlane, sass-loader -- >>, css-loader >>, angular-calendar, quill, highlight.js, ladda, perfect-scrollbar
 ====================
 
-// * Videos
-// * SignIn
-// * SignUp
+* put an array = comments in articles, when i submited a new comment add it in as a statically inserted
+
+// USER & Any FORM >>> validation on privilage & all properties and pass is must be <= 6 char
 
 >> Evaluating in showComments.js when implement the user model
 

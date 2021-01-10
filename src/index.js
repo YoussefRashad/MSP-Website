@@ -14,6 +14,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 // context API
+import UserProvider from "./context/User"
 import ArticleProvider from "./context/Articles";
 import EventProvider from "./context/Events";
 import SponserProvider from "./context/Sponsers";
@@ -36,17 +37,19 @@ if(loading){
 window.onload = function (){
   loading = false;
   ReactDOM.render(
-    <ArticleProvider>
-      <EventProvider>
-        <SponserProvider>
-          <TeamProvider>
-            <WorkshopProvider>
-              {window.onload = <App />}
-            </WorkshopProvider>
-          </TeamProvider>
-        </SponserProvider>
-      </EventProvider>
-    </ArticleProvider>,
+    <UserProvider>
+      <ArticleProvider>
+        <EventProvider>
+          <SponserProvider>
+            <TeamProvider>
+              <WorkshopProvider>
+                {window.onload = <App />}
+              </WorkshopProvider>
+            </TeamProvider>
+          </SponserProvider>
+        </EventProvider>
+      </ArticleProvider>
+    </UserProvider>,
     document.getElementById('root')
   );
 }

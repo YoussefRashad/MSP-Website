@@ -3,6 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { MdClose } from 'react-icons/md'
 
+import { UserContext } from '../context/User' 
+import { scrollAutoFromBackToTop } from './ScrollButton';
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -12,9 +16,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function DescriptionAlerts({ type, desc, hideAlert }) {
+export default function DescriptionAlerts() {
+    const { alert, hideAlert } = React.useContext(UserContext)
+
+    React.useEffect(() => {
+        scrollAutoFromBackToTop()
+        return () => { }
+    }, [])
+
     const classes = useStyles();
-    const typeEdit = type === 'success' ? 'success' : 'error'
+    const typeEdit = alert.type === 'success' ? 'success' : 'error'
     return (
         <div className={`${classes.root}  w-40 m-auto`}>
             <Alert severity={typeEdit} style={{ width: 'fit-content'}}>
@@ -22,7 +33,7 @@ export default function DescriptionAlerts({ type, desc, hideAlert }) {
                     <MdClose />
                 </button>
                 <AlertTitle>{typeEdit === 'success' ? 'Success' : 'Error'}</AlertTitle>
-                {desc} — <strong>check it out!</strong>
+                {alert.msg} — <strong>check it out!</strong>
             </Alert>
         </div>
     );

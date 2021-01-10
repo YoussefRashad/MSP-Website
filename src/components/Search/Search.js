@@ -58,7 +58,8 @@ const Search = () => {
   // Searching
   React.useEffect(() => {
     setLoading(true);
-    
+    setPage(1); // to handle the pagination when happens new search to start from first page
+
     setTeamReselts(getMembersByTerm(searchTerm));
     setArticleReselts(getArticlesByTerm(searchTerm))
     setEventReselts(getEventsByTerm(searchTerm))
@@ -166,7 +167,7 @@ const Search = () => {
         allResults[index]
       )
     }
-    console.log(returnedData);
+
     return returnedData
   }
 

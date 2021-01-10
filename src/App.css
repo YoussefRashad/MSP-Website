@@ -284,6 +284,39 @@
 textarea {
   height: 170px;
 }
+.form-control{
+  font-size: 14px;
+}
+.form-group label {
+  font-size: 16px;
+}
+
+.register-link {
+  margin-bottom: 0;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 16px;
+}
+.register-link span {
+  background: transparent;
+  border: none;
+  color: #01a3f0;
+  text-transform: capitalize;
+  font-size: inherit;
+  display: inline-block;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+.form-empty {
+  text-align: center;
+  color: #bd0303;
+  font-size: 14px;
+}
+.checkout-form .form-empty {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
 
 /* End Form Event and Recruitement */
 
@@ -345,11 +378,10 @@ textarea {
   text-transform: capitalize;
   display: flex;
   align-items: center;
-  font-size: 13px;
+  font-size: 17px;
   cursor: pointer;
   padding: 12px 24px;
   transition: 0.15s all ease-in;
-
 
   vertical-align: middle;
   font-weight: 400
@@ -395,7 +427,9 @@ ul {
 }
 
 .sign {
-  display: none;
+  float: right;
+  cursor: pointer;
+  display: block;
 }
 
 @media only screen and (max-width: 990px) {
@@ -404,26 +438,14 @@ ul {
     cursor: pointer;
     display: block;
   }
-
-  .mobList {
-    display: block !important;
-  }
-
-  .webList {
-    display: none !important;
-  }
-
-}
-
-.mobList {
-  display: none;
 }
 
 .webList {
-  display: block;
+  display: block !important;
 }
 
 /* End Videos */
+
 
 /* Start Website Team */
 .websiteTeamArea {

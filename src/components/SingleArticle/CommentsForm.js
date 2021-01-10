@@ -4,12 +4,14 @@ import Rate from '../Rating/Rate'
 import { ArticleContext } from '../../context/Articles'
 import LoadingComponent from '../LoadingComponent';
 
+import { UserContext } from '../../context/User'
+
 const CommentsForm = ({ id }) => {
+    const { alert, showAlert, hideAlert } = React.useContext(UserContext)
 
     const [userName, setUserName] = useState('')
     const [title, setTitle] = useState('')
     const [review, setReview] = useState('')
-    const [alert, setAlert] = useState({ show: false })
     const [loading, setLoading] = useState(false)
     const [value, setValue] = React.useState(2); // for rating
 
@@ -23,10 +25,6 @@ const CommentsForm = ({ id }) => {
     }, [])
 
     const { sumbitComment } = useContext(ArticleContext)
-
-    const hideAlert = () => {
-        setAlert({ ...alert, show: false })
-    }
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -44,20 +42,20 @@ const CommentsForm = ({ id }) => {
                         date, 
                         id 
                     }).then((res) => {
-                        setAlert({ show: true, type: 'success', desc: 'You Sumbut your review successfully' });
+                        showAlert({ show: true, type: 'success', msg: 'You Sumbut your review successfully' });
                         setUserName(''); setTitle(''); setReview(''); setValue(2);
                     }).catch(error => {
                         console.log(error);
-                        setAlert({ show: true, type: 'danger', desc: 'there is an error, please try later ..' });
+                        showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' });
                     })
                 } else {
-                    setAlert({ show: true, type: 'danger', desc: 'Enter a valid review' });
+                    showAlert({ show: true, type: 'danger', msg: 'Enter a valid review' });
                 }
             } else {
-                setAlert({ show: true, type: 'danger', desc: 'Enter a valid title' });
+                showAlert({ show: true, type: 'danger', msg: 'Enter a valid title' });
             }
         } else {
-            setAlert({ show: true, type: 'danger', desc: 'Enter a valid user name' });
+            showAlert({ show: true, type: 'danger', msg: 'Enter a valid user name' });
         }
     };
 
@@ -65,7 +63,6 @@ const CommentsForm = ({ id }) => {
         <div className="d-flex flex-column msContant">
             <div className="row" id="msdiv">
                 <div className="col-md-10" id="msMainOuter">
-                    {alert.show && <Alert type={alert.type} desc={alert.desc} hideAlert={hideAlert} />}
                     {
                         loading ? <LoadingComponent /> :
                     

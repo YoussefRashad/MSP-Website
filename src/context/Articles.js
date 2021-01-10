@@ -11,7 +11,6 @@ export default function ArticleProvider({ children }) {
     const [articles, setArticles] = useState([])
     const [featureArticles, setFeatureArticles] = useState([])
     const [loading, setLoading] = useState(false)
-    const [height, setHeight] = useState(0)
 
     // Get All Articles in first loading
     useEffect(() => {
@@ -67,13 +66,7 @@ export default function ArticleProvider({ children }) {
         getArticles()
     },[]);
 
-    // Scroll up
-    useEffect(() => {
-        window.addEventListener("scroll", () => {
-            setHeight(window.pageYOffset);
-        })
-        return () => { window.removeEventListener("scroll", () => { }) }
-    })
+    
     
     const getArticlesByTerm = (searchTerm)=>{
         return articles.filter(article => (
@@ -100,7 +93,6 @@ export default function ArticleProvider({ children }) {
             articles,
             featureArticles,
             loading,
-            height,
             getArticlesByTerm,
             getArticleByID,
             sumbitComment
