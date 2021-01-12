@@ -432,6 +432,14 @@ ul {
   display: block;
 }
 
+.video_singleItem{
+  margin: 2rem auto 0;
+}
+.video_singleItem iframe{
+  width: 100%;
+  height: auto;
+}
+
 @media only screen and (max-width: 990px) {
   .sign {
     float: right;

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import Alert from '../components/Alert';
 import { scrollAutoFromBackToTop } from '../components/ScrollButton';
-import sumbitFeedback from '../Node/sumbitFeedback'
+import { submitFeedback } from '../Node/submitForm'
 import validator from 'validator'
 
 import { UserContext } from '../context/User'
 
 const Feedback = () => {
-  const { alert, showAlert, hideAlert } = React.useContext(UserContext)
+  const { showAlert } = React.useContext(UserContext)
 
   const [email, setEmail] = useState('')
   const [title, setTitle] = useState('')
@@ -23,7 +22,7 @@ const Feedback = () => {
     if (validator.isEmail(email) ){
       if (title){
         if (feedback){
-          sumbitFeedback({ email, title, description: feedback }).then((res) => {
+          submitFeedback({ email, title, description: feedback }).then((res) => {
             showAlert({ show: true, type: 'success', msg: 'You Send your feedback successfully' });
             setEmail(''); setTitle(''); setFeedback('');
           }).catch(error => {

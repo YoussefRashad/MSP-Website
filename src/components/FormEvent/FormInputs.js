@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import LoadingComponent from '../LoadingComponent';
-import sumbitFormEvent from '../../Node/sumbitFormEvent'
+import { submitFormEvent } from '../../Node/submitForm'
 
 import { UserContext } from '../../context/User'
 
@@ -23,7 +23,7 @@ const FormInputs = () => {
         const answered = { name, email, age, faculty, committe }
 
         // send data to the server
-        sumbitFormEvent(answered).then((res) => {
+        submitFormEvent(answered).then((res) => {
 
             setTimeout(() => {
 

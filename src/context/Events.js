@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { BE_URL } from '../utils/URL'
 
-import imageLocal from '../utils/dataImages'
+import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
 import Axios from 'axios'
 
 export const EventContext = React.createContext()
@@ -21,7 +21,6 @@ function EventProvider({ children }) {
                 const { data: events } = response;
                 if (events) {
                     let arr = []
-                    let counterImages = 0;
                     const newEvents = events.map((event) => {
                         const {
                             location,
@@ -29,11 +28,12 @@ function EventProvider({ children }) {
                             title,
                             _id,
                             createdAt,
-                            feature
+                            feature,
+                            image
                         } = event;
                         const created = new Date(createdAt).toUTCString()
 
-                        const returnedObj = { title, id: _id, location, description, created, img: imageLocal[counterImages++], feature }
+                        const returnedObj = { title, id: _id, location, description, created, img: image || DEFAULT_IMAGE, feature }
 
                         returnedObj.feature && arr.push(returnedObj)
 
@@ -60,7 +60,12 @@ function EventProvider({ children }) {
         ));
     }
 
-    const getEventByID = (ID) => events.find(event => event.id === ID)
+    const getEventByID = (ID) =>{ 
+        setLoading(true)
+        const event = events.find(event => event.id === ID)
+        setLoading(false)
+        return event
+    }
     
     return (
         <EventContext.Provider

@@ -18,7 +18,7 @@ const SingleWorkshops = () => {
         setWorkshop(workshop)
         setLoading(false);
         return () => {}
-    })
+    }, [])
     
     React.useEffect(() => {
         scrollAutoFromBackToTop()

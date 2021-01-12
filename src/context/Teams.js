@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { BE_URL } from '../utils/URL'
-
-import imageLocal from '../utils/dataImages'
-
+import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
 import Axios from 'axios'
 
 export const TeamContext = React.createContext()
@@ -20,7 +18,6 @@ function TeamProvider({ children }) {
                 const response = await Axios(`${BE_URL}/team-members`)
                 const { data: teams } = response
                 if (teams) {
-                    let counterImages = 0;
                     const newTeams = teams.map((team) => {
                         const {
                             name,
@@ -28,11 +25,12 @@ function TeamProvider({ children }) {
                             _id,
                             createdAt,
                             season,
-                            position
+                            position,
+                            image
                         } = team;
                         const created = new Date(createdAt).toUTCString()
                         return { name, id: _id, word, season, position, 
-                            created, img: imageLocal[counterImages++] }
+                            created, img: image || DEFAULT_IMAGE }
                     })
                     setTeams([...newTeams])
                 } else {

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { BE_URL } from '../utils/URL'
-
-import imageLocal from '../utils/dataImages'
+import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
 
 import Axios from 'axios'
 
@@ -21,18 +20,18 @@ function WorkshopProvider({ children }) {
                 const response = await Axios.get(`${BE_URL}/workshops`)
                 const { data: workshops } = response;
                 if (workshops) {
-                    let counterImages = 0;
                     const newWorkshops = workshops.map((team) => {
                         const {
                             title,
                             description,
                             _id,
                             createdAt,
-                            feature
+                            feature,
+                            image
                         } = team;
                         const created = new Date(createdAt).toUTCString()
                         const returnedObj = { title, id: _id, description, 
-                            created, img: imageLocal[counterImages++], feature }
+                            created, img: image || DEFAULT_IMAGE, feature }
 
                         if (feature) {
                             setFeatureWorkshops([...featureWorkshops, returnedObj])

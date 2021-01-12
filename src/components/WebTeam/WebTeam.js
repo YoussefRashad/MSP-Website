@@ -1,8 +1,7 @@
 import React from 'react';
 
 // Website's face
-// import Face1 from '../../assets/images/MSP/websiteTeam/IMG-20190928-WA0035.jpg'
-import Face2 from '../../assets/images/MSP/websiteTeam/IMG_4179.JPG'
+import Face1 from '../../assets/images/MSP/websiteTeam/IMG_4179.JPG'
 
 import Breadcrumb from '../Breadcrumb';
 import Member from './Member';
@@ -12,7 +11,7 @@ function WebTeam() {
   
   const webTeamData = [
     {
-      image: Face2,
+      image: Face1,
       title: 'Youssef Rashad',
       subTitle: 'Great way to make your business appear trust and relevant.',
       links: [

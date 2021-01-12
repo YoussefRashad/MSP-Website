@@ -1,13 +1,41 @@
 ngx-chips, ngx-toaster, @swimlane, sass-loader -- >>, css-loader >>, angular-calendar, quill, highlight.js, ladda, perfect-scrollbar
 ====================
 
-* put an array = comments in articles, when i submited a new comment add it in as a statically inserted
-
 // USER & Any FORM >>> validation on privilage & all properties and pass is must be <= 6 char
 
 >> Evaluating in showComments.js when implement the user model
 
-* data that show in cards and search
-* images
-
 * Github page
+
+- userForm, userProfile, MemberForm, un-memberForm
+- feedback >> connect the email and userName with the feedback
+- manage and roles (Articles, events, workshops, ...)
+- in header, add setting that has myProfile and logout
+
+
+
+{/* 
+    Image : 
+    https://drive.google.com/file/d/1-jC0V20li6tDWd6dTYwfVdJWZOXtWU7U/view?usp=sharing 
+
+    Solution >> thumbnail?id=
+    https://drive.google.com/thumbnail?id=1-jC0V20li6tDWd6dTYwfVdJWZOXtWU7U
+
+    <img src="https://drive.google.com/thumbnail?id=1-jC0V20li6tDWd6dTYwfVdJWZOXtWU7U" width="315" height="315" />
+*/}
+
+
+{/* 
+    Video:
+    https://drive.google.com/file/d/1GpcfCOkHj5q2mMVRQhuccZJ_UeUh-OeU/view?usp=sharing
+
+    Solution >> /preview
+    https://drive.google.com/file/d/1GpcfCOkHj5q2mMVRQhuccZJ_UeUh-OeU/preview 
+
+    Youtube:
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/EB_9bmDrK0k" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+
+    Drive:
+    <iframe width="560" height="315" src="https://drive.google.com/file/d/1j5vfnJDM2npSp_E_kV2gY0HFaMCP6SIH/preview" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+
+*/}

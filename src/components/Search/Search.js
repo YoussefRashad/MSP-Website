@@ -7,6 +7,7 @@ import { EventContext } from '../../context/Events'
 import { SponserContext } from '../../context/Sponsers'
 import { TeamContext } from '../../context/Teams'
 import { WorkshopContext } from '../../context/Workshops'
+import { VideosContext } from '../../context/Videos'
 
 import SearchItem from './SearchItem';
 import ShowSponser from './ShowSponser';
@@ -27,6 +28,7 @@ const Search = () => {
   const [EventReselts, setEventReselts] = React.useState([]);
   const [WorkshopReselts, setWorkshopReselts] = React.useState([]);
   const [SponserReselts, setSponserReselts] = React.useState([]);
+  const [VideoReselts, setVideoReselts] = React.useState([]);
 
   // Data from ContextAPI 
   const { getMembersByTerm } = React.useContext(TeamContext)
@@ -34,6 +36,7 @@ const Search = () => {
   const { getEventsByTerm } = React.useContext(EventContext)
   const { getWorkshopsByTerm } = React.useContext(WorkshopContext)
   const { getSponsersByTerm } = React.useContext(SponserContext)
+  const { getVideosByTerm } = React.useContext(VideosContext)
 
   // for pagination
   const [page, setPage] = React.useState(1);
@@ -65,6 +68,7 @@ const Search = () => {
     setEventReselts(getEventsByTerm(searchTerm))
     setWorkshopReselts(getWorkshopsByTerm(searchTerm))
     setSponserReselts(getSponsersByTerm(searchTerm))
+    setVideoReselts(getVideosByTerm(searchTerm))
 
     if(!searchTerm){
       setTeamReselts([]); 
@@ -72,6 +76,7 @@ const Search = () => {
       setEventReselts([])
       setWorkshopReselts([])
       setSponserReselts([])
+      setVideoReselts([])
     }
 
   }, [searchTerm]);
@@ -87,7 +92,7 @@ const Search = () => {
   }
   
   const getSize = ()=>{
-    return TeamReselts.length + ArticleReselts.length + EventReselts.length + WorkshopReselts.length + SponserReselts.length;
+    return TeamReselts.length + ArticleReselts.length + EventReselts.length + WorkshopReselts.length + SponserReselts.length+ VideoReselts.length;
   }
 
 
@@ -153,13 +158,29 @@ const Search = () => {
         />
       )
     )
+
+    VideoReselts.map((item, index) =>
+      allResults.push(
+        <SearchItem
+          title={item.title}
+          committee={item.committee}
+          img={item.img}
+          created={item.created}
+          id={item.id}
+          overallRate={+item.overallRate}
+          path={'videos'}
+          key={index + TeamReselts.length + ArticleReselts.length + EventReselts.length + WorkshopReselts.length + SponserReselts.length }
+        />
+      )
+    )
+
   }
 
   const showDataInPaginationOrder = ()=>{
     let start = (page - 1) * noOfItemsInPage;
     let allResults = [];
     let returnedData = [];
-
+    
     getAllResult(allResults)
 
     for (let index = start; index < allResults.length && index < start + noOfItemsInPage; index++) {

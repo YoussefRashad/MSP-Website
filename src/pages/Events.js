@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Link } from "react-router-dom";
 
 import { EventContext } from '../context/Events'
 import Pagination from '../components/Pagination';

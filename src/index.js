@@ -20,6 +20,7 @@ import EventProvider from "./context/Events";
 import SponserProvider from "./context/Sponsers";
 import TeamProvider from "./context/Teams";
 import WorkshopProvider from "./context/Workshops";
+import VideoProvider from "./context/Videos"
 
 import LoadingImg from './assets/images/MSP/essential/logo.png'
 let loading = true;
@@ -27,7 +28,7 @@ let loading = true;
 if(loading){
   ReactDOM.render(
     <div className="loadscreen">
-      <img src={LoadingImg} className="logo mb-3" style={{ display: "none" }} alt="" />
+      <img src={LoadingImg} className="logo mb-3" alt="Loading ..." />
       <div className="loader-bubble loader-bubble-primary d-block"></div>
     </div>,
     document.getElementById('root')
@@ -43,7 +44,9 @@ window.onload = function (){
           <SponserProvider>
             <TeamProvider>
               <WorkshopProvider>
-                {window.onload = <App />}
+                <VideoProvider>
+                  {window.onload = <App />}
+                </VideoProvider>
               </WorkshopProvider>
             </TeamProvider>
           </SponserProvider>

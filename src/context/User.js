@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import getMyAccount from '../Node/getMyAccount';
 
-
 export const UserContext = React.createContext()
 const UserProvider = ({ children }) => {
 

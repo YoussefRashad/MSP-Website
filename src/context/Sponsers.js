@@ -2,8 +2,7 @@ import Axios from 'axios'
 import React, { useState, useEffect } from 'react'
 
 import { BE_URL } from '../utils/URL'
-
-import imageLocal from '../utils/dataImages'
+import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
 
 export const SponserContext = React.createContext()
 
@@ -19,17 +18,17 @@ function SponserProvider({ children }) {
                 const response = await Axios(`${BE_URL}/sponsers`)
                 const { data: sponsers } = response
                 if (sponsers) {
-                    let counterImages = 0;
                     const newSponsers = sponsers.map((sponser) => {
                         const {
                             link,
                             name,
                             _id,
-                            createdAt
+                            createdAt,
+                            image
                         } = sponser;
                         const created = new Date(createdAt).toUTCString()
                         return { name, id: _id, link, created, 
-                            img: imageLocal[counterImages++] }
+                            img: image || DEFAULT_IMAGE }
                     })
                     SetSponsers([...newSponsers])
                 } else {

@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 
 import LoadingComponent from '../LoadingComponent';
-import Alert from '../Alert';
-import sumbitFormRecruitment from '../../Node/sumbitFormRecruitment'
+import { submitFormRecruitment } from '../../Node/submitForm'
 
 import { UserContext } from '../../context/User'
 
 const FormInputs = () => {
-    const { alert, showAlert, hideAlert } = React.useContext(UserContext)
+    const { showAlert } = React.useContext(UserContext)
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -24,7 +23,7 @@ const FormInputs = () => {
         const answered = { name, email, age, faculty, committe }
 
         // send data to the server
-        sumbitFormRecruitment(answered).then((res) => {
+        submitFormRecruitment(answered).then((res) => {
             
             setTimeout(() => {
                 

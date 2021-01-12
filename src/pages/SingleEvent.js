@@ -17,7 +17,7 @@ function EventComponent() {
     setEvent(event)
     setLoading(false)
     return () => {}
-  })
+  }, [])
   
   React.useEffect(() => {
     scrollAutoFromBackToTop()

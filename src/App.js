@@ -11,6 +11,7 @@ import Events from './pages/Events'
 import SingleEvent from './pages/SingleEvent'
 import Forms from './pages/Forms'
 import Video from './pages/Video'
+import SingleVideo from './pages/SingleVideo'
 import Team from './pages/Team'
 import Feedback from './pages/Feedback'
 import Error from './pages/Error'
@@ -27,13 +28,14 @@ import Footer from './components/Footer'
 import Search from './components/Search/Search';
 import ScrollButton from './components/ScrollButton';
 
-import LoadingImg from './assets/images/logo.png'
+import LoadingImg from './assets/images/MSP/essential/logo.png'
 import Alert from './components/Alert';
 
 import { UserContext } from './context/User' 
 function App() {
   const [loading, setLoading] = React.useState(true) //// i will change to admin loading
   const { alert } = React.useContext(UserContext)
+  
   React.useEffect(()=>{
     setTimeout(() => {
       setLoading(false)
@@ -65,6 +67,7 @@ function App() {
         <Route exact path="/workshops/:id" component={SingleWorkshops} />
         <Route exact path="/forms" component={Forms} />
         <Route exact path="/videos" component={Video} />
+        <Route exact path="/videos/:id" component={SingleVideo} />
         <Route exact path="/team" component={Team} />
         {/* <Route exact path="/member-work" component={MemberWork} /> */}
         <Route exact path="/feedback" component={Feedback} />

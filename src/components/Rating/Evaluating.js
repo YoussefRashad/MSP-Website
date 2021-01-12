@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
