@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getArticlesFromBE } from '../Node/Articles'
 import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
+import flattenImages from '../utils/flattenIimages.js'
 
 export const ArticleContext = React.createContext()
 export default function ArticleProvider({ children }) {
@@ -16,6 +17,7 @@ export default function ArticleProvider({ children }) {
                 const response = await getArticlesFromBE()
                 const { data:articles } = response;
                 if (articles) {
+                    flattenImages(articles)
                     let arr = []
                     const newArticles = articles.map(article =>{
                         const {

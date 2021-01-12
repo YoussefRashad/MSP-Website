@@ -29,7 +29,7 @@ const SingleWorkshops = () => {
         return(
             <div className="card user-profile o-hidden mb-4">
                 <div>
-                    <img src={`${FE_URL}/${workshop.img}`} width="100%" alt="Event Logo" />
+                    <img src={ workshop.img || `${FE_URL}/${workshop.img}`} width="100%" alt="Event Logo" />
                 </div>
 
                 <div className="user-info">

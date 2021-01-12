@@ -79,8 +79,10 @@ const VideosProvider = ({ children }) => {
     }
 
     const setCommitteesVideos = ( committeeName )=>{
+        console.log(videos);
+        console.log(committeeName);
         setLoading(true)
-        setSelectedVideos(videos.filter(video => video.committee === committeeName))
+        setSelectedVideos(videos.filter(video => video.committee.toLowerCase() === committeeName))
         setLoading(false)
     }
 

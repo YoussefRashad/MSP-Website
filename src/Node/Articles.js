@@ -3,7 +3,7 @@ import axios from 'axios'
 import { BE_URL } from '../utils/URL'
 
 const getArticlesFromBE = ()=>{
-    const response = axios.get(`${BE_URL}/articless`)
+    const response = axios.get(`${BE_URL}/articles`)
     return response
 }
 

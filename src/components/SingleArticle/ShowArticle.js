@@ -6,7 +6,7 @@ const ShowArticle = ({ article:{ img, title, description, created, author, overa
     return (
         <div className="card user-profile o-hidden mb-4">
             <div>
-                <img src={`${FE_URL}/${img}`} style={{ width: "100%" }} alt="" />
+                <img src={ img || `${FE_URL}/${img}`} style={{ width: "100%" }} alt="" />
             </div>
             <div className="user-info">
                 <p className="m-0 text-24" style={{ paddingTop: "30px" }}></p>

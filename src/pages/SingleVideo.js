@@ -31,7 +31,6 @@ const SingleVideo = () => {
         return () => { }
     }, [])
 
-
     return (
         <div className="d-flex flex-column msContant">
             <div className="msMain">

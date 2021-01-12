@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Rate from '../components/Rating/Rate'
 
 export const GenerateCard = ({ path, id, image, title, overallRate, created }) => {
+    console.log(image);
     return (
         <div className={`col-md-4 col-12 shadowItemWithoutBox`}>
             <Link to={`/${path}/${id}`} className="list-item" style={{ cursor: "pointer" }}>

@@ -41,7 +41,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
 
     const clickedItem = (committee) => {
         console.log(committee);
-        if ( committee === 'preparation' ){
+        if ( committee === 0 ){
             setSelectedItem({
                 preparation: true,
                 flutter: false,
@@ -54,7 +54,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 PV: false,
                 digitalMarketing: false
             })
-        } else if (committee === 'flutter') {
+        } else if (committee === 1) {
             setSelectedItem({
                 preparation: false,
                 flutter: true,
@@ -67,7 +67,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 PV: false,
                 digitalMarketing: false
             })
-        } else if (committee === 'gameDevelopment') {
+        } else if (committee === 2) {
             setSelectedItem({
                 preparation: false,
                 flutter: false,
@@ -80,7 +80,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 PV: false,
                 digitalMarketing: false
             })
-        } else if (committee === 'dataScience') {
+        } else if (committee === 3) {
             setSelectedItem({
                 preparation: false,
                 flutter: false,
@@ -93,7 +93,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 PV: false,
                 digitalMarketing: false
             })
-        } else if (committee === 'humanResources') {
+        } else if (committee === 4) {
             setSelectedItem({
                 preparation: false,
                 flutter: false,
@@ -106,7 +106,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 PV: false,
                 digitalMarketing: false
             })
-        } else if (committee === 'qualityAssurance') {
+        } else if (committee === 5) {
             setSelectedItem({
                 preparation: false,
                 flutter: false,
@@ -119,7 +119,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 PV: false,
                 digitalMarketing: false
             })
-        } else if (committee === 'logistics') {
+        } else if (committee === 6) {
             setSelectedItem({
                 preparation: false,
                 flutter: false,
@@ -132,7 +132,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 PV: false,
                 digitalMarketing: false
             })
-        } else if (committee === 'graphicDesign') {
+        } else if (committee === 7) {
             setSelectedItem({
                 preparation: false,
                 flutter: false,
@@ -145,7 +145,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 PV: false,
                 digitalMarketing: false
             })
-        } else if (committee === 'PV') {
+        } else if (committee === 8) {
             setSelectedItem({
                 preparation: false,
                 flutter: false,
@@ -158,7 +158,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 PV: true,
                 digitalMarketing: false
             })
-        } else if (committee === 'digitalMarketing') {
+        } else if (committee === 9) {
             setSelectedItem({
                 preparation: false,
                 flutter: false,
@@ -174,9 +174,6 @@ export default function SimpleAccordion({ title, committes, setPage }) {
         }
     }
 
-    React.useEffect(() => {
-        setCommitteesVideos('preparation')
-    }, [])
 
     const classes = useStyles();
 
@@ -200,7 +197,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                                         key={committee.id}
                                         onClick={()=>{
                                             setCommitteesVideos(committee.title);
-                                            clickedItem(committee.name)
+                                            clickedItem(committee.id)
                                         }}
                                     >
                                         {committee.title}

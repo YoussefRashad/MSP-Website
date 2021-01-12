@@ -93,7 +93,10 @@ function Header () {
               <button
                 className="btn btn-danger btn-lg linkHome text-decoration-none text-capitalize d-block mt-lg-0 mt-1 "
                 style={{ height: '49px'}}
-                onClick={() => userLogout()}
+                onClick={() =>{
+                  userLogout();
+                  history.push("/")
+                }}
               >
                 Logout
               </button>

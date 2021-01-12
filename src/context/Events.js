@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { BE_URL } from '../utils/URL'
+import flattenImages from '../utils/flattenIimages.js'
 
 import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
 import Axios from 'axios'
@@ -20,6 +21,7 @@ function EventProvider({ children }) {
                 const response = await Axios.get(`${BE_URL}/events`);
                 const { data: events } = response;
                 if (events) {
+                    flattenImages(events)
                     let arr = []
                     const newEvents = events.map((event) => {
                         const {

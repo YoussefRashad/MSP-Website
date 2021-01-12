@@ -28,7 +28,7 @@ function EventComponent() {
     return(
       <div className="card user-profile o-hidden mb-4">
         <div>
-          <img src={`${FE_URL}/${event.img}`} width="100%" alt="Event Logo" />
+          <img src={ event.img || `${FE_URL}/${event.img}`} width="100%" alt="Event Logo" />
         </div>
 
         <div className="user-info">

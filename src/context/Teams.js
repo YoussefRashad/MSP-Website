@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { BE_URL } from '../utils/URL'
 import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
+import flattenImages from '../utils/flattenIimages.js'
 import Axios from 'axios'
 
 export const TeamContext = React.createContext()
@@ -18,6 +19,7 @@ function TeamProvider({ children }) {
                 const response = await Axios(`${BE_URL}/team-members`)
                 const { data: teams } = response
                 if (teams) {
+                    flattenImages(teams)
                     const newTeams = teams.map((team) => {
                         const {
                             name,

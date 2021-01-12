@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { BE_URL } from '../utils/URL'
 import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
+import flattenImages from '../utils/flattenIimages.js'
 
 import Axios from 'axios'
 
@@ -20,6 +21,7 @@ function WorkshopProvider({ children }) {
                 const response = await Axios.get(`${BE_URL}/workshops`)
                 const { data: workshops } = response;
                 if (workshops) {
+                    flattenImages(workshops)
                     const newWorkshops = workshops.map((team) => {
                         const {
                             title,

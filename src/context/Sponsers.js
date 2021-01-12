@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 import { BE_URL } from '../utils/URL'
 import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
+import flattenImages from '../utils/flattenIimages.js'
 
 export const SponserContext = React.createContext()
 
@@ -18,6 +19,7 @@ function SponserProvider({ children }) {
                 const response = await Axios(`${BE_URL}/sponsers`)
                 const { data: sponsers } = response
                 if (sponsers) {
+                    flattenImages(sponsers)
                     const newSponsers = sponsers.map((sponser) => {
                         const {
                             link,
