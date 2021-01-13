@@ -1,18 +1,17 @@
 ngx-chips, ngx-toaster, @swimlane, sass-loader -- >>, css-loader >>, angular-calendar, quill, highlight.js, ladda, perfect-scrollbar
 ====================
 
-// USER & Any FORM >>> validation on privilage & all properties and pass is must be <= 6 char
+
+
+
+- USER & Any FORM >>> validation on privilage & all properties and pass is must be <= 6 char
+- in header, add setting that has myProfile and logout
+- manage and roles (Articles, events, workshops, ...)
+- userForm, userProfile, MemberForm, un-memberForm
+
 
 >> Evaluating in showComments.js when implement the user model
-
 * Github page
-
-- userForm, userProfile, MemberForm, un-memberForm
-- feedback >> connect the email and userName with the feedback
-- manage and roles (Articles, events, workshops, ...)
-- in header, add setting that has myProfile and logout
-
-
 
 {/* 
     Image : 

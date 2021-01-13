@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
+
 import { scrollAutoFromBackToTop } from '../components/ScrollButton';
 import { submitFeedback } from '../Node/submitForm'
-import validator from 'validator'
-
 import { UserContext } from '../context/User'
+import { Link } from 'react-router-dom';
 
 const Feedback = () => {
-  const { showAlert } = React.useContext(UserContext)
+  const { showAlert, alert, user, isUser } = React.useContext(UserContext)
 
-  const [email, setEmail] = useState('')
   const [title, setTitle] = useState('')
   const [feedback, setFeedback] = useState('')
+
+  const isEmpty = !title || !feedback || alert.show
   
   React.useEffect(() => {
     scrollAutoFromBackToTop()
@@ -19,12 +20,11 @@ const Feedback = () => {
 
   const handleSubmit = e => {
     e.preventDefault ();
-    if (validator.isEmail(email) ){
       if (title){
         if (feedback){
-          submitFeedback({ email, title, description: feedback }).then((res) => {
+          submitFeedback({ email: user.email, userName: user.userName ,title, description: feedback }).then((res) => {
             showAlert({ show: true, type: 'success', msg: 'You Send your feedback successfully' });
-            setEmail(''); setTitle(''); setFeedback('');
+            setTitle(''); setFeedback('');
           }).catch(error => {
             showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' });
           })
@@ -34,10 +34,6 @@ const Feedback = () => {
       }else{
         showAlert({ show: true, type: 'danger', msg: 'Enter a valid title' });
       }
-    }else{
-      showAlert({ show: true, type: 'danger', msg: 'Enter a valid email' });
-    }
-    
   };
 
   return (
@@ -51,24 +47,6 @@ const Feedback = () => {
           <div className="card mb-5 mt-3" id="msMainInner">
             <div className="card-body">
               <form onSubmit={handleSubmit}>
-                
-                <div className="form-group row">
-                  <label htmlFor="Email" className="col-sm-2 col-form-label">
-                    Email
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="Email"
-                      placeholder="Email"
-                      required
-                      value={email}
-                      onChange={(e)=> setEmail(e.target.value) }
-                      autoFocus
-                    />
-                  </div>
-                </div>
 
                 <div className="form-group row">
                   <label htmlFor="title" className="col-sm-2 col-form-label">
@@ -108,17 +86,42 @@ const Feedback = () => {
                     />
                   </div>
                 </div>
-                
-                {/* <!-- BUTTON --> */}
-                <div className="col-md-12 ml-md-5">
-                  <div className="form-group row text-center">
-                    <div className="col-md-12 col-sm-10">
-                      <button type="submit" className="btn btn-lg btn-primary">
-                        Send the feedback
-                      </button>
+
+                {
+                  isEmpty &&
+                  <div className="row">
+                    <div className="col-md form-group mb-3">
+                      <p className="form-empty">Please fill out all form fields</p>
                     </div>
                   </div>
-                </div>
+                }
+                
+                {/* <!-- BUTTON --> */}
+                {
+                  !isEmpty ?
+                    !isUser ?  
+                      <div className="row">
+                        <div className="col-md form-group mb-3">
+                          <p className="form-empty">Please login first to send your feedback.</p>
+                          <p className="text-center text-20">
+                            <Link to="/login">
+                              Click here
+                            </Link>
+                          </p>
+                        </div>
+                      </div>
+                      :
+                    <div className="col-md-12 ml-md-5">
+                      <div className="form-group row text-center">
+                        <div className="col-md-12 col-sm-10">
+                          <button type="submit" className="btn btn-lg btn-primary">
+                            Send the feedback
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    : ''
+                }
 
               </form>
             </div>

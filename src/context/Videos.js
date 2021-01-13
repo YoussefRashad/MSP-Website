@@ -19,7 +19,7 @@ const VideosProvider = ({ children }) => {
 
                 if(videos){
                     formatTheVideos(videos)
-                    console.log(videos);
+
                     let arr = []
                     const newVideos = videos.map(video =>{
                         const {

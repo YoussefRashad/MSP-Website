@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import validator from 'validator'
 
 import LoadingComponent from '../LoadingComponent';
 import { submitFormRecruitment } from '../../Node/submitForm'
@@ -6,7 +7,7 @@ import { submitFormRecruitment } from '../../Node/submitForm'
 import { UserContext } from '../../context/User'
 
 const FormInputs = () => {
-    const { showAlert } = React.useContext(UserContext)
+    const { showAlert, alert } = React.useContext(UserContext)
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -16,12 +17,21 @@ const FormInputs = () => {
 
     const [loading, setLoading] = useState(false);
 
+    const isEmpty = !name || !email || !age || !faculty || !committe || alert.show
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true)
 
+        if(!validator.isEmail(email)){
+            showAlert({
+                type: 'danger',
+                msg : 'Enter a valid email !'
+            })
+            setLoading(false)
+        }else{
+            
         const answered = { name, email, age, faculty, committe }
-
         // send data to the server
         submitFormRecruitment(answered).then((res) => {
             
@@ -44,6 +54,8 @@ const FormInputs = () => {
                 showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..'})
             }, 2000);
         })
+
+        }
 
     }
 
@@ -127,17 +139,29 @@ const FormInputs = () => {
             </div>
             
 
-            {/* <!-- BUTTON --> */}
-            <div className="col-md-12">
-                <div className="form-group row text-center">
-                    <div className="col-md-12 col-sm-10">
-                        <button type="submit" className="btn btn-lg btn-primary">
-                            Send the form
-                        </button>
+            {/* empty form text */}
+            {
+                isEmpty &&
+                <div className="row">
+                    <div className="col-md form-group mb-3">
+                        <p className="form-empty">Please fill out all form fields</p>
                     </div>
                 </div>
-            </div>
+            }
 
+            {/* <!-- BUTTON --> */}
+            {
+                !isEmpty && 
+                <div className="col-md-12">
+                    <div className="form-group row text-center">
+                        <div className="col-md-12 col-sm-10">
+                            <button type="submit" className="btn btn-lg btn-primary">
+                                Send the form
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
 
         </form>
     )

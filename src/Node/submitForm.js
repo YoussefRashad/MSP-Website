@@ -18,9 +18,9 @@ const submitFormRecruitment = async (answered) => {
     return response;
 }
 
-const submitFeedback = async ({ email, title, description }) => {
+const submitFeedback = async ({ email, userName, title, description }) => {
     const response = await Axios.post(`${BE_URL}/feedback`, {
-        email, title, description
+        email, userName, title, description
     })
 
     return response;
