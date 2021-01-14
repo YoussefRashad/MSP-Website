@@ -61,8 +61,6 @@ function Header () {
           headerItems.map((item, index)=>{
               return (
                 <Link
-                  className={`${active === `/${item.title}` ? 'active' : ''
-                    } linkHome text-decoration-none text-capitalize`}
                   className={ (active.search('/'+item.title) === 0 ? 'active ' : '') +
                   'linkHome text-decoration-none text-capitalize'}
                   to={`/${item.title}`}

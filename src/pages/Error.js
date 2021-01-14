@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { scrollAutoFromBackToTop } from '../components/ScrollButton'
 
-const NotFound = () => {
+const NotFound = ({ title = "Sorry! The page you were looking for doesn't exist."}) => {
 
     React.useEffect(() => {
         scrollAutoFromBackToTop()
@@ -15,7 +15,7 @@ const NotFound = () => {
                 404
             </h1>
             <p className="text-36 subheading mb-3">Error!</p>
-            <p className="mb-5 text-muted text-18">Sorry! The page you were looking for doesn't exist.</p>
+            <p className="mb-5 text-muted text-18">{title}</p>
             <Link className="btn btn-lg btn-primary btn-rounded" to="/">Go back to home</Link>
         </div>
     )

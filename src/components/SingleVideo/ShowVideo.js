@@ -4,16 +4,18 @@ import Rate from '../Rating/Rate'
 const ShowVideo = ({ video: { link, title, description, created, overallRate, attatchement } }) => {
     return (
         <div className="card user-profile o-hidden mb-4">
-            <div className="video_singleItem">
+            <div className="video_singleItem displayOnFullScreenSingle">
                 <iframe 
                     src={link}
                     title={title}
                     frameBorder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowFullScreen
+                    className="w-100 h-100"
                 >
                 </iframe>
             </div>
+            
             <div className="user-info">
                 <p className="m-0 text-24" style={{ paddingTop: "30px" }}></p>
                 <p className="text-muted m-0" style={{ paddingTop: "30px" }}></p>

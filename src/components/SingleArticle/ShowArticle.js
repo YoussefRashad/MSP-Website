@@ -5,8 +5,8 @@ import Rate from '../Rating/Rate'
 const ShowArticle = ({ article:{ img, title, description, created, author, overallRate }}) => {
     return (
         <div className="card user-profile o-hidden mb-4">
-            <div>
-                <img src={ img || `${FE_URL}/${img}`} style={{ width: "100%" }} alt="" />
+            <div className="displayOnFullScreenSingle">
+                <img src={ img || `${FE_URL}/${img}`} style={{ width: "100%", height:'100%' }} alt={title} />
             </div>
             <div className="user-info">
                 <p className="m-0 text-24" style={{ paddingTop: "30px" }}></p>

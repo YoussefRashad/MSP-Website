@@ -1,7 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { UserContext } from '../context/User' 
+import { UserContext } from '../context/User'
+import Error from './Error'
 
 const Profile = () => {
     const { isUser, showAlert } = React.useContext(UserContext)
@@ -17,7 +18,7 @@ const Profile = () => {
     }
     return (
         <div>
-            
+            <Error title="Sorry! The page you were looking for under maintenance." />
         </div>
     )
 }

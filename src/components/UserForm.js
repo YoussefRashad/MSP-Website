@@ -18,16 +18,16 @@ const UserForm = () => {
     const [quote, setQuote] = useState('default')
     const [startSeason, setStartSeason] = useState('default') // Season-StartSeason >> 2021-2017
     const [linkedIn, setLinkedIn] = useState('default')
-    const [positionType, setPositionType] = useState('default')
-    const [section, setSection] = useState('default')
-    const [committee, setCommittee] = useState('default')
+    const [positionType, setPositionType] = useState('other')
+    const [section, setSection] = useState('other')
+    const [committee, setCommittee] = useState('other')
     const [image, setImage] = useState('default')
 
     const [isMember, setIsMember] = useState(true)
     const [loading, setLoading] = useState(false);
 
     const isEmpty = !userName || !email || !password || !rePassword || !quote || !startSeason 
-        || !linkedIn || !positionType || !section || !committee || !image || alert.show
+        || !linkedIn || !image || alert.show || password.length < 6 || rePassword.length < 6
 
     const toggleMember = ()=>{
         setIsMember(prevMember=>{
@@ -38,9 +38,9 @@ const UserForm = () => {
                 setQuote('default')
                 setStartSeason('default')
                 setLinkedIn('default')
-                setPositionType('default')
-                setSection('default')
-                setCommittee('default')
+                setPositionType('other')
+                setSection('other')
+                setCommittee('other')
                 setImage('default')
             }else{
                 setUserName('')
@@ -70,20 +70,31 @@ const UserForm = () => {
             response = await loginUser({ email, password })
         }else{ // signup
             // pass == rePass
-            response = await registerUser({
-                userName,
-                email,
-                password,
-                quote, 
-                season : `${new Date().getFullYear()}-${new Date(startSeason).getFullYear()}`, 
-                linkedIn, 
-                privilage:{
-                    positionType : positionType ? positionType : 'other',
-                    section : section ? section : 'other' ,
-                    committee : committee ? committee : 'other'
-                },
-                image
-            })
+            if (password === rePassword){
+                response = await registerUser({
+                    userName,
+                    email,
+                    password,
+                    quote,
+                    season: `${new Date().getFullYear()}-${new Date(startSeason).getFullYear()}`,
+                    linkedIn,
+                    privilage: {
+                        positionType: positionType ? positionType : 'other',
+                        section: section ? section : 'other',
+                        committee: committee ? committee : 'other'
+                    },
+                    image
+                })
+            }else{
+                showAlert({
+                    msg: "your password not match your re-password. please try again...",
+                    type: "danger"
+                });
+                setLoading(false)
+                setPassword('')
+                setRePassword('')
+                return 0;
+            }
         }
 
         if(response.status === 200){
@@ -102,11 +113,55 @@ const UserForm = () => {
                 msg: "there was an error. please try again...",
                 type: "danger"
             });
-            //  show alert
         }
 
         setLoading(false)
     }
+
+    const getSectionData = ()=>{
+        if (['high board', 'board', 'member'].includes(positionType)) {
+            return (
+                <>
+                    <option value="technical">technical</option>
+                    <option value="operational">operational</option>
+                    <option value="marketing">marketing</option>
+                    {
+                        positionType === 'high board' && <option value="other">Other</option>
+                    }
+                </>
+            )
+        }
+    }
+
+    const getCommitteeData = ()=>{
+        if (section === 'technical'){
+            return(
+                <>
+                    <option value="preparation">Preparation</option>
+                    <option value="flutter">Flutter</option>
+                    <option value="game development">Game Development</option>
+                    <option value="data science">Data Science</option>
+                </>
+            );
+        } else if (section === 'operational'){
+            return (
+                <>
+                    <option value="human resources">Human Resources</option>
+                    <option value="quality assurance">Quality Assurance</option>
+                    <option value="logistics">Logistics</option>
+                </>
+            );
+        } else if (section === 'marketing'){
+            return (
+                <>
+                    <option value="graphic design">Graphic Design</option>
+                    <option value="photography & video production">Photography & Video Production</option>
+                    <option value="digital marketing">Digital Marketing</option>
+                </>
+            );
+        }
+    }
+
 
     if (loading) {
         return <LoadingComponent />
@@ -170,6 +225,12 @@ const UserForm = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+                    {
+                        password.length < 6 && 
+                        <small id="passwordHelpInline" className="text-muted">
+                            Must be 6-20 characters long.
+                        </small>
+                    }
                 </div>
             
             {/* <!-- Re Password --> */}
@@ -185,6 +246,13 @@ const UserForm = () => {
                         value={rePassword}
                         onChange={(e) => setRePassword(e.target.value)}
                     />
+                    {
+                        password !== rePassword || rePassword.length < 6  ?
+                        <small id="passwordHelpInline" className="text-muted">
+                            Must be 6-20 characters long, and matched the password.
+                        </small>
+                        : ''
+                    }
                 </div>
             }
 
@@ -236,54 +304,6 @@ const UserForm = () => {
                 </div>
             }
 
-            {/* <!-- positionType --> */}
-            {
-                !isMember &&
-                <div className="col-md-6 col-12 form-group mb-3">
-                    <label htmlFor="positionType">Position Type</label>
-                    <input
-                        type="text"
-                        id="positionType"
-                        className="form-control"
-                        required
-                        value={positionType}
-                        onChange={(e) => setPositionType(e.target.value)}
-                    />
-                </div>
-            }
-
-            {/* <!-- section --> */}
-            {
-                !isMember &&
-                <div className="col-md-6 col-12 form-group mb-3">
-                    <label htmlFor="section">Section</label>
-                    <input
-                        type="text"
-                        id="section"
-                        className="form-control"
-                        required
-                        value={section}
-                        onChange={(e) => setSection(e.target.value)}
-                    />
-                </div>
-            }
-
-            {/* <!-- committee --> */}
-            {
-                !isMember &&
-                <div className="col-md-6 col-12 form-group mb-3">
-                    <label htmlFor="committee">Committee</label>
-                    <input
-                        type="text"
-                        id="committee"
-                        className="form-control"
-                        required
-                        value={committee}
-                        onChange={(e) => setCommittee(e.target.value)}
-                    />
-                </div>
-            }
-
             {/* <!-- image --> */}
             {
                 !isMember &&
@@ -297,10 +317,70 @@ const UserForm = () => {
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
                     />
+                <small id="passwordHelpInline" className="text-muted">
+                    Must be from Google Drive.
+                </small>
                 </div>
             }
 
+            {/* <!-- positionType --> */}
+            {
+                !isMember &&
+                <div className="col-md-6 col-12 form-group mb-3">
+                    <label htmlFor="positionType">Position Type</label>
+                    <select
+                        className="custom-select mr-sm-2"
+                        id="positionType"
+                        value={positionType}
+                        onChange={(e) => setPositionType(e.target.value)}
+                    >
+                        <option defaultValue="other">Choose...</option>
+                        <option value="president">President</option>
+                        <option value="high board">High Board</option>
+                        <option value="board">Board</option>
+                        <option value="member">Member</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            }
+
+            {/* <!-- section --> */}
+            {
+                !isMember &&
+                <div className="col-md-6 col-12 form-group mb-3">
+                    <label htmlFor="section">Section</label>
+                    <select
+                        className="custom-select mr-sm-2"
+                        id="section"
+                        value={section}
+                        onChange={(e) => setSection(e.target.value)}
+                        disabled={['president', 'other', ''].includes(positionType)}
+                    >
+                        <option value="other" defaultValue="other">Choose...</option>
+                        {getSectionData()}
+                    </select>
+                </div>
+            }
+
+            {/* <!-- committee --> */}
+            {
+                !isMember &&
+                <div className="col-md-6 col-12 form-group mb-3">
+                    <label htmlFor="committee">Committee</label>
+                    <select
+                        className="custom-select mr-sm-2"
+                        id="committee"
+                        value={committee}
+                        onChange={(e) => setCommittee(e.target.value)}
+                            disabled={section === 'other' || section === '' || ['president', 'other'].includes(positionType)}
+                    >
+                        <option value="other" defaultValue="other">Choose...</option>
+                        {getCommitteeData()}
+                    </select>
+                </div>
+            }
             </div>
+
             {/* empty form text */}
             {
                 isEmpty &&

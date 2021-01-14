@@ -27,8 +27,8 @@ function EventComponent() {
   const showData = ()=>{
     return(
       <div className="card user-profile o-hidden mb-4">
-        <div>
-          <img src={ event.img || `${FE_URL}/${event.img}`} width="100%" alt="Event Logo" />
+        <div className="displayOnFullScreenSingle">
+          <img src={event.img || `${FE_URL}/${event.img}`} style={{ width: "100%", height: '100%' }} alt={event.title} />
         </div>
 
         <div className="user-info">

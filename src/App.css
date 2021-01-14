@@ -644,3 +644,18 @@ Scroll Button
   transform: scale(1.05);
 }
 /* End Search */
+
+@media only screen and (min-width:768px) {
+  .displayOnFullScreen {
+    height: 242.19px;
+  }
+  .displayOnFullScreenTeam {
+    height: 500px
+  }
+}
+
+@media only screen and (min-width:960px) {
+  .displayOnFullScreenSingle {
+    height: 500px;
+  }
+}

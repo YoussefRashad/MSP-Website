@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 import Rate from '../components/Rating/Rate'
 
 export const GenerateCard = ({ path, id, image, title, overallRate, created }) => {
+
     return (
         <div className={`col-md-4 col-12 shadowItemWithoutBox`}>
             <Link to={`/${path}/${id}`} className="list-item" style={{ cursor: "pointer" }}>
                 <div className="card o-hidden mb-4 d-flex">
-                    <div className="list-thumb d-flex">
-                        <img src={image} alt={title} className="w-100" />
+                    <div className="list-thumb d-flex displayOnFullScreen">
+                        <img src={image} alt={title} className="w-100 h-100" />
                     </div>
                     <div className="flex-grow-1">
                         <div className="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center">

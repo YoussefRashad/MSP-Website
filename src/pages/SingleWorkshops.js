@@ -28,8 +28,8 @@ const SingleWorkshops = () => {
     const showData = ()=>{
         return(
             <div className="card user-profile o-hidden mb-4">
-                <div>
-                    <img src={ workshop.img || `${FE_URL}/${workshop.img}`} width="100%" alt="Event Logo" />
+                <div className="displayOnFullScreenSingle">
+                    <img src={workshop.img || `${FE_URL}/${workshop.img}`} width="100%" alt={workshop.title} />
                 </div>
 
                 <div className="user-info">

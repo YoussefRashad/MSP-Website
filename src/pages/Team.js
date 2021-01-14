@@ -15,7 +15,9 @@ const Team = () => {
         return (
             <div className="col-md-4 col-12 shadowItemWithoutBox" key={index}>
                 <div className="card bg-dark text-white o-hidden mb-4 msCard">
-                    <img className="card-img msImage" src={item.img} alt="CardImage" />
+                    <div className="displayOnFullScreenTeam">
+                        <img className="card-img msImage w-100 h-100" src={item.img} alt={item.name} />
+                    </div>
 
                     <div className="card-img-overlay msTextTeam">
                         <div className="text-center pt-4">

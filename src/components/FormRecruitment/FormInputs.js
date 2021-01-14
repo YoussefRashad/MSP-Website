@@ -69,7 +69,7 @@ const FormInputs = () => {
             
             {/* <!-- NAME --> */}
             <div className="row">
-                <div className="col-md form-group mb-3">
+                <div className="col-md-6 col-12 form-group mb-3">
                     <label htmlFor="firstName">Name</label>
                     <input
                         type="text"
@@ -80,12 +80,10 @@ const FormInputs = () => {
                         autoFocus
                     />
                 </div>
-            </div>
 
             {/* <!-- email --> */}
-            <div className="row">
-                <div className="col-md form-group mb-3">
-                    <label htmlFor="firstName">email</label>
+                <div className="col-md-6 col-12 form-group mb-3">
+                    <label htmlFor="firstName">Email</label>
                     <input
                         type="email"
                         className="form-control"
@@ -94,12 +92,10 @@ const FormInputs = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
-            </div>
 
             {/* <!-- age --> */}
-            <div className="row">
-                <div className="col-md form-group mb-3">
-                    <label htmlFor="firstName">age</label>
+                <div className="col-md-6 col-12 form-group mb-3">
+                    <label htmlFor="firstName">Age</label>
                     <input
                         type="text"
                         className="form-control"
@@ -108,12 +104,10 @@ const FormInputs = () => {
                         onChange={(e) => setAge(e.target.value)}
                     />
                 </div>
-            </div>
 
             {/* <!-- faculty --> */}
-            <div className="row">
-                <div className="col-md form-group mb-3">
-                    <label htmlFor="firstName">faculty</label>
+                <div className="col-md-6 col-12 form-group mb-3">
+                    <label htmlFor="firstName">Faculty</label>
                     <input
                         type="text"
                         className="form-control"
@@ -122,23 +116,31 @@ const FormInputs = () => {
                         onChange={(e) => setFaculty(e.target.value)}
                     />
                 </div>
-            </div>
 
             {/* <!-- committe --> */}
-            <div className="row">
-                <div className="col-md form-group mb-3">
-                    <label htmlFor="firstName">committe</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        required
+                <div className="col-md-6 col-12 form-group mb-3">
+                    <label htmlFor="committee">Committee</label>
+                    <select
+                        className="custom-select mr-sm-2"
+                        id="committee"
                         value={committe}
                         onChange={(e) => setCommitte(e.target.value)}
-                    />
+                    >
+                        <option defaultValue="other">Choose...</option>
+                        <option value="preparation">Preparation</option>
+                        <option value="flutter">Flutter</option>
+                        <option value="game development">Game Development</option>
+                        <option value="data science">Data Science</option>
+                        <option value="human resources">Human Resources</option>
+                        <option value="quality assurance">Quality Assurance</option>
+                        <option value="logistics">Logistics</option>
+                        <option value="graphic design">Graphic Design</option>
+                        <option value="photography & video production">Photography & Video Production</option>
+                        <option value="digital marketing">Digital Marketing</option>
+                    </select>
                 </div>
             </div>
             
-
             {/* empty form text */}
             {
                 isEmpty &&
