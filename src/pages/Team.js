@@ -16,14 +16,14 @@ const Team = () => {
             <div className="col-md-4 col-12 shadowItemWithoutBox" key={index}>
                 <div className="card bg-dark text-white o-hidden mb-4 msCard">
                     <div className="displayOnFullScreenTeam">
-                        <img className="card-img msImage w-100 h-100" src={item.img} alt={item.name} />
+                        <img className="card-img msImage w-100 h-100" src={item.img} alt={item.userName} />
                     </div>
 
                     <div className="card-img-overlay msTextTeam">
                         <div className="text-center pt-4">
-                            <h5 className="card-title mb-2 text-white">{item.name}</h5>
+                            <h5 className="card-title mb-2 text-white">{item.userName}</h5>
                             <div className="separator border-top mb-2" />
-                            <p className="text-small font-italic">{item.word}</p>
+                            <p className="text-small font-italic">{item.quote}</p>
                         </div>
                         <div className="p-1 text-left card-footer font-weight-light d-flex">
                             <span className="mr-3 d-flex align-items-center">

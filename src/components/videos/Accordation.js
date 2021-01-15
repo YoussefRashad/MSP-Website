@@ -18,11 +18,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SimpleAccordion({ title, committes, setPage }) {
-    
+export default function SimpleAccordion({ titles, techCommittees, operationalCommittes, marketingCommittes, setPage }) {
     const { setCommitteesVideos } = React.useContext(VideosContext)
+    const classes = useStyles();
 
-    const [selectedItem, setSelectedItem] = React.useState({
+    const [selectedItemSection, setSelectedItemSection] = React.useState({
+        technical: false,
+        operational: false,
+        marketing: false
+    })
+    const [selectedItemCommittee, setSelectedItemCommittee] = React.useState({
         preparation : true,
         flutter : false,
         gameDevelopment : false,
@@ -37,12 +42,31 @@ export default function SimpleAccordion({ title, committes, setPage }) {
 
     React.useEffect(() => {
         setPage(1)
-    }, [selectedItem])
+    }, [selectedItemCommittee])
+    
+    const clickedItemSection = (section) => {
+        if (section === 'technical') {
+            setSelectedItemSection({
+                ...selectedItemSection,
+                technical: !selectedItemSection.technical
+            })
+        } else if (section === 'operational') {
+            setSelectedItemSection({
+                ...selectedItemSection,
+                operational: !selectedItemSection.operational
+            })
+        } else if (section === 'marketing') {
+            setSelectedItemSection({
+                ...selectedItemSection,
+                marketing: !selectedItemSection.marketing
+            })
+        }
+    }
 
-    const clickedItem = (committee) => {
+    const clickedItemCommittee = (committee) => {
         console.log(committee);
         if ( committee === 0 ){
-            setSelectedItem({
+            setSelectedItemCommittee({
                 preparation: true,
                 flutter: false,
                 gameDevelopment: false,
@@ -55,7 +79,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 digitalMarketing: false
             })
         } else if (committee === 1) {
-            setSelectedItem({
+            setSelectedItemCommittee({
                 preparation: false,
                 flutter: true,
                 gameDevelopment: false,
@@ -68,7 +92,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 digitalMarketing: false
             })
         } else if (committee === 2) {
-            setSelectedItem({
+            setSelectedItemCommittee({
                 preparation: false,
                 flutter: false,
                 gameDevelopment: true,
@@ -81,7 +105,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 digitalMarketing: false
             })
         } else if (committee === 3) {
-            setSelectedItem({
+            setSelectedItemCommittee({
                 preparation: false,
                 flutter: false,
                 gameDevelopment: false,
@@ -94,7 +118,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 digitalMarketing: false
             })
         } else if (committee === 4) {
-            setSelectedItem({
+            setSelectedItemCommittee({
                 preparation: false,
                 flutter: false,
                 gameDevelopment: false,
@@ -107,7 +131,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 digitalMarketing: false
             })
         } else if (committee === 5) {
-            setSelectedItem({
+            setSelectedItemCommittee({
                 preparation: false,
                 flutter: false,
                 gameDevelopment: false,
@@ -120,7 +144,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 digitalMarketing: false
             })
         } else if (committee === 6) {
-            setSelectedItem({
+            setSelectedItemCommittee({
                 preparation: false,
                 flutter: false,
                 gameDevelopment: false,
@@ -133,7 +157,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 digitalMarketing: false
             })
         } else if (committee === 7) {
-            setSelectedItem({
+            setSelectedItemCommittee({
                 preparation: false,
                 flutter: false,
                 gameDevelopment: false,
@@ -146,7 +170,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 digitalMarketing: false
             })
         } else if (committee === 8) {
-            setSelectedItem({
+            setSelectedItemCommittee({
                 preparation: false,
                 flutter: false,
                 gameDevelopment: false,
@@ -159,7 +183,7 @@ export default function SimpleAccordion({ title, committes, setPage }) {
                 digitalMarketing: false
             })
         } else if (committee === 9) {
-            setSelectedItem({
+            setSelectedItemCommittee({
                 preparation: false,
                 flutter: false,
                 gameDevelopment: false,
@@ -174,40 +198,126 @@ export default function SimpleAccordion({ title, committes, setPage }) {
         }
     }
 
+    return(
+        <ul className="iteamP webList">
+            {/* Tech */}
+            <li
+                className={`iteam ${selectedItemSection.technical ? 'parent' : ''}`}
+                style={{ padding: '12px 10px' }}
+            >
+                <div className={classes.root}>
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                            onClick={() => clickedItemSection('technical')}
+                        >
+                            <Typography className={classes.heading}>{titles[0]}</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails className="d-block">
+                            <Typography>
+                                {
+                                    techCommittees.map((committee) => {
+                                        return (
+                                            <span
+                                                className={`iteam ${selectedItemCommittee[committee.name] ? 'parent' : ''}`}
+                                                key={committee.id}
+                                                onClick={() => {
+                                                    setCommitteesVideos(committee.title);
+                                                    clickedItemCommittee(committee.id)
+                                                }}
+                                            >
+                                                {committee.title}
+                                            </span>
+                                        );
+                                    })
+                                }
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+                </div>
+            </li>
 
-    const classes = useStyles();
 
-    return (
-        <div className={classes.root}>
-            <Accordion>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
-                    <Typography className={classes.heading}>{title}</Typography>
-                </AccordionSummary>
-                <AccordionDetails className="d-block">
-                    <Typography>
-                        {
-                            committes.map((committee)=>{
-                                return(
-                                    <span 
-                                        className={`iteam ${selectedItem[committee.name] ? 'parent' : ''}`}
-                                        key={committee.id}
-                                        onClick={()=>{
-                                            setCommitteesVideos(committee.title);
-                                            clickedItem(committee.id)
-                                        }}
-                                    >
-                                        {committee.title}
-                                    </span>
-                                );
-                            })
-                        }
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
-        </div>
+            {/* Operational */}
+            <li
+                className={`iteam ${selectedItemSection.operational ? 'parent' : ''}`}
+                style={{ padding: '12px 10px' }}
+            >
+                <div className={classes.root}>
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                            onClick={() => clickedItemSection('operational')}
+                        >
+                            <Typography className={classes.heading}>{titles[1]}</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails className="d-block">
+                            <Typography>
+                                {
+                                    operationalCommittes.map((committee) => {
+                                        return (
+                                            <span
+                                                className={`iteam ${selectedItemCommittee[committee.name] ? 'parent' : ''}`}
+                                                key={committee.id}
+                                                onClick={() => {
+                                                    setCommitteesVideos(committee.title);
+                                                    clickedItemCommittee(committee.id)
+                                                }}
+                                            >
+                                                {committee.title}
+                                            </span>
+                                        );
+                                    })
+                                }
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+                </div>
+            </li>
+
+
+            {/* Marketing */}
+            <li
+                className={`iteam ${selectedItemSection.marketing ? 'parent' : ''}`}
+                style={{ padding: '12px 10px' }}
+            >
+                <div className={classes.root}>
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                            onClick={() => clickedItemSection('marketing')}
+                        >
+                            <Typography className={classes.heading}>{titles[2]}</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails className="d-block">
+                            <Typography>
+                                {
+                                    marketingCommittes.map((committee) => {
+                                        return (
+                                            <span
+                                                className={`iteam ${selectedItemCommittee[committee.name] ? 'parent' : ''}`}
+                                                key={committee.id}
+                                                onClick={() => {
+                                                    setCommitteesVideos(committee.title);
+                                                    clickedItemCommittee(committee.id)
+                                                }}
+                                            >
+                                                {committee.title}
+                                            </span>
+                                        );
+                                    })
+                                }
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+                </div>
+            </li>
+        </ul>
     );
 }

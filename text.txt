@@ -2,7 +2,6 @@ ngx-chips, ngx-toaster, @swimlane, sass-loader -- >>, css-loader >>, angular-cal
 ====================
 
 
-
 - checked the link is from google drive Image and video
 - in header, add setting that has myProfile and logout
 - manage and roles (Articles, events, workshops, ...)
@@ -35,5 +34,4 @@ ngx-chips, ngx-toaster, @swimlane, sass-loader -- >>, css-loader >>, angular-cal
 
     Drive:
     <iframe width="560" height="315" src="https://drive.google.com/file/d/1j5vfnJDM2npSp_E_kV2gY0HFaMCP6SIH/preview" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-
 */}

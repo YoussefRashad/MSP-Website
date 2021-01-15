@@ -16,23 +16,24 @@ function TeamProvider({ children }) {
         setLoading(true)
         const getTeams = async () => {
             try {
-                const response = await Axios(`${BE_URL}/team-members`)
+                const response = await Axios(`${BE_URL}/user/crew`)
                 const { data: teams } = response
                 if (teams) {
                     flattenImages(teams)
                     const newTeams = teams.map((team) => {
                         const {
-                            name,
-                            word,
+                            userName,
+                            quote,
                             _id,
                             createdAt,
                             season,
-                            position,
-                            image
+                            privilage,
+                            image,
+                            feature
                         } = team;
                         const created = new Date(createdAt).toUTCString()
-                        return { name, id: _id, word, season, position, 
-                            created, img: image || DEFAULT_IMAGE }
+                        return {
+                            userName, id: _id, quote, season, position: privilage.positionType, feature, created, img: image || DEFAULT_IMAGE }
                     })
                     setTeams([...newTeams])
                 } else {
