@@ -15,7 +15,6 @@ export default function BasicPagination( { page, setPage, count }) {
 
   const handleChange = (event, value) => {
     setPage(value);
-    console.log(page);
   };
   
   return (

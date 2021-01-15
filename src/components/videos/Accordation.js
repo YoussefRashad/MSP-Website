@@ -64,7 +64,6 @@ export default function SimpleAccordion({ titles, techCommittees, operationalCom
     }
 
     const clickedItemCommittee = (committee) => {
-        console.log(committee);
         if ( committee === 0 ){
             setSelectedItemCommittee({
                 preparation: true,

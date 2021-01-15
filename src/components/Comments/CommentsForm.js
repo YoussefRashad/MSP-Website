@@ -56,7 +56,6 @@ const CommentsForm = ({ id, submitComment, setComments, comments }) => {
                     ])
                     setTitle(''); setReview(''); setValue(2);
                 }).catch(error => {
-                    console.log(error);
                     showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' });
                 })
             } else {
