@@ -29,6 +29,8 @@ const CommentsForm = ({ id, submitComment, setComments, comments }) => {
         if (title) {
             if (review) {
                 const date = new Date().toUTCString().substr(0, 17)
+                console.log(user);
+                console.log(user.userName);
                 submitComment({
                     name: user.userName,
                     email: user.email,

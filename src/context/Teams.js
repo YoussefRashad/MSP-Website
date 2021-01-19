@@ -50,12 +50,13 @@ function TeamProvider({ children }) {
 
     const getMembersByTerm = (searchTerm)=>{
         return teams.filter(member => (
-            member.name.toLowerCase().includes(searchTerm.toLowerCase())
-            || member.word.toLowerCase().includes(searchTerm.toLowerCase())
+            member.userName.toLowerCase().includes(searchTerm.toLowerCase())
+            || member.quote.toLowerCase().includes(searchTerm.toLowerCase())
             || member.season.toLowerCase().includes(searchTerm.toLowerCase())
             || member.position.toLowerCase().includes(searchTerm.toLowerCase())
         ));
     }
+    
     return (
         <TeamContext.Provider
             value={{

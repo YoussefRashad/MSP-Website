@@ -11,12 +11,8 @@ function Footer() {
                 <strong>MSP - Microsoft Student Partner </strong>
             </p>
             <p>
-                Microsoft Student Tech Club at Helwan University is a student
-                community program that promotes advanced technology through
-                education, practice, and innovation. It also provides students with
-                both technical and non-technical sessions needed which is packing
-                their lives with high level of skills and supporting their careers
-                with opportunities.
+                Microsoft Student Tech Club is a student community program that promotes advanced technology through education, practice, and innovation. It also provides students with
+                both technical and non-technical sessions needed which is packing their lives with high level of skills and supporting their careers with opportunities.
             </p>
         </div>
         </div>

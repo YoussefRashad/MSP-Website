@@ -6,7 +6,7 @@ export const Banner = () => {
         show: false,
         type: "info",
         title: "MSP - Microsoft Student Partner",
-        desc: "Microsoft Student Tech Club at Helwan University is a student community program that promotes advanced technology through education, practice, and innovation. It also provides students with both technical and non-technical sessions needed which is packing their lives with high level of skills and supporting their careers with opportunities."
+        desc: "Microsoft Student Tech Club is a student community program that promotes advanced technology through education, practice, and innovation. It also provides students with both technical and non-technical sessions needed which is packing their lives with high level of skills and supporting their careers with opportunities."
     });
     
     const hideAlert = ()=>{

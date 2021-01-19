@@ -406,16 +406,16 @@ const UserForm = () => {
                 
             }
             {/* register link */}
-                <div className="row">
-                    <div className="col-md-12 form-group mb-3 text-center mx-3">
-                        <p className="register-link">
-                            {isMember ? "Need to register " : "Already a member "}
-                            <span onClick={toggleMember}>
-                                click here
-                            </span>
-                        </p>
-                    </div>
+            <div className="row">
+                <div className="col-md-12 form-group mb-3 text-center mx-3">
+                    <p className="register-link">
+                        {isMember ? "Need to register " : "Already a member "}
+                        <span onClick={toggleMember}>
+                            click here
+                        </span>
+                    </p>
                 </div>
+            </div>
         
         </form>
     )
