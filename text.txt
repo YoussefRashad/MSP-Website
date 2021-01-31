@@ -1,12 +1,24 @@
 ngx-chips, ngx-toaster, @swimlane, sass-loader -- >>, css-loader >>, angular-calendar, quill, highlight.js, ladda, perfect-scrollbar
 ====================
 
-
+- userName in the comments
 - checked the link is from google drive Image and video
 - in header, add setting that has myProfile and logout
 - manage and roles (Articles, events, workshops, ...)
 - userForm, userProfile, MemberForm, un-memberForm
 
+- Enhancement in the video page
+- login >> social media (google, yahoo, facebook, ...)
+- Authorization level
+- Security level
+- dashboard for all authorized accounts
+- speed up and enhance the performance
+- chat-bot
+- payment
+- share article/events/... on facebook and instagram 
+
+-  ADD >> ATTACHEMENTS in videoDashboard
+- update user from dashboard
 
 >> Evaluating in showComments.js when implement the user model
 * Github page

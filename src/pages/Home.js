@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Components
-import Sponsers from '../components/Sponsers'
+import Sponsors from '../components/Sponsors'
 import WebTeam from '../components/WebTeam/WebTeam'
 import { Hero } from '../components/Banner/Hero'
 import { scrollAutoFromBackToTop } from '../components/ScrollButton'
@@ -32,7 +32,7 @@ function Home() {
                 </div>
             </div>
             
-            <Sponsers />
+            <Sponsors />
             <WebTeam /> 
             
         </div>

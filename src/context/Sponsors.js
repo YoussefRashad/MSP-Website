@@ -4,63 +4,67 @@ import React, { useState, useEffect } from 'react'
 import { BE_URL } from '../utils/URL'
 import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
 import flattenImages from '../utils/flattenIimages.js'
+import { UserContext } from './User'
 
-export const SponserContext = React.createContext()
+export const SponsorContext = React.createContext()
 
-function SponserProvider({ children }) {
+function SponsorProvider({ children }) {
 
-    const [sponsers, SetSponsers] = useState([])
+    const { setHigherLoading } = React.useContext(UserContext)
+    const [sponsors, SetSponsors] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setLoading(true)
-        const getSponsers = async ()=>{
+        setHigherLoading(true)
+        const getSponsors = async ()=>{
             try{
-                const response = await Axios(`${BE_URL}/sponsers`)
-                const { data: sponsers } = response
-                if (sponsers) {
-                    flattenImages(sponsers)
-                    const newSponsers = sponsers.map((sponser) => {
+                const response = await Axios(`${BE_URL}/sponsors`)
+                const { data: sponsors } = response
+                if (sponsors) {
+                    flattenImages(sponsors)
+                    const newSponsors = sponsors.map((sponsor) => {
                         const {
                             link,
                             name,
                             _id,
                             createdAt,
                             image
-                        } = sponser;
+                        } = sponsor;
                         const created = new Date(createdAt).toUTCString()
                         return { name, id: _id, link, created, 
                             img: image || DEFAULT_IMAGE }
                     })
-                    SetSponsers([...newSponsers])
+                    SetSponsors([...newSponsors])
                 } else {
-                    SetSponsers([])
+                    SetSponsors([])
                 }
             }catch(error){
                 console.log("not connected >> ", error);
             }
             setLoading(false)
+            setHigherLoading(false)
         }
-        getSponsers()
+        getSponsors()
         return () => {}
     }, [])
 
-    const getSponsersByTerm = (searchTerm) => {
-        return sponsers.filter(sponser => (
-            sponser.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const getSponsorsByTerm = (searchTerm) => {
+        return sponsors.filter(sponsor => (
+            sponsor.name.toLowerCase().includes(searchTerm.toLowerCase())
         ));
     }
     return (
-        <SponserContext.Provider 
+        <SponsorContext.Provider 
             value={{
-                sponsers,
+                sponsors,
                 loading,
-                getSponsersByTerm
+                getSponsorsByTerm
             }}
         >
             { children }
-        </SponserContext.Provider>
+        </SponsorContext.Provider>
     )
 }
 
-export default SponserProvider
+export default SponsorProvider

@@ -1,10 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import LoadingComponent from '../components/LoadingComponent'
 import UserForm from '../components/UserForm'
+import { UserContext } from '../context/User'
 
 const Login = () => {
-    const [loading, setLoading] = useState(false)
-    
+    const { loading, setLoading, isUser, showAlert } = React.useContext(UserContext)
+    const history = useHistory();
+
+    // Check if it is aleardy a user or not
+    useEffect(() => {
+        if (isUser) {
+            showAlert({
+                msg: "you are not have a permission to do that, your access is denaied !",
+                type: "info"
+            })
+            history.push('/')
+        }
+    }, [])
+
+    // loading before start the login form
     useEffect(() => {
         setLoading(true)
         setTimeout(() => {

@@ -18,18 +18,16 @@ const CarouselComponent = ({ name, link, created, img, key }) =>{
     )
 }
 
-const SponserList = ({ sponsers })=>{
+const SponsorList = ({ sponsors })=>{
     return(
         <Carousel>
             {
                 
-                sponsers.map(sponser => CarouselComponent({ ...sponser, key: sponser.id} ))
+                sponsors.map(sponsor => CarouselComponent({ ...sponsor, key: sponsor.id} ))
             }
         </Carousel>
     )
 }
 
 
-export default SponserList
-
-/* sponsers.map((sponser, index) => <CarouselComponent {...sponser} key={sponser.idSponser} />) */ 
+export default SponsorList

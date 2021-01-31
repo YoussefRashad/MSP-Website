@@ -16,6 +16,7 @@ const submitArticleComment = async ({ name, image, title, comment, rate, date, i
     return response;
 }
 
+
 export {
     getArticlesFromBE,
     submitArticleComment

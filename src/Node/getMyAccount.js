@@ -11,7 +11,7 @@ const getMyAccount = async(token)=>{
         })
         return response;
     }catch(error){
-        return { status: 500, error: error.response.data }
+        return { status: 500, error: error.message }
     }
 }
 

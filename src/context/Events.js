@@ -5,17 +5,20 @@ import flattenImages from '../utils/flattenIimages.js'
 
 import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
 import Axios from 'axios'
+import { UserContext } from './User'
 
 export const EventContext = React.createContext()
 
 function EventProvider({ children }) {
 
+    const { setHigherLoading } = React.useContext(UserContext)
     const [events, setEvents] = useState([])
     const [featureEvents, setFeatureEvents] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setLoading(true)
+        setHigherLoading(true)
         const getEvents = async ()=>{
             try{
                 const response = await Axios.get(`${BE_URL}/events`);
@@ -50,6 +53,7 @@ function EventProvider({ children }) {
                 console.log("not connected >> ", error);
             }
             setLoading(false)
+            setHigherLoading(false)
         }
         getEvents()
     }, [])

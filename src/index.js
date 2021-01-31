@@ -17,7 +17,7 @@ import * as serviceWorker from './serviceWorker';
 import UserProvider from "./context/User"
 import ArticleProvider from "./context/Articles";
 import EventProvider from "./context/Events";
-import SponserProvider from "./context/Sponsers";
+import SponsorProvider from "./context/Sponsors";
 import TeamProvider from "./context/Teams";
 import WorkshopProvider from "./context/Workshops";
 import VideoProvider from "./context/Videos"
@@ -41,7 +41,7 @@ window.onload = function (){
     <UserProvider>
       <ArticleProvider>
         <EventProvider>
-          <SponserProvider>
+          <SponsorProvider>
             <TeamProvider>
               <WorkshopProvider>
                 <VideoProvider>
@@ -49,7 +49,7 @@ window.onload = function (){
                 </VideoProvider>
               </WorkshopProvider>
             </TeamProvider>
-          </SponserProvider>
+          </SponsorProvider>
         </EventProvider>
       </ArticleProvider>
     </UserProvider>,

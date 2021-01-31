@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ShowSponser({ name, img, link, created }) {
+function ShowSponsor({ name, img, link, created }) {
     return (
         <div className="list-item col-md-12 p-0 shadowItem">
             <a href={link} target="_blank" rel="noopener noreferrer">
@@ -29,4 +29,4 @@ function ShowSponser({ name, img, link, created }) {
     );
 }
 
-export default ShowSponser
+export default ShowSponsor

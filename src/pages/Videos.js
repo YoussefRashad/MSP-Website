@@ -36,7 +36,7 @@ const Video = () => {
                                 <Link
                                     to="/login"
                                 >
-                                    Sign
+                                    Login
                                 </Link>
                             </span>
                             }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.css';
+import { UserContext } from './context/User' 
 import { TIME_LOADING } from './utils/URL'
 
 // pages
@@ -28,25 +29,36 @@ import Footer from './components/Footer'
 import Search from './components/Search/Search';
 import ScrollButton from './components/ScrollButton';
 
+// Dashboards
+import ManageArticles from './pages/Dashboards/ManageArticles'
+import ManageEvents from './pages/Dashboards/ManageEvents'
+import ManageWorkshops from './pages/Dashboards/ManageWorkshops'
+import ManageForms from './pages/Dashboards/ManageForms'
+import ManageTeam from './pages/Dashboards/ManageTeam'
+import ManageVideos from './pages/Dashboards/ManageVideos'
+import ManageSponsors from './pages/Dashboards/ManageSponsors'
+
+
+
 import LoadingImg from './assets/images/MSP/essential/logo.png'
 import Alert from './components/Alert';
 
-import { UserContext } from './context/User' 
 function App() {
   const [loading, setLoading] = React.useState(true) //// i will change to admin loading
-  const { alert } = React.useContext(UserContext)
+  const { alert, higherLoading, setHigherLoading } = React.useContext(UserContext)
   
   React.useEffect(()=>{
     setTimeout(() => {
       setLoading(false)
+      setHigherLoading(false)
     }, TIME_LOADING);
   },[])
 
-  if(loading){
+  if (loading || higherLoading){
     return(
       <div className="loadscreen">
-        <img src={LoadingImg} className="logo mb-3" style={{display: "none"}} alt="" />
-          <div className="loader-bubble loader-bubble-primary d-block"></div>
+        <img src={LoadingImg} className="logo mb-3" alt="loading ..." />
+        <div className="loader-bubble loader-bubble-primary d-block"></div>
       </div>
     )
   }
@@ -74,6 +86,16 @@ function App() {
         <Route exact path="/search" component={Search} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/profile" component={MyProfile} />
+
+        {/* Dashboards */}
+        <Route exact path="/manage/articles" component={ManageArticles} />
+        <Route exact path="/manage/workshops" component={ManageWorkshops} />
+        <Route exact path="/manage/events" component={ManageEvents} />
+        <Route exact path="/manage/forms" component={ManageForms} />
+        <Route exact path="/manage/team" component={ManageTeam} />
+        <Route exact path="/manage/videos" component={ManageVideos} />
+        <Route exact path="/manage/sponsors" component={ManageSponsors} />
+
         <Route path="*" component={Error} />
       </Switch>
 

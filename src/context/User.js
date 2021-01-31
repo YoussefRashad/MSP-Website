@@ -7,6 +7,9 @@ const UserProvider = ({ children }) => {
     const [user, setUser] = useState({})
     const [isUser, setIsUser]= useState(false)
     const [height, setHeight] = useState(0)
+    const [loading, setLoading] = useState(false)
+    // for waiting when fetching all data, using in all contexts only
+    const [higherLoading, setHigherLoading] = useState(false)
 
     // Scroll up
     useEffect(() => {
@@ -17,7 +20,8 @@ const UserProvider = ({ children }) => {
     }, [height])
 
     useEffect(() => {
-
+        setHigherLoading(true)
+        setLoading(true)
         const fetchUserData = async ()=>{
             const localUser = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : null
 
@@ -31,27 +35,36 @@ const UserProvider = ({ children }) => {
                     localStorage.removeItem("user")
                     setIsUser(false)
                     showAlert({ msg:"Unauthorized logged, please re-login again !", type:"danger"})
+                    setHigherLoading(false)
+                    setLoading(false)
                     return {}
                 }
             } else {
                 setIsUser(false)
+                setHigherLoading(false)
+                console.log("false");
                 return {}
             }
         }
         fetchUserData();
+        setLoading(false)
 
     }, [])
 
     const userLogin = (user)=>{
+        setLoading(true)
         setUser(user)
         setIsUser(true)
         localStorage.setItem("user", JSON.stringify({ token: user.token }))
+        setLoading(false)
     }
 
     const userLogout = ()=>{
+        setLoading(true)
         setUser({})
         setIsUser(false)
         localStorage.removeItem("user")
+        setLoading(false)
     }
 
     const [alert, setAlert] = useState({
@@ -71,7 +84,11 @@ const UserProvider = ({ children }) => {
             alert,
             showAlert,
             hideAlert,
-            height
+            height,
+            higherLoading,
+            setHigherLoading,
+            loading,
+            setLoading
         }}>
             {children}
         </UserContext.Provider>

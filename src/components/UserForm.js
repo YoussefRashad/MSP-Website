@@ -9,12 +9,12 @@ import registerUser from '../Node/registerUser'
 
 const UserForm = () => {
     const history = useHistory();
-    const { isUser, userLogin, showAlert, alert } = useContext(UserContext)
+    const { userLogin, showAlert, alert, loading, setLoading } = useContext(UserContext)
 
     const [userName, setUserName] = useState('default')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [rePassword, setRePassword] = useState('default')
+    const [confirmPassword, setConfirmPassword] = useState('default')
     const [quote, setQuote] = useState('default')
     const [startSeason, setStartSeason] = useState('default') // Season-StartSeason >> 2021-2017
     const [linkedIn, setLinkedIn] = useState('default')
@@ -24,17 +24,16 @@ const UserForm = () => {
     const [image, setImage] = useState('default')
 
     const [isMember, setIsMember] = useState(true)
-    const [loading, setLoading] = useState(false);
 
-    const isEmpty = !userName || !email || !password || !rePassword || !quote || !startSeason 
-        || !linkedIn || !image || alert.show || password.length < 6 || rePassword.length < 6
+    const isEmpty = !userName || !email || !password || !confirmPassword || !quote || !startSeason 
+        || !linkedIn || !image || alert.show || password.length < 6 || confirmPassword.length < 6
 
     const toggleMember = ()=>{
         setIsMember(prevMember=>{
             let isMember = !prevMember
             if(isMember){
                 setUserName('default')
-                setRePassword('default')
+                setConfirmPassword('default')
                 setQuote('default')
                 setStartSeason('default')
                 setLinkedIn('default')
@@ -44,7 +43,7 @@ const UserForm = () => {
                 setImage('default')
             }else{
                 setUserName('')
-                setRePassword('')
+                setConfirmPassword('')
                 setQuote('')
                 setStartSeason('')
                 setLinkedIn('')
@@ -70,7 +69,7 @@ const UserForm = () => {
             response = await loginUser({ email, password })
         }else{ // signup
             // pass == rePass
-            if (password === rePassword){
+            if (password === confirmPassword){
                 response = await registerUser({
                     userName,
                     email,
@@ -92,7 +91,7 @@ const UserForm = () => {
                 });
                 setLoading(false)
                 setPassword('')
-                setRePassword('')
+                setConfirmPassword('')
                 return 0;
             }
         }
@@ -162,19 +161,10 @@ const UserForm = () => {
         }
     }
 
-
     if (loading) {
         return <LoadingComponent />
     }
 
-    if (isUser) {
-        // re render into home page & show alert
-        showAlert({
-            msg: "you are not have a permission to do that, your access is denaied !",
-            type: "info"
-        })
-        history.push('/')
-    }
 
     // validation on privilage & all properties and pass is must be <= 6 char
     return (
@@ -237,17 +227,17 @@ const UserForm = () => {
             {
                 !isMember &&
                 <div className="col-md-6 col-12 form-group mb-3">
-                    <label htmlFor="rePassword">Re-password</label>
+                    <label htmlFor="confirmPassword">Re-password</label>
                     <input
                         type="password"
-                        id="rePassword"
+                        id="confirmPassword"
                         className="form-control"
                         required
-                        value={rePassword}
-                        onChange={(e) => setRePassword(e.target.value)}
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     {
-                        password !== rePassword || rePassword.length < 6  ?
+                        password !== confirmPassword || confirmPassword.length < 6  ?
                         <small id="passwordHelpInline" className="text-muted">
                             Must be 6-20 characters long, and matched the password.
                         </small>

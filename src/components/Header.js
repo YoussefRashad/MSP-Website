@@ -3,13 +3,14 @@ import { Link, useLocation, useHistory } from 'react-router-dom';
 import Logo from '../assets/images/MSP/essential/logo.png';
 import SearchImg from '../assets/images/MSP/essential/iconfinder_search_172546.png';
 
-import { UserContext } from '../context/User' 
+import { UserContext } from '../context/User'
+import Setting from './Setting'
 
 function Header () {
 
     let active = useLocation().pathname;
     const history = useHistory()
-    const { isUser, userLogout } = React.useContext(UserContext)
+    const { isUser } = React.useContext(UserContext)
 
     const headerItems = [
       {
@@ -30,10 +31,6 @@ function Header () {
       {
         title: 'videos'
       }
-      //,
-      // {
-      //   title: 'topic'
-      // }
     ]
     
     
@@ -82,25 +79,7 @@ function Header () {
               login
             </Link>
           :
-            <span>
-              <Link
-                className={`${active === '/profile' ? 'active' : ''
-                  } linkHome text-decoration-none text-capitalize`}
-                to="/profile"
-              >
-                my profile
-              </Link>
-              <button
-                className="btn btn-danger btn-lg linkHome text-decoration-none text-capitalize d-block mt-lg-0 mt-1 "
-                style={{ height: '49px'}}
-                onClick={() =>{
-                  userLogout();
-                  history.push("/")
-                }}
-              >
-                Logout
-              </button>
-            </span>
+            <Setting />
         }
         
         <button id="searchIconWeb" className="link" onClick={() => history.push('/search')}>

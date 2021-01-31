@@ -7,7 +7,7 @@ const registerUser = async (data) => {
         const response = await axios.post(`${BE_URL}/user/signup`, data)
         return response
     } catch (error) {
-        return { status: 500, error: error.response.data }
+        return { status: 500, error: error.message }
     }
 }
 

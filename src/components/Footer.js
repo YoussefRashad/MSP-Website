@@ -19,7 +19,7 @@ function Footer() {
         <div className="footer-bottom border-top pt-3 d-flex flex-column flex-sm-row align-items-center">
             <a
                 className="btn btn-primary text-white btn-rounded mb-3 mb-sm-0 mr-0 mr-sm-3"
-                href="mailto: MSP-2020@outlook.com"
+                href="mailto: youssefrashad119@gmail.com"
                 rel="noopener noreferrer"
             >
                 Contact US

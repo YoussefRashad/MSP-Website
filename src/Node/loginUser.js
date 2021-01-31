@@ -7,7 +7,7 @@ const loginUser = async (data) => {
         const response = await axios.post(`${BE_URL}/user/login`, data)
         return response;
     } catch (error) {
-        return { status: 500, error: error.response.data }
+        return { status: 500, error: error.message }
     }
 }
 

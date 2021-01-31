@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { getVideosFromBE } from '../Node/Videos'
 import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
+import { UserContext } from './User'
 
 export const VideosContext = React.createContext()
 const VideosProvider = ({ children }) => {
+
+    const { setHigherLoading } = React.useContext(UserContext)
     const [videos, setVideos] = useState([])
     const [featureVideos, setFeatureVideos] = useState([])
     const [loading, setLoading] = useState(false)
@@ -12,6 +15,7 @@ const VideosProvider = ({ children }) => {
 
     useEffect(() => {
         setLoading(true)
+        setHigherLoading(true)
         const fetchVideos = async () => {
             try{
                 const response = await getVideosFromBE()
@@ -64,6 +68,7 @@ const VideosProvider = ({ children }) => {
                 console.log("not connected >> ", error.message);
             }
             setLoading(false)
+            setHigherLoading(false)
         }
         fetchVideos()
     }, [])

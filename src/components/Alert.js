@@ -27,7 +27,7 @@ export default function DescriptionAlerts() {
     const classes = useStyles();
     const typeEdit = alert.type === 'success' ? 'success' : 'error'
     return (
-        <div className={`${classes.root}  w-40 m-auto`}>
+        <div className={`${classes.root} alert w-40 m-auto`}>
             <Alert severity={typeEdit} style={{ width: 'fit-content'}}>
                 <button className="close" onClick={() => hideAlert()}>
                     <MdClose />

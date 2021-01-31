@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { getArticlesFromBE } from '../Node/Articles'
 import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
 import flattenImages from '../utils/flattenIimages.js'
+import { UserContext } from './User'
 
 export const ArticleContext = React.createContext()
 export default function ArticleProvider({ children }) {
+    const { setHigherLoading } = React.useContext(UserContext)
     const [articles, setArticles] = useState([])
     const [featureArticles, setFeatureArticles] = useState([])
     const [loading, setLoading] = useState(false)
@@ -12,6 +14,7 @@ export default function ArticleProvider({ children }) {
     // Get All Articles in first loading
     useEffect(() => {
         setLoading(true)
+        setHigherLoading(true)
         const getArticles = async ()=>{
             try{
                 const response = await getArticlesFromBE()
@@ -60,6 +63,7 @@ export default function ArticleProvider({ children }) {
                 console.log("not connected >> ", error.message);
             }
             setLoading(false)
+            setHigherLoading(false)
         }
         getArticles()
     },[]);

@@ -4,16 +4,19 @@ import { BE_URL } from '../utils/URL'
 import DEFAULT_IMAGE from '../assets/images/products/speaker-1.jpg'
 import flattenImages from '../utils/flattenIimages.js'
 import Axios from 'axios'
+import { UserContext } from './User'
 
 export const TeamContext = React.createContext()
 
 function TeamProvider({ children }) {
 
+    const { setHigherLoading } = React.useContext(UserContext)
     const [teams, setTeams] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setLoading(true)
+        setHigherLoading(true)
         const getTeams = async () => {
             try {
                 const response = await Axios(`${BE_URL}/user/crew`)
@@ -43,6 +46,7 @@ function TeamProvider({ children }) {
                 console.log("not connected >> ", error);
             }
             setLoading(false)
+            setHigherLoading(false)
         }
         getTeams()
         return () => { }

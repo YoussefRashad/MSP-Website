@@ -4,13 +4,13 @@ import Logo from "../../assets/images/MSP/essential/logo.png"
 
 import { ArticleContext } from '../../context/Articles'
 import { EventContext } from '../../context/Events'
-import { SponserContext } from '../../context/Sponsers'
+import { SponsorContext } from '../../context/Sponsors'
 import { TeamContext } from '../../context/Teams'
 import { WorkshopContext } from '../../context/Workshops'
 import { VideosContext } from '../../context/Videos'
 
 import SearchItem from './SearchItem';
-import ShowSponser from './ShowSponser';
+import ShowSponsor from './ShowSponsor';
 import ShowTeam from './ShowTeam';
 import LoadingComponent from '../LoadingComponent'
 import Pagination from '../Pagination';
@@ -27,7 +27,7 @@ const Search = () => {
   const [ArticleReselts, setArticleReselts] = React.useState([]);
   const [EventReselts, setEventReselts] = React.useState([]);
   const [WorkshopReselts, setWorkshopReselts] = React.useState([]);
-  const [SponserReselts, setSponserReselts] = React.useState([]);
+  const [SponsorReselts, setSponsorReselts] = React.useState([]);
   const [VideoReselts, setVideoReselts] = React.useState([]);
 
   // Data from ContextAPI 
@@ -35,7 +35,7 @@ const Search = () => {
   const { getArticlesByTerm } = React.useContext(ArticleContext)
   const { getEventsByTerm } = React.useContext(EventContext)
   const { getWorkshopsByTerm } = React.useContext(WorkshopContext)
-  const { getSponsersByTerm } = React.useContext(SponserContext)
+  const { getSponsorsByTerm } = React.useContext(SponsorContext)
   const { getVideosByTerm } = React.useContext(VideosContext)
 
   // for pagination
@@ -67,7 +67,7 @@ const Search = () => {
     setArticleReselts(getArticlesByTerm(searchTerm))
     setEventReselts(getEventsByTerm(searchTerm))
     setWorkshopReselts(getWorkshopsByTerm(searchTerm))
-    setSponserReselts(getSponsersByTerm(searchTerm))
+    setSponsorReselts(getSponsorsByTerm(searchTerm))
     setVideoReselts(getVideosByTerm(searchTerm))
 
     if(!searchTerm){
@@ -75,7 +75,7 @@ const Search = () => {
       setArticleReselts([]); 
       setEventReselts([])
       setWorkshopReselts([])
-      setSponserReselts([])
+      setSponsorReselts([])
       setVideoReselts([])
     }
 
@@ -92,7 +92,7 @@ const Search = () => {
   }
   
   const getSize = ()=>{
-    return TeamReselts.length + ArticleReselts.length + EventReselts.length + WorkshopReselts.length + SponserReselts.length+ VideoReselts.length;
+    return TeamReselts.length + ArticleReselts.length + EventReselts.length + WorkshopReselts.length + SponsorReselts.length+ VideoReselts.length;
   }
 
 
@@ -149,11 +149,11 @@ const Search = () => {
       )
     )
 
-    SponserReselts.map((item, index) =>
+    SponsorReselts.map((item, index) =>
       allResults.push(
-        <ShowSponser
+        <ShowSponsor
           {...item}
-          path={'sponsers'}
+          path={'sponsors'}
           key={index + TeamReselts.length + ArticleReselts.length + EventReselts.length + WorkshopReselts.length}
         />
       )
@@ -169,7 +169,7 @@ const Search = () => {
           id={item.id}
           overallRate={+item.overallRate}
           path={'videos'}
-          key={index + TeamReselts.length + ArticleReselts.length + EventReselts.length + WorkshopReselts.length + SponserReselts.length }
+          key={index + TeamReselts.length + ArticleReselts.length + EventReselts.length + WorkshopReselts.length + SponsorReselts.length }
         />
       )
     )
