@@ -1,5 +1,9 @@
 import React from 'react'
 import { EventContext } from '../../../context/Events'
+import { UserContext } from '../../../context/User'
+import { DELETE } from '../../../Node/Dashboard'
+import { EVENT } from '../../../utils/EndPoints'
+import LoadingComponent from '../../LoadingComponent'
 
 const DeleteFormInput = () => {
     const { events } = React.useContext(EventContext)
@@ -8,8 +12,31 @@ const DeleteFormInput = () => {
         return events.map((event, index) => <option value={event.id} key={index}>{event.title}</option>)
     }
 
-    const handleClick = () => {
 
+    const { showAlert } = React.useContext(UserContext)
+    const [loading, setLoading] = React.useState(false)
+
+    const handleClick = async (e) => {
+        e.preventDefault()
+        setLoading(false)
+        try {
+            await DELETE({ id: eventIDSearch, path: EVENT })
+            setTimeout(() => {
+                setEventIDSearch('')
+                setLoading(false);
+                showAlert({ show: true, type: 'success', msg: 'delete your item successfully' })
+            }, 1000);
+        } catch (error) {
+            setTimeout(() => {
+                setEventIDSearch('')
+                setLoading(false);
+                showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' })
+            }, 1000);
+        }
+    }
+
+    if (loading) {
+        return <LoadingComponent />
     }
 
 
@@ -41,7 +68,7 @@ const DeleteFormInput = () => {
                             onClick={handleClick}
                             className="btn btn-danger btn-lg"
                         >
-                            Delete
+                            Delete Event
                         </button>
                     </div>
                 }

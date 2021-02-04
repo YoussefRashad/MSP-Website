@@ -13,7 +13,7 @@ import ShowComments from './ShowComments'
 import CommentsForm from './CommentsForm'
 import Pagination from '../Pagination';
 
-const Comments = ({ id, comments, submitComment, setComments }) => {
+const Comments = ({ id, comments, submitComment, type }) => {
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -100,8 +100,7 @@ const Comments = ({ id, comments, submitComment, setComments }) => {
                         <CommentsForm 
                             id={id} 
                             submitComment={submitComment} 
-                            setComments={setComments}
-                            comments={comments}
+                            type={type}
                         />
                     </TabPanel>
 

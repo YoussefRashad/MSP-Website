@@ -1,19 +1,43 @@
 import React from 'react'
 import { ArticleContext } from '../../../context/Articles'
+import { UserContext } from '../../../context/User'
 import { DELETE } from '../../../Node/Dashboard'
 import { ARTICLE } from '../../../utils/EndPoints'
+import LoadingComponent from '../../LoadingComponent'
 
 const DeleteFormInput = () => {
     const { articles } = React.useContext(ArticleContext)
     const [articleIDSearch, setArticleIDSearch] = React.useState('')
+
+    const { showAlert } = React.useContext(UserContext)
+    const [loading, setLoading] = React.useState(false)
+
+    const handleClick = async (e) => {
+        e.preventDefault()
+        setLoading(false)
+        try {
+            await DELETE({ id: articleIDSearch, path: ARTICLE })
+            setTimeout(() => {
+                setArticleIDSearch('')
+                setLoading(false);
+                showAlert({ show: true, type: 'success', msg: 'delete your item successfully' })
+            }, 1000);
+        } catch (error) {
+            setTimeout(() => {
+                setArticleIDSearch('')
+                setLoading(false);
+                showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' })
+            }, 1000);
+        }
+    }
+
+    if(loading){
+        return <LoadingComponent />
+    }
+
     const getAllArticlesName = () => {
         return articles.map((article, index) => <option value={article.id} key={index}>{article.title}</option>)
     }
-
-    const handleClick = () => {
-
-    }
-
 
     return (
         <div>
@@ -43,7 +67,7 @@ const DeleteFormInput = () => {
                             onClick={handleClick} 
                             className="btn btn-danger btn-lg"
                         >
-                            Delete
+                            Delete Article
                         </button>
                     </div>
                 }

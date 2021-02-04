@@ -3,10 +3,14 @@ import Rate from '../Rating/Rate'
 import LoadingComponent from '../LoadingComponent';
 
 import { UserContext } from '../../context/User'
+import { ArticleContext } from '../../context/Articles'
+import { VideosContext } from '../../context/Videos'
 import { Link } from 'react-router-dom';
 
-const CommentsForm = ({ id, submitComment, setComments, comments }) => {
+const CommentsForm = ({ id, submitComment, type }) => {
     const { showAlert, alert, user, isUser } = React.useContext(UserContext)
+    const { addArticleCommentInTheFly } = React.useContext(ArticleContext)
+    const { addVideoCommentInTheFly } = React.useContext(VideosContext)
 
     const [title, setTitle] = useState('')
     const [review, setReview] = useState('')
@@ -29,8 +33,6 @@ const CommentsForm = ({ id, submitComment, setComments, comments }) => {
         if (title) {
             if (review) {
                 const date = new Date().toUTCString().substr(0, 17)
-                console.log(user);
-                console.log(user.userName);
                 submitComment({
                     name: user.userName,
                     email: user.email,
@@ -43,19 +45,21 @@ const CommentsForm = ({ id, submitComment, setComments, comments }) => {
                     id
                 }).then((res) => {
                     showAlert({ show: true, type: 'success', msg: 'You Sumbut your review successfully' });
-                    setComments([
-                        ...comments,
-                        {
-                            name: user.userName,
-                            email: user.email,
-                            image: user.image,
-                            title,
-                            comment: review,
-                            rate: value,
-                            evaluate: 0,
-                            date
-                        }
-                    ])
+
+                    const comment = {
+                        name: user.userName,
+                        image: user.image,
+                        title,
+                        comment: review,
+                        rate: value,
+                        date,
+                    }
+                    if(type === 'video'){
+                        addVideoCommentInTheFly(id, comment)
+                    }else if(type==='article') {
+                        addArticleCommentInTheFly(id, comment)
+                    }
+                    
                     setTitle(''); setReview(''); setValue(2);
                 }).catch(error => {
                     showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' });

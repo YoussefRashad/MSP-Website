@@ -5,6 +5,7 @@ import LoadingComponent from './LoadingComponent.js'
 import { UserContext } from '../context/User'
 import loginUser from '../Node/loginUser'
 import registerUser from '../Node/registerUser'
+import validator from 'validator'
 
 
 const UserForm = () => {
@@ -70,20 +71,31 @@ const UserForm = () => {
         }else{ // signup
             // pass == rePass
             if (password === confirmPassword){
-                response = await registerUser({
-                    userName,
-                    email,
-                    password,
-                    quote,
-                    season: `${new Date().getFullYear()}-${new Date(startSeason).getFullYear()}`,
-                    linkedIn,
-                    privilage: {
-                        positionType: positionType ? positionType : 'other',
-                        section: section ? section : 'other',
-                        committee: committee ? committee : 'other'
-                    },
-                    image
-                })
+                if (validator.isEmail(email)) {
+
+                    response = await registerUser({
+                        userName,
+                        email,
+                        password,
+                        quote,
+                        season: `${new Date().getFullYear()}-${new Date(startSeason).getFullYear()}`,
+                        linkedIn,
+                        privilage: {
+                            positionType: positionType ? positionType : 'other',
+                            section: section ? section : 'other',
+                            committee: committee ? committee : 'other'
+                        },
+                        image
+                    })
+                }else{
+                    showAlert({
+                        msg: "your email is not valid. please try again...",
+                        type: "danger"
+                    });
+                    setLoading(false)
+                    setEmail('')
+                    return 0;
+                }
             }else{
                 showAlert({
                     msg: "your password not match your re-password. please try again...",

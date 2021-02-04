@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-import validator from 'validator'
 
 import LoadingComponent from '../../LoadingComponent';
 
 import { UserContext } from '../../../context/User'
+import { VIDEO } from '../../../utils/EndPoints';
+import { ADD } from '../../../Node/Dashboard';
 
 const AddFormInput = () => {
 
     const { showAlert, alert } = React.useContext(UserContext)
 
     const [title, setTitle] = useState('')
-    const [video, setVideo] = useState('')
+    const [link, setLink] = useState('')
     const [committee, setCommittee] = useState('')
     const [image, setImage] = useState('')
     const [feature, setFeature] = useState(false)
@@ -24,38 +25,27 @@ const AddFormInput = () => {
         e.preventDefault();
         setLoading(true)
 
-        // if (!validator.isEmail(email)) {
-        //     showAlert({
-        //         type: 'danger',
-        //         msg: 'Enter a valid email !'
-        //     })
-        //     setLoading(false)
-        // } else {
-        //     const answered = { name, email, age, faculty, committe }
+        const data = { title, link, defaultImage: image, feature: Boolean(feature), description, committee }
+        // send data to the server
+        try {
+            await ADD({ data, path: VIDEO })
+            setTimeout(() => {
+                setTitle('')
+                setImage('')
+                setLink('')
+                setFeature('')
+                setDescription('')
+                setCommittee('preparation')
+                setLoading(false);
+                showAlert({ show: true, type: 'success', msg: 'sent your form successfully' })
 
-            // send data to the server
-            // submitFormEvent(answered).then((res) => {
-
-            //     setTimeout(() => {
-
-            //         setName('');
-            //         setEmail('');
-            //         setAge('');
-            //         setFaculty('');
-            //         setCommitte('');
-
-            //         setLoading(false);
-            //         showAlert({ show: true, type: 'success', msg: 'sent your form by successfully' })
-
-            //     }, 2000);
-
-            // }).catch((error) => {
-            //     setTimeout(() => {
-            //         setLoading(false);
-            //         showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' })
-            //     }, 2000);
-            // })
-        // }
+            }, 1000);
+        } catch (e) {
+            setTimeout(() => {
+                setLoading(false);
+                showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' })
+            }, 1000);
+        }
 
     }
 
@@ -106,8 +96,8 @@ const AddFormInput = () => {
                         id="link"
                         className="form-control"
                         required
-                        value={video}
-                        onChange={(e) => setVideo(e.target.value)}
+                        value={link}
+                        onChange={(e) => setLink(e.target.value)}
                     />
                 </div>
 
@@ -190,7 +180,7 @@ const AddFormInput = () => {
                     <div className="form-group row text-center" id="">
                         <div className="col-md-12 col-sm-10">
                             <button type="submit" className="btn btn-lg btn-primary">
-                                Send the form
+                                Add Video
                             </button>
                         </div>
                     </div>

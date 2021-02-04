@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import validator from 'validator'
 
 import LoadingComponent from '../../LoadingComponent';
 
 import { UserContext } from '../../../context/User'
+import { SPONSOR } from '../../../utils/EndPoints';
+import { ADD } from '../../../Node/Dashboard';
 
 const AddFormInput = () => {
 
@@ -21,38 +22,24 @@ const AddFormInput = () => {
         e.preventDefault();
         setLoading(true)
 
-        // if (!validator.isEmail(email)) {
-        //     showAlert({
-        //         type: 'danger',
-        //         msg: 'Enter a valid email !'
-        //     })
-        //     setLoading(false)
-        // } else {
-        //     const answered = { name, email, age, faculty, committe }
+        const data = { name, link, image }
+        // send data to the server
+        try {
+            await ADD({ data, path: SPONSOR })
+            setTimeout(() => {
+                setName('')
+                setLink('')
+                setImage('')
 
-        //     // send data to the server
-        //     // submitFormEvent(answered).then((res) => {
-
-        //     //     setTimeout(() => {
-
-        //     //         setName('');
-        //     //         setEmail('');
-        //     //         setAge('');
-        //     //         setFaculty('');
-        //     //         setCommitte('');
-
-        //     //         setLoading(false);
-        //     //         showAlert({ show: true, type: 'success', msg: 'sent your form by successfully' })
-
-        //     //     }, 2000);
-
-        //     // }).catch((error) => {
-        //     //     setTimeout(() => {
-        //     //         setLoading(false);
-        //     //         showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' })
-        //     //     }, 2000);
-        //     // })
-        // }
+                setLoading(false);
+                showAlert({ show: true, type: 'success', msg: 'sent your form successfully' })
+            }, 1000);
+        } catch (e) {
+            setTimeout(() => {
+                setLoading(false);
+                showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' })
+            }, 1000);
+        }
 
     }
 
@@ -128,7 +115,7 @@ const AddFormInput = () => {
                     <div className="form-group row text-center" id="">
                         <div className="col-md-12 col-sm-10">
                             <button type="submit" className="btn btn-lg btn-primary">
-                                Send the form
+                                Add Sponsor
                             </button>
                         </div>
                     </div>

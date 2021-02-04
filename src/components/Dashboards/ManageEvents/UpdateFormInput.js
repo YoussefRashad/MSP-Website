@@ -47,7 +47,7 @@ const UpdateFormInput = () => {
             setTimeout(() => {
                 setEvent(undefined)
                 setLoading(false);
-                showAlert({ show: true, type: 'success', msg: 'update your data by successfully' })
+                showAlert({ show: true, type: 'success', msg: 'update your data successfully' })
             }, 1000);
         } catch (error) {
             setTimeout(() => {
@@ -177,8 +177,8 @@ const UpdateFormInput = () => {
                             <div className="form-group row text-center" id="">
                                 <div className="col-md-12 col-sm-10">
                                     <button type="submit" className="btn btn-lg btn-primary">
-                                        Add an article
-                            </button>
+                                        Update Event
+                                    </button>
                                 </div>
                             </div>
                         </div>

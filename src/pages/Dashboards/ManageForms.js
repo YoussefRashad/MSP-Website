@@ -4,9 +4,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
-import TabPanel from '@material-ui/lab/TabPanel';
+// import TabPanel from '@material-ui/lab/TabPanel';
 import { scrollAutoFromBackToTop } from '../../components/ScrollButton'
-
+import Error from '../Error'
 const ManageForms = () => {
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -47,12 +47,16 @@ const ManageForms = () => {
                                 <Tab label="Manage Event Form" value="2" />
                             </TabList>
                         </AppBar>
-                        <TabPanel value="1">
+                        {/* <TabPanel value="1">
 
                         </TabPanel>
                         <TabPanel value="2">
 
-                        </TabPanel>
+                        </TabPanel> */}
+
+                        <div>
+                            <Error title="Sorry! The page you were looking for under maintenance." />
+                        </div>
 
                     </TabContext>
                 </div>

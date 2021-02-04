@@ -4,6 +4,8 @@ import validator from 'validator'
 import LoadingComponent from '../../LoadingComponent';
 
 import { UserContext } from '../../../context/User'
+import { EVENT } from '../../../utils/EndPoints';
+import { ADD } from '../../../Node/Dashboard';
 
 const AddFormInput = () => {
 
@@ -14,6 +16,7 @@ const AddFormInput = () => {
     const [image, setImage] = useState('')
     const [feature, setFeature] = useState(false)
     const [description, setDescription] = useState('')
+    const [date, setDate] = useState(new Date())
 
     const [loading, setLoading] = useState(false);
 
@@ -23,38 +26,26 @@ const AddFormInput = () => {
         e.preventDefault();
         setLoading(true)
 
-        // if (!validator.isEmail(email)) {
-        //     showAlert({
-        //         type: 'danger',
-        //         msg: 'Enter a valid email !'
-        //     })
-        //     setLoading(false)
-        // } else {
-        //     // const answered = { name, email, age, faculty, committe }
-
-        //     // send data to the server
-        //     // submitFormEvent(answered).then((res) => {
-
-        //     //     setTimeout(() => {
-
-        //     //         setName('');
-        //     //         setEmail('');
-        //     //         setAge('');
-        //     //         setFaculty('');
-        //     //         setCommitte('');
-
-        //     //         setLoading(false);
-        //     //         showAlert({ show: true, type: 'success', msg: 'sent your form by successfully' })
-
-        //     //     }, 2000);
-
-        //     // }).catch((error) => {
-        //     //     setTimeout(() => {
-        //     //         setLoading(false);
-        //     //         showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' })
-        //     //     }, 2000);
-        //     // })
-        // }
+        const data = { title, location, image, feature: new Boolean(feature), description, date }
+        // send data to the server
+        try {
+            await ADD({ data, path: EVENT })
+            setTimeout(() => {
+                setTitle('')
+                setImage('')
+                setLocation('')
+                setDate('')
+                setFeature('')
+                setDescription('')
+                setLoading(false);
+                showAlert({ show: true, type: 'success', msg: 'sent your form successfully' })
+            }, 1000);
+        } catch (e) {
+            setTimeout(() => {
+                setLoading(false);
+                showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' })
+            }, 1000);
+        }
 
     }
 
@@ -109,6 +100,19 @@ const AddFormInput = () => {
                     </small>
                 </div>
 
+                {/* <!-- Date --> */}
+                <div className="col-md-6 col-12 form-group mb-3">
+                    <label htmlFor="date">Date</label>
+                    <input
+                        type="date"
+                        id="date"
+                        className="form-control"
+                        required
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                    />
+                </div>
+
                 {/* <!-- Feature --> */}
                 <div className="col-md-6 col-12 form-group mb-3">
                     <label htmlFor="feature">Feature</label>
@@ -158,7 +162,7 @@ const AddFormInput = () => {
                     <div className="form-group row text-center" id="">
                         <div className="col-md-12 col-sm-10">
                             <button type="submit" className="btn btn-lg btn-primary">
-                                Send the form
+                                Add Event
                             </button>
                         </div>
                     </div>

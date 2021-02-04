@@ -1,5 +1,9 @@
 import React from 'react'
+import { UserContext } from '../../../context/User'
 import { WorkshopContext } from '../../../context/Workshops'
+import { DELETE } from '../../../Node/Dashboard'
+import { WORKSHOP } from '../../../utils/EndPoints'
+import LoadingComponent from '../../LoadingComponent'
 
 const DeleteFormInput = () => {
     const { workshops } = React.useContext(WorkshopContext)
@@ -8,9 +12,32 @@ const DeleteFormInput = () => {
         return workshops.map((workshop, index) => <option value={workshop.id} key={index}>{workshop.title}</option>)
     }
 
-    const handleClick = () => {
+    const { showAlert } = React.useContext(UserContext)
+    const [loading, setLoading] = React.useState(false)
 
+    const handleClick = async (e) => {
+        e.preventDefault()
+        setLoading(false)
+        try {
+            await DELETE({ id: workshopIDSearch, path: WORKSHOP })
+            setTimeout(() => {
+                setWorkshopIDSearch('')
+                setLoading(false);
+                showAlert({ show: true, type: 'success', msg: 'delete your item successfully' })
+            }, 1000);
+        } catch (error) {
+            setTimeout(() => {
+                setWorkshopIDSearch('')
+                setLoading(false);
+                showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' })
+            }, 1000);
+        }
     }
+
+    if (loading) {
+        return <LoadingComponent />
+    }
+
 
     return (
         <div>
@@ -40,7 +67,7 @@ const DeleteFormInput = () => {
                             onClick={handleClick}
                             className="btn btn-danger btn-lg"
                         >
-                            Delete
+                            Delete Workshop
                         </button>
                     </div>
                 }

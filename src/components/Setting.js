@@ -25,8 +25,7 @@ const useStyles = makeStyles({
 export default function SwipeableTemporaryDrawer() {
 
     const history = useHistory()
-    let active = useLocation().pathname;
-    const { user, isUser, userLogout } = React.useContext(UserContext)
+    const { userLogout, isAdmin } = React.useContext(UserContext)
 
     const classes = useStyles();
     const [state, setState] = React.useState({
@@ -144,14 +143,20 @@ export default function SwipeableTemporaryDrawer() {
                 ))}
             </List>
             <Divider />
-            <List>
-                {DASHBOARD.map((item, index) => (
-                    <ListItem button key={index} onClick={item.onClick}>
-                        <ListItemIcon>{item.icon}</ListItemIcon>
-                        <ListItemText primary={item.manage} />
-                    </ListItem>
-                ))}
-            </List>
+
+            {
+                isAdmin && 
+                <>
+                    <List>
+                        {DASHBOARD.map((item, index) => (
+                            <ListItem button key={index} onClick={item.onClick}>
+                                <ListItemIcon>{item.icon}</ListItemIcon>
+                                <ListItemText primary={item.manage} />
+                            </ListItem>
+                        ))}
+                    </List>
+                </>
+            }
         </div>
     );
 

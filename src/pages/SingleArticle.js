@@ -45,8 +45,8 @@ function Article() {
                             <Comments 
                                 id={article.id} 
                                 comments={comments}
-                                setComments={setComments}
                                 submitComment={submitArticleComment}
+                                type="article"
                             />
                         </div>
                 }

@@ -4,10 +4,12 @@ import validator from 'validator'
 import LoadingComponent from '../../LoadingComponent';
 
 import { UserContext } from '../../../context/User'
+import { TEAM } from '../../../utils/EndPoints';
+import { ADD } from '../../../Node/Dashboard';
 
 const AddFormInput = () => {
 
-    const { isUser, showAlert, alert, loading } = React.useContext(UserContext)
+    const { showAlert, alert } = React.useContext(UserContext)
 
     const [userName, setUserName] = useState('')
     const [email, setEmail] = useState('')
@@ -20,65 +22,79 @@ const AddFormInput = () => {
     const [section, setSection] = useState('other')
     const [committee, setCommittee] = useState('other')
     const [image, setImage] = useState('')
+    
+    const [loading, setLoading] = useState(false);
 
     const isEmpty = !userName || !email || !password || !confirmPassword || !quote || !startSeason
         || !linkedIn || !image || alert.show || password.length < 6 || confirmPassword.length < 6
 
 
     const handleSubmit = async (e) => {
-        // setLoading(true)
-        // showAlert({
-        //     msg: "accessing user data. please wait..."
-        // });
-        // // alert
-        // e.preventDefault() // signup
-        // // pass == rePass
-        // if (password === confirmPassword) {
-        //     response = await registerUser({
-        //         userName,
-        //         email,
-        //         password,
-        //         quote,
-        //         season: `${new Date().getFullYear()}-${new Date(startSeason).getFullYear()}`,
-        //         linkedIn,
-        //         privilage: {
-        //             positionType: positionType ? positionType : 'other',
-        //             section: section ? section : 'other',
-        //             committee: committee ? committee : 'other'
-        //         },
-        //         image
-        //     })
-        // } else {
-        //     showAlert({
-        //         msg: "your password not match your re-password. please try again...",
-        //         type: "danger"
-        //     });
-        //     setLoading(false)
-        //     setPassword('')
-        //     setConfirmPassword('')
-        //     return 0;
-        // }
-    
+        e.preventDefault();
+        setLoading(true)
 
-        // if (response.status === 200) {
-        //     const {
-        //         user,
-        //         token
-        //     } = response.data
+        if (password === confirmPassword) {
+            if(validator.isEmail(email)){
 
-        //     userLogin({ user, token })
-        //     showAlert({
-        //         msg: `you are logged in : ${user.userName}. browse away my friend`
-        //     });
-        //     history.push("/");
-        // } else {
-        //     showAlert({
-        //         msg: "there was an error. please try again...",
-        //         type: "danger"
-        //     });
-        // }
+                const data = {
+                    userName,
+                    email,
+                    password,
+                    quote,
+                    season: `${new Date().getFullYear()}-${new Date(startSeason).getFullYear()}`,
+                    linkedIn,
+                    privilage: {
+                        positionType: positionType ? positionType : 'other',
+                        section: section ? section : 'other',
+                        committee: committee ? committee : 'other'
+                    },
+                    image
+                }
+                // send data to the server
+                try {
+                    await ADD({ data, path: TEAM +'/signup' })
+                    setTimeout(() => {
+                        setUserName(''); 
+                        setEmail('');
+                        setPassword('');
+                        setConfirmPassword(''); 
+                        setQuote(''); 
+                        setStartSeason(''); 
+                        setLinkedIn(''); 
+                        setPositionType('');
+                        setSection(''); 
+                        setCommittee(''); 
+                        setImage('');
 
-        // setLoading(false)
+                        setLoading(false);
+                        showAlert({ show: true, type: 'success', msg: 'sent your form successfully' })
+                    }, 1000);
+                } catch (e) {
+                    setTimeout(() => {
+                        setLoading(false);
+                        showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' })
+                    }, 1000);
+                }
+
+            } else {
+                showAlert({
+                    msg: "your email is not valid. please try again...",
+                    type: "danger"
+                });
+                setLoading(false)
+                setEmail('')
+                return 0;
+            }
+        } else {
+            showAlert({
+                msg: "your password not match your re-password. please try again...",
+                type: "danger"
+            });
+            setLoading(false)
+            setPassword('')
+            setConfirmPassword('')
+            return 0;
+        }
     }
 
     const getSectionData = () => {
@@ -325,7 +341,7 @@ const AddFormInput = () => {
                         <button
                             className="btn btn-lg btn-primary"
                         >
-                            Add Member
+                            Add Team Member
                         </button>
                     </div>
                 </div>

@@ -76,12 +76,23 @@ export default function ArticleProvider({ children }) {
             || article.author.toLowerCase().includes(searchTerm.toLowerCase())
         ));
     }
-
+    
     const getArticleByID = (ID) =>{
         setLoading(true)
         const article = articles.find(article => article.id === ID)
         setLoading(false)
         return article
+    }
+
+    const addArticleCommentInTheFly = (id, comment)=>{
+        setArticles(()=>{
+            return articles.map(article =>{
+                if(article.id === id){
+                    return { ...article, comments: article.comments.push(comment) }
+                }
+                return article
+            })
+        })
     }
 
     return (
@@ -91,6 +102,7 @@ export default function ArticleProvider({ children }) {
             loading,
             getArticlesByTerm,
             getArticleByID,
+            addArticleCommentInTheFly
         }}>
             {children}
         </ArticleContext.Provider>

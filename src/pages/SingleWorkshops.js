@@ -29,7 +29,7 @@ const SingleWorkshops = () => {
         return(
             <div className="card user-profile o-hidden mb-4">
                 <div className="displayOnFullScreenSingle">
-                    <img src={workshop.img || `${FE_URL}/${workshop.img}`} width="100%" alt={workshop.title} />
+                    <img src={workshop.img || `${FE_URL}/${workshop.img}`} style={{ width: "100%", height: '100%' }} alt={workshop.title} />
                 </div>
 
                 <div className="user-info">

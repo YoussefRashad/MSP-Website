@@ -7,7 +7,7 @@ import { TEAM } from '../../../utils/EndPoints'
 import LoadingComponent from '../../LoadingComponent'
 
 const UpdateFormInput = () => {
-    const { showAlert, alert } = React.useContext(UserContext)
+    const { showAlert } = React.useContext(UserContext)
     const { teams } = React.useContext(TeamContext)
 
     const [teamIDSearch, setTeamIDSearch] = useState('')
@@ -41,7 +41,7 @@ const UpdateFormInput = () => {
             )
         }
     }
-    console.log(team);
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -57,7 +57,7 @@ const UpdateFormInput = () => {
             setTimeout(() => {
                 setTeam(undefined)
                 setLoading(false);
-                showAlert({ show: true, type: 'success', msg: 'update your data by successfully' })
+                showAlert({ show: true, type: 'success', msg: 'update your data successfully' })
             }, 1000);
         } catch (error) {
             setTimeout(() => {
@@ -181,7 +181,7 @@ const UpdateFormInput = () => {
                         <div className="form-group row text-center" id="">
                             <div className="col-md-12 col-sm-10">
                                 <button type="submit" className="btn btn-lg btn-primary">
-                                    Add an article
+                                    Update Team Member
                         </button>
                             </div>
                         </div>

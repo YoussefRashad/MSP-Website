@@ -23,7 +23,7 @@ const AddFormInput = () => {
         e.preventDefault();
         setLoading(true)
 
-        const data = { title, author, image, feature, description }
+        const data = { title, author, image, feature: new Boolean(feature), description }
         // send data to the server
         try {
             await ADD({ data, path: ARTICLE })
@@ -31,11 +31,11 @@ const AddFormInput = () => {
                 setTitle('')
                 setAuthor('')
                 setImage('')
-                setFeature(false)
+                setFeature('')
                 setDescription('')
 
                 setLoading(false);
-                showAlert({ show: true, type: 'success', msg: 'sent your form by successfully' })
+                showAlert({ show: true, type: 'success', msg: 'sent your form successfully' })
 
             }, 1000);
         } catch (e) {
@@ -146,7 +146,7 @@ const AddFormInput = () => {
                     <div className="form-group row text-center" id="">
                         <div className="col-md-12 col-sm-10">
                             <button type="submit" className="btn btn-lg btn-primary">
-                                Add an article
+                                Add Article
                             </button>
                         </div>
                     </div>

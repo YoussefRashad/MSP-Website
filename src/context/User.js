@@ -6,6 +6,7 @@ const UserProvider = ({ children }) => {
 
     const [user, setUser] = useState({})
     const [isUser, setIsUser]= useState(false)
+    const [isAdmin, setIsAdmin] = useState(false)
     const [height, setHeight] = useState(0)
     const [loading, setLoading] = useState(false)
     // for waiting when fetching all data, using in all contexts only
@@ -31,12 +32,14 @@ const UserProvider = ({ children }) => {
                     // i use this structure because the BE return just user not token and i have already a token in local storage and i make sure it is available and correct 
                     setUser({ ...response.data, token: localUser })
                     setIsUser(true)
+                    setIsAdmin(response.data.email === 'youssef@admin.com')
                 } else {
                     localStorage.removeItem("user")
                     setIsUser(false)
                     showAlert({ msg:"Unauthorized logged, please re-login again !", type:"danger"})
                     setHigherLoading(false)
                     setLoading(false)
+                    setIsAdmin(false)
                     return {}
                 }
             } else {
@@ -55,6 +58,7 @@ const UserProvider = ({ children }) => {
         setLoading(true)
         setUser(user)
         setIsUser(true)
+        setIsAdmin(user.user.email === 'youssef@admin.com')
         localStorage.setItem("user", JSON.stringify({ token: user.token }))
         setLoading(false)
     }
@@ -63,6 +67,7 @@ const UserProvider = ({ children }) => {
         setLoading(true)
         setUser({})
         setIsUser(false)
+        setIsAdmin(false)
         localStorage.removeItem("user")
         setLoading(false)
     }
@@ -80,6 +85,7 @@ const UserProvider = ({ children }) => {
             user,
             isUser,
             userLogin,
+            isAdmin,
             userLogout,
             alert,
             showAlert,

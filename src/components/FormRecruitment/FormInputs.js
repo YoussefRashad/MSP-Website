@@ -44,7 +44,7 @@ const FormInputs = () => {
                 setCommitte('');
 
                 setLoading(false);
-                showAlert({ show: true, type: 'success', msg: 'sent your form by successfully'})
+                showAlert({ show: true, type: 'success', msg: 'sent your form successfully'})
                 
             }, 2000);
 

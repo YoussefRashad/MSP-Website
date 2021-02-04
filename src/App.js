@@ -45,7 +45,7 @@ import Alert from './components/Alert';
 
 function App() {
   const [loading, setLoading] = React.useState(true) //// i will change to admin loading
-  const { alert, higherLoading, setHigherLoading } = React.useContext(UserContext)
+  const { alert, higherLoading, setHigherLoading, isAdmin } = React.useContext(UserContext)
   
   React.useEffect(()=>{
     setTimeout(() => {
@@ -88,14 +88,18 @@ function App() {
         <Route exact path="/profile" component={MyProfile} />
 
         {/* Dashboards */}
-        <Route exact path="/manage/articles" component={ManageArticles} />
-        <Route exact path="/manage/workshops" component={ManageWorkshops} />
-        <Route exact path="/manage/events" component={ManageEvents} />
-        <Route exact path="/manage/forms" component={ManageForms} />
-        <Route exact path="/manage/team" component={ManageTeam} />
-        <Route exact path="/manage/videos" component={ManageVideos} />
-        <Route exact path="/manage/sponsors" component={ManageSponsors} />
-
+        {
+          isAdmin &&
+            <>
+              <Route exact path="/manage/articles" component={ManageArticles} />
+              <Route exact path="/manage/workshops" component={ManageWorkshops} />
+              <Route exact path="/manage/events" component={ManageEvents} />
+              <Route exact path="/manage/forms" component={ManageForms} />
+              <Route exact path="/manage/team" component={ManageTeam} />
+              <Route exact path="/manage/videos" component={ManageVideos} />
+              <Route exact path="/manage/sponsors" component={ManageSponsors} />
+          </>
+        }
         <Route path="*" component={Error} />
       </Switch>
 

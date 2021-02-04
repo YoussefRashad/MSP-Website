@@ -9,7 +9,6 @@ import { scrollAutoFromBackToTop } from '../../components/ScrollButton'
 
 import Add from '../../components/Dashboards/ManageTeam/Add';
 import Update from '../../components/Dashboards/ManageTeam/Update';
-import Delete from '../../components/Dashboards/ManageTeam/Delete';
 
 const ManageTeam = () => {
     const useStyles = makeStyles((theme) => ({
@@ -49,7 +48,6 @@ const ManageTeam = () => {
                             >
                                 <Tab label="Add Team Member" value="1" />
                                 <Tab label="Update Team Member" value="2" />
-                                <Tab label="Delete Team Member" value="3" />
                             </TabList>
                         </AppBar>
                         <TabPanel value="1">
@@ -57,9 +55,6 @@ const ManageTeam = () => {
                         </TabPanel>
                         <TabPanel value="2">
                             <Update />
-                        </TabPanel>
-                        <TabPanel value="3">
-                            <Delete />
                         </TabPanel>
 
                     </TabContext>

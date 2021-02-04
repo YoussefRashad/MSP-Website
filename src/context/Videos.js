@@ -106,6 +106,16 @@ const VideosProvider = ({ children }) => {
         ));
     }
 
+    const addVideoCommentInTheFly = (id, comment) => {
+        setVideos(() => {
+            return videos.map(video => {
+                if (video.id === id) {
+                    return { ...video, comments: video.comments.push(comment) }
+                }
+                return video
+            })
+        })
+    }
     
     return (
         <VideosContext.Provider value={{
@@ -115,7 +125,8 @@ const VideosProvider = ({ children }) => {
             loading,
             setCommitteesVideos,
             getVideoByID,
-            getVideosByTerm
+            getVideosByTerm,
+            addVideoCommentInTheFly
         }}>
             {children}
         </VideosContext.Provider>

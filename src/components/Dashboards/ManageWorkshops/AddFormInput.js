@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import validator from 'validator'
 
 import LoadingComponent from '../../LoadingComponent';
 
 import { UserContext } from '../../../context/User'
+import { WORKSHOP } from '../../../utils/EndPoints';
+import { ADD } from '../../../Node/Dashboard';
 
 const AddFormInput = () => {
 
@@ -19,41 +20,30 @@ const AddFormInput = () => {
     const isEmpty = !title || !image || !description || !feature || alert.show
 
     const handleSubmit = async (e) => {
-        // e.preventDefault();
-        // setLoading(true)
+        e.preventDefault();
+        setLoading(true)
 
-        // if (!validator.isEmail(email)) {
-        //     showAlert({
-        //         type: 'danger',
-        //         msg: 'Enter a valid email !'
-        //     })
-        //     setLoading(false)
-        // } else {
-        //     const answered = { name, email, age, faculty, committe }
+        const data = { title, image, feature: new Boolean(feature), description }
+        // send data to the server
+        try {
+            await ADD({ data, path: WORKSHOP })
+            setTimeout(() => {
+                setTitle('')
+                setImage('')
+                setFeature('')
+                setDescription('')
 
-            // send data to the server
-            // submitFormEvent(answered).then((res) => {
+                setLoading(false);
+                showAlert({ show: true, type: 'success', msg: 'sent your form successfully' })
 
-            //     setTimeout(() => {
-
-            //         setName('');
-            //         setEmail('');
-            //         setAge('');
-            //         setFaculty('');
-            //         setCommitte('');
-
-            //         setLoading(false);
-            //         showAlert({ show: true, type: 'success', msg: 'sent your form by successfully' })
-
-            //     }, 2000);
-
-            // }).catch((error) => {
-            //     setTimeout(() => {
-            //         setLoading(false);
-            //         showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' })
-            //     }, 2000);
-            // })
-        // }
+            }, 1000);
+        } catch (e) {
+            setTimeout(() => {
+                setLoading(false);
+                console.log(e.message);
+                showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' })
+            }, 1000);
+        }
 
     }
 
@@ -144,7 +134,7 @@ const AddFormInput = () => {
                     <div className="form-group row text-center" id="">
                         <div className="col-md-12 col-sm-10">
                             <button type="submit" className="btn btn-lg btn-primary">
-                                Send the form
+                                Add Workshop
                             </button>
                         </div>
                     </div>

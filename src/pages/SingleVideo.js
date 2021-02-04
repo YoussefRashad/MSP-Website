@@ -58,8 +58,8 @@ const SingleVideo = () => {
                         <Comments
                             id={video.id}
                             comments={comments}
-                            setComments={setComments}
                             submitComment={submitVideoComment}
+                            type="video"
                         />
                     </div>
                 }

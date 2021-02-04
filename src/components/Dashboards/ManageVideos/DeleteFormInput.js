@@ -1,5 +1,9 @@
 import React from 'react'
+import { UserContext } from '../../../context/User'
 import { VideosContext } from '../../../context/Videos'
+import { DELETE } from '../../../Node/Dashboard'
+import { VIDEO } from '../../../utils/EndPoints'
+import LoadingComponent from '../../LoadingComponent'
 
 const DeleteFormInput = () => {
     const { videos } = React.useContext(VideosContext)
@@ -8,8 +12,30 @@ const DeleteFormInput = () => {
         return videos.map((video, index) => <option value={video.id} key={index}>{video.title}</option>)
     }
 
-    const handleClick = () => {
+    const { showAlert } = React.useContext(UserContext)
+    const [loading, setLoading] = React.useState(false)
 
+    const handleClick = async (e) => {
+        e.preventDefault()
+        setLoading(false)
+        try {
+            await DELETE({ id: videoIDSearch, path: VIDEO })
+            setTimeout(() => {
+                setVideoIDSearch('')
+                setLoading(false);
+                showAlert({ show: true, type: 'success', msg: 'delete your item successfully' })
+            }, 1000);
+        } catch (error) {
+            setTimeout(() => {
+                setVideoIDSearch('')
+                setLoading(false);
+                showAlert({ show: true, type: 'danger', msg: 'there is an error, please try later ..' })
+            }, 1000);
+        }
+    }
+
+    if (loading) {
+        return <LoadingComponent />
     }
 
 
@@ -41,7 +67,7 @@ const DeleteFormInput = () => {
                             onClick={handleClick}
                             className="btn btn-danger btn-lg"
                         >
-                            Delete
+                            Delete Video
                         </button>
                     </div>
                 }
